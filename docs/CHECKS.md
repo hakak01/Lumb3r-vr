@@ -85,3 +85,16 @@ Shape = Z-Anatomy "L2 spinal ganglion" (5.1 × 2.7 mm) scaled to the reference s
 - S1 leaves more cephalad and more vertically than L5 (22° vs 47°). **Not the shortest**: S1 27.4 mm vs L4 25.6 and L5 28 mm (Hasegawa 1996 says shortest) — reported, not forced.
 - Spinal nerves (not in the ≥0.5 mm rule): L3–L5 1.8–4.8 mm; S1 −0.4 mm and S2 −0.1 mm (graze bone inside the sacral foramina).
 - Intrathecal arrangement: largest overlap between neighbouring roots 0.4 mm before smoothing (packing rule; roots of 0.9–1.4 mm radius).
+
+## 9. Phase C2 parts (rules (approx); numbers in data/raw/c2_checks.json)
+| Item | Value (this model) | Reference / rule | Result |
+|---|---|---|---|
+| Cartilaginous endplates (6) | mean 0.71 mm (0.46 centre – 1.00 AP rim, 0.78 lateral rim); cover 70–72 % of the disc face (1012–1174 mm²) | 0.3–1 mm, mean 0.74 (DeLucca 2016; Berg-Johansen 2018) | OK (rule value) |
+| Facet bone gap (median, R / L) | L3–4 2.60 / 1.62 · L4–5 1.80 / 2.71 · L5–S1 2.75 / 2.03 mm | filled by cartilage + 0.4 mm space | cartilage 0.48–1.14 mm per facet |
+| Facet angle (mid-joint normal, R / L) | L3–4 29.2° / 40.9° · L4–5 40.8° / 46.1° · L5–S1 46.1° / 47.3° | 38.7 / 47 / 47.3° | **FLAG L3–4: 12° left–right** (as section 7) |
+| Facet articular area (R / L) | L3–4 116 / 121 · L4–5 140 / 157 · L5–S1 171 / 112 mm² | — | report |
+| Posterior fat pad: length, max depth | L3–4 19, 4.1 · L4–5 20, 3.4 · L5–S1 26, 6.5 mm | Reina 2019: one pad per level, not continuous | OK |
+| Foraminal fat (median thickness round the nerve) | L3 2.7–2.8 · L4 2.7–2.8 · L5 1.5–2.2 mm | — | report |
+| Kambin's triangle base × height, area (R / L) | L3–4 14.3×8.0, 62 / 7.1×9.1, 41 · L4–5 14.2×14.7, 126 / 14.7×18.7, 171 · L5–S1 23.0×30.4, 472 / 22.7×27.3, 403 mm² | — | **FLAG L5–S1 large** (tall L5–S1 foramen, tilted sacrum) |
+| Lateral recess patch area (R / L) | L4 26 / 30 · L5 66 / 57 · S1 15 / 16 mm² | — | report |
+- Clearance to bone/disc/ligament (exact): medial branches 0.68–0.76, L5 dorsal rami 0.58–0.72 mm. SVNs touch the PLL (−0.07 to −0.33 mm; they end in it). Venous channels touch bone in ~2 % of points (≤1.7 mm, L5 body, where the sac fills the canal); L4–5 left intervertebral vein −2.2 mm at its join with the ascending lumbar vein (which lies on bone). Capsules are anchored 0.8 mm into bone by design. Fat: L5–S1 pad −0.2 mm into flavum; prelaminar band L4 and left L3–4 foraminal fat: a few vertices into the flavum at its midline seam / lateral edge.

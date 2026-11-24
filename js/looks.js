@@ -66,11 +66,11 @@ export function lookKey(layer, matName, kind, structName) {
   if (layer === 'skin') return (m === 'Nail' || /Nail/.test(structName)) ? 'nail' : 'skin';
   if (/nucleus pulposus/i.test(structName)) return 'nucleus';
   if (/annulus fibrosus/i.test(structName)) return 'annulus';
-  if (/dura|arachnoid/i.test(structName)) return 'dura';
+  if (/\bdura|arachnoid/i.test(structName)) return 'dura';   // \b: not "epidural"
   if (layer === 'landmark') return /outline/i.test(m) ? 'landmarkLine' : 'landmark';
   return { bone: 'bone', context_bone: 'bone', muscle: 'muscle', ligament_capsule: 'ligament', fascia_retinacula: 'fascia',
     tendon_sheath: 'sheath', bursa: 'sheath', lymph_node: 'lymph', nerve: 'nerve', artery: 'artery', vein: 'vein',
-    fat: 'fat', neural: 'nerve', disc: 'annulus' }[layer] || 'ligament';
+    fat: 'fat', epidural_fat: 'fat', neural: 'nerve', disc: 'annulus' }[layer] || 'ligament';
 }
 
 // Main direction of a mesh (for lengthwise fibres), in model space.

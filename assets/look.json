@@ -32,6 +32,7 @@
     "ligament_capsule":  { "label": "Ligaments & capsules", "on": true,  "opacity": 1.0 },
     "disc":              { "label": "Discs",                "on": true,  "opacity": 1.0 },
     "fat":               { "label": "Subcutaneous fat",     "on": false, "opacity": 1.0 },
+    "epidural_fat":      { "label": "Epidural & foraminal fat", "on": true, "opacity": 1.0 },
     "nerve":             { "label": "Nerves",               "on": true,  "opacity": 1.0 },
     "neural":            { "label": "Dura, cauda equina, roots", "on": true, "opacity": 1.0 },
     "artery":            { "label": "Arteries",             "on": true,  "opacity": 1.0 },

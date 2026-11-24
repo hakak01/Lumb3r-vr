@@ -65,7 +65,7 @@ function patch(shader, mat) {
 
 // Structure name (+ layer, glTF material name) -> tissue key, or null to keep the present look.
 export function tissueOf(cfg, name, layer, matName, kind) {
-  if (layer === 'attachment' || kind) return null;
+  if (layer === 'attachment' || layer === 'landmark' || kind) return null;
   const m = matName || '';
   if (m.includes('Cartilage')) return 'cartilage';
   if (m === 'Tendon') return 'tendon';

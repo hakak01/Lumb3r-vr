@@ -41,7 +41,7 @@
   "_rules": "Structure name -> tissue. First matching rule wins (case-insensitive). 'overrides' (exact name) beat rules. Bone sub-meshes named Cartilage and muscle sub-meshes named Tendon are set automatically.",
   "overrides": { "Articular disc of distal radio-ulnar joint": "cartilage" },
   "rules": [
-    ["dura|arachnoid", "dura"], ["nucleus pulposus", "nucleus"], ["annulus fibrosus", "annulus"], ["spinal cord|root|ganglion|cauda", "nerve"],
+    ["\\bdura|arachnoid", "dura"], ["nucleus pulposus", "nucleus"], ["annulus fibrosus", "annulus"], ["spinal cord|root|ganglion|cauda", "nerve"],
     ["fibrous sheath", "ligament"],
     ["sheath|bursa", "sheath"],
     ["tendon|chiasm|central slip|lateral bands|sagittal bands", "tendon"],
@@ -54,5 +54,5 @@
     ["ligament|plate|pulley|retinacul|aponeuros|fascia|septum|capsule|cord", "ligament"]
   ],
   "layerDefault": { "neural": "nerve", "disc": "annulus", "bone": "bone", "context_bone": "bone", "bursa": "sheath", "muscle": "muscle", "ligament_capsule": "ligament", "fascia_retinacula": "ligament",
-    "tendon_sheath": "sheath", "nerve": "nerve", "artery": "artery", "vein": "vein", "fat": "fat", "skin": "skin" }
+    "tendon_sheath": "sheath", "nerve": "nerve", "artery": "artery", "vein": "vein", "fat": "fat", "epidural_fat": "fat", "landmark": null, "skin": "skin" }
 }

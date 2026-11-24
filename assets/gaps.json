@@ -598,5 +598,1026 @@
   "level": "S2",
   "side": "right",
   "part": "spinal nerve"
+ },
+ {
+  "name": "L3 inferior cartilaginous endplate",
+  "layer": "disc",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1280,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "endplate"
+ },
+ {
+  "name": "L4 superior cartilaginous endplate",
+  "layer": "disc",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1280,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "endplate"
+ },
+ {
+  "name": "L4 inferior cartilaginous endplate",
+  "layer": "disc",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1280,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "endplate"
+ },
+ {
+  "name": "L5 superior cartilaginous endplate",
+  "layer": "disc",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1280,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "endplate"
+ },
+ {
+  "name": "L5 inferior cartilaginous endplate",
+  "layer": "disc",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1280,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "endplate"
+ },
+ {
+  "name": "S1 superior cartilaginous endplate",
+  "layer": "disc",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1280,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "endplate"
+ },
+ {
+  "name": "L3-4 facet cartilage, L3 inferior facet (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L3-4",
+  "side": "left",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L3-4 facet cartilage, L4 superior facet (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L3-4",
+  "side": "left",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L3-4 facet joint capsule (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 680,
+  "level": "L3-4",
+  "side": "left",
+  "part": "facet capsule"
+ },
+ {
+  "name": "L3-4 facet cartilage, L3 inferior facet (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L3-4",
+  "side": "right",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L3-4 facet cartilage, L4 superior facet (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L3-4",
+  "side": "right",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L3-4 facet joint capsule (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 644,
+  "level": "L3-4",
+  "side": "right",
+  "part": "facet capsule"
+ },
+ {
+  "name": "L4-5 facet cartilage, L4 inferior facet (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L4-5",
+  "side": "left",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L4-5 facet cartilage, L5 superior facet (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L4-5",
+  "side": "left",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L4-5 facet joint capsule (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 644,
+  "level": "L4-5",
+  "side": "left",
+  "part": "facet capsule"
+ },
+ {
+  "name": "L4-5 facet cartilage, L4 inferior facet (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L4-5",
+  "side": "right",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L4-5 facet cartilage, L5 superior facet (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L4-5",
+  "side": "right",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L4-5 facet joint capsule (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 644,
+  "level": "L4-5",
+  "side": "right",
+  "part": "facet capsule"
+ },
+ {
+  "name": "L5-S1 facet cartilage, L5 inferior facet (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L5-S1 facet cartilage, S1 superior facet (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L5-S1 facet joint capsule (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 644,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "facet capsule"
+ },
+ {
+  "name": "L5-S1 facet cartilage, L5 inferior facet (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L5-S1 facet cartilage, S1 superior facet (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "facet cartilage"
+ },
+ {
+  "name": "L5-S1 facet joint capsule (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 644,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "facet capsule"
+ },
+ {
+  "name": "Posterior epidural fat pad L3-4",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1036,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "epidural fat"
+ },
+ {
+  "name": "Posterior epidural fat pad L4-5",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1088,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "epidural fat"
+ },
+ {
+  "name": "Posterior epidural fat pad L5-S1",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1400,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "epidural fat"
+ },
+ {
+  "name": "Prelaminar fibrous band L3",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 516,
+  "level": "L3",
+  "side": "mid",
+  "part": "prelaminar band"
+ },
+ {
+  "name": "Prelaminar fibrous band L4",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 464,
+  "level": "L4",
+  "side": "mid",
+  "part": "prelaminar band"
+ },
+ {
+  "name": "Prelaminar fibrous band S1",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 256,
+  "level": "S1",
+  "side": "mid",
+  "part": "prelaminar band"
+ },
+ {
+  "name": "Foraminal fat L3-4 (left)",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2184,
+  "level": "L3-4",
+  "side": "left",
+  "part": "foraminal fat"
+ },
+ {
+  "name": "Foraminal fat L3-4 (right)",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2296,
+  "level": "L3-4",
+  "side": "right",
+  "part": "foraminal fat"
+ },
+ {
+  "name": "Foraminal fat L4-5 (left)",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L4-5",
+  "side": "left",
+  "part": "foraminal fat"
+ },
+ {
+  "name": "Foraminal fat L4-5 (right)",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L4-5",
+  "side": "right",
+  "part": "foraminal fat"
+ },
+ {
+  "name": "Foraminal fat L5-S1 (left)",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1456,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "foraminal fat"
+ },
+ {
+  "name": "Foraminal fat L5-S1 (right)",
+  "layer": "epidural_fat",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1288,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "foraminal fat"
+ },
+ {
+  "name": "Anterior internal vertebral venous plexus (left)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2380,
+  "level": "",
+  "side": "left",
+  "part": "venous plexus"
+ },
+ {
+  "name": "Anterior internal vertebral venous plexus (right)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2380,
+  "level": "",
+  "side": "right",
+  "part": "venous plexus"
+ },
+ {
+  "name": "L3 basivertebral vein",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 832,
+  "level": "L3",
+  "side": "mid",
+  "part": "basivertebral vein"
+ },
+ {
+  "name": "L4 basivertebral vein",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 832,
+  "level": "L4",
+  "side": "mid",
+  "part": "basivertebral vein"
+ },
+ {
+  "name": "L5 basivertebral vein",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 832,
+  "level": "L5",
+  "side": "mid",
+  "part": "basivertebral vein"
+ },
+ {
+  "name": "Intervertebral vein L3-4 (left)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 688,
+  "level": "L3-4",
+  "side": "left",
+  "part": "intervertebral vein"
+ },
+ {
+  "name": "Intervertebral vein L3-4 (right)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 640,
+  "level": "L3-4",
+  "side": "right",
+  "part": "intervertebral vein"
+ },
+ {
+  "name": "Intervertebral vein L4-5 (left)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 944,
+  "level": "L4-5",
+  "side": "left",
+  "part": "intervertebral vein"
+ },
+ {
+  "name": "Intervertebral vein L4-5 (right)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1232,
+  "level": "L4-5",
+  "side": "right",
+  "part": "intervertebral vein"
+ },
+ {
+  "name": "Intervertebral vein L5-S1 (left)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "intervertebral vein"
+ },
+ {
+  "name": "Intervertebral vein L5-S1 (right)",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 656,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "intervertebral vein"
+ },
+ {
+  "name": "Posterior internal vertebral venous plexus",
+  "layer": "vein",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3808,
+  "level": "",
+  "side": "mid",
+  "part": "venous plexus",
+  "hidden": true
+ },
+ {
+  "name": "L3 medial branch (left)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 480,
+  "level": "L3",
+  "side": "left",
+  "part": "medial branch"
+ },
+ {
+  "name": "L3 medial branch (right)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 448,
+  "level": "L3",
+  "side": "right",
+  "part": "medial branch"
+ },
+ {
+  "name": "L4 medial branch (left)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 560,
+  "level": "L4",
+  "side": "left",
+  "part": "medial branch"
+ },
+ {
+  "name": "L4 medial branch (right)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 512,
+  "level": "L4",
+  "side": "right",
+  "part": "medial branch"
+ },
+ {
+  "name": "L5 dorsal ramus (left)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 720,
+  "level": "L5",
+  "side": "left",
+  "part": "dorsal ramus"
+ },
+ {
+  "name": "L5 dorsal ramus (right)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 720,
+  "level": "L5",
+  "side": "right",
+  "part": "dorsal ramus"
+ },
+ {
+  "name": "L3 sinuvertebral nerve (left)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 492,
+  "level": "L3",
+  "side": "left",
+  "part": "sinuvertebral nerve"
+ },
+ {
+  "name": "L3 sinuvertebral nerve (right)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 480,
+  "level": "L3",
+  "side": "right",
+  "part": "sinuvertebral nerve"
+ },
+ {
+  "name": "L4 sinuvertebral nerve (left)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 468,
+  "level": "L4",
+  "side": "left",
+  "part": "sinuvertebral nerve"
+ },
+ {
+  "name": "L4 sinuvertebral nerve (right)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 408,
+  "level": "L4",
+  "side": "right",
+  "part": "sinuvertebral nerve"
+ },
+ {
+  "name": "L5 sinuvertebral nerve (left)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 684,
+  "level": "L5",
+  "side": "left",
+  "part": "sinuvertebral nerve"
+ },
+ {
+  "name": "L5 sinuvertebral nerve (right)",
+  "layer": "nerve",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 672,
+  "level": "L5",
+  "side": "right",
+  "part": "sinuvertebral nerve"
+ },
+ {
+  "name": "Kambin's triangle L3-4 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 252,
+  "level": "L3-4",
+  "side": "left",
+  "part": "Kambin triangle"
+ },
+ {
+  "name": "Foraminal entry zone L3-4 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L3-4",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal middle zone L3-4 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L3-4",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal exit zone L3-4 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L3-4",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Lateral recess L4 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4",
+  "side": "left",
+  "part": "lateral recess"
+ },
+ {
+  "name": "L4 axilla of the traversing root (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L3-4",
+  "side": "left",
+  "part": "root axilla"
+ },
+ {
+  "name": "L4 shoulder of the traversing root (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L3-4",
+  "side": "left",
+  "part": "root shoulder"
+ },
+ {
+  "name": "Kambin's triangle L3-4 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 252,
+  "level": "L3-4",
+  "side": "right",
+  "part": "Kambin triangle"
+ },
+ {
+  "name": "Foraminal entry zone L3-4 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L3-4",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal middle zone L3-4 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L3-4",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal exit zone L3-4 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L3-4",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Lateral recess L4 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4",
+  "side": "right",
+  "part": "lateral recess"
+ },
+ {
+  "name": "L4 axilla of the traversing root (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L3-4",
+  "side": "right",
+  "part": "root axilla"
+ },
+ {
+  "name": "L4 shoulder of the traversing root (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L3-4",
+  "side": "right",
+  "part": "root shoulder"
+ },
+ {
+  "name": "Kambin's triangle L4-5 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 252,
+  "level": "L4-5",
+  "side": "left",
+  "part": "Kambin triangle"
+ },
+ {
+  "name": "Foraminal entry zone L4-5 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4-5",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal middle zone L4-5 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4-5",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal exit zone L4-5 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4-5",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Lateral recess L5 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5",
+  "side": "left",
+  "part": "lateral recess"
+ },
+ {
+  "name": "L5 axilla of the traversing root (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L4-5",
+  "side": "left",
+  "part": "root axilla"
+ },
+ {
+  "name": "L5 shoulder of the traversing root (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L4-5",
+  "side": "left",
+  "part": "root shoulder"
+ },
+ {
+  "name": "Kambin's triangle L4-5 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 252,
+  "level": "L4-5",
+  "side": "right",
+  "part": "Kambin triangle"
+ },
+ {
+  "name": "Foraminal entry zone L4-5 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4-5",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal middle zone L4-5 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4-5",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal exit zone L4-5 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L4-5",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Lateral recess L5 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5",
+  "side": "right",
+  "part": "lateral recess"
+ },
+ {
+  "name": "L5 axilla of the traversing root (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L4-5",
+  "side": "right",
+  "part": "root axilla"
+ },
+ {
+  "name": "L5 shoulder of the traversing root (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L4-5",
+  "side": "right",
+  "part": "root shoulder"
+ },
+ {
+  "name": "Kambin's triangle L5-S1 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 252,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "Kambin triangle"
+ },
+ {
+  "name": "Foraminal entry zone L5-S1 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal middle zone L5-S1 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal exit zone L5-S1 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Lateral recess S1 (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "S1",
+  "side": "left",
+  "part": "lateral recess"
+ },
+ {
+  "name": "S1 axilla of the traversing root (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "root axilla"
+ },
+ {
+  "name": "S1 shoulder of the traversing root (left)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "root shoulder"
+ },
+ {
+  "name": "Kambin's triangle L5-S1 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 252,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "Kambin triangle"
+ },
+ {
+  "name": "Foraminal entry zone L5-S1 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal middle zone L5-S1 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Foraminal exit zone L5-S1 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "foraminal zone"
+ },
+ {
+  "name": "Lateral recess S1 (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 192,
+  "level": "S1",
+  "side": "right",
+  "part": "lateral recess"
+ },
+ {
+  "name": "S1 axilla of the traversing root (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "root axilla"
+ },
+ {
+  "name": "S1 shoulder of the traversing root (right)",
+  "layer": "landmark",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 48,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "root shoulder"
  }
 ]

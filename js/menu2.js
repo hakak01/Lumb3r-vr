@@ -8,7 +8,8 @@ const ends = (L) => { const [a, b] = L.split('-'); return [a, /^\d$/.test(b) ? '
 // Does a structure belong to the chosen level / side? Roots of a disc level = the exiting and the traversing root.
 export function inLevel(s, L) {
   if (L === 'All' || !s.level || s.level === L) return true;
-  return L.includes('-') && s.layer === 'neural' && /(^| )root$|ganglion|spinal nerve|sleeve/.test(s.part) && ends(L).includes(s.level);
+  return L.includes('-') && (s.layer === 'neural' || s.layer === 'nerve') &&
+    /(^| )root$|ganglion|spinal nerve|sleeve|medial branch|dorsal ramus|sinuvertebral/.test(s.part) && ends(L).includes(s.level);
 }
 const inSide = (s, sd) => sd === 'both' || !s.side || s.side === 'mid' || s.side === sd;
 

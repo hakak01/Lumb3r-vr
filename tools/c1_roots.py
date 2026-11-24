@@ -224,5 +224,6 @@ def build(K, D, sac, F, EX, log=print):
         ang = float(np.degrees(np.arccos(abs(G.unit(c['G'] - c['E']) @ K['N'][c['kE']]))))
         out.append(dict(level=r['name'], side=side, meshes=meshes, sleeve_len=round(ln, 1), angle=round(ang, 1), clear=clear, nerve_clear=cn, info=c['info'],
                         join=c['join'], w=L['w'], l=L['l'], rv=L['rv'], rd=L['rd'], exit_z=float(c['E'][2]),
-                        drg=c['G']))
+                        drg=c['G'], paths=dict(dors=dors, vent=vent, nerve=c['nerve'], u=c['u'], E=c['E'],
+                                               sleeve=mid, srad=srad, nI=nI, P=L.get('P'))))
     return out

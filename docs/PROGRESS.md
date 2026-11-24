@@ -1,24 +1,25 @@
-# PROGRESS (updated 2026-11-24, Phase C1 done; next = Phase C2)
-Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md (Phase C replaced by C1/C2 text). lumbar.glb 240 objects 380k tris; gaps.glb 60 objects 146k tris, 0.9 MB (total 526k ≤ 600k).
-## Done (C1: neural parts + ligamentum flavum, all "rules (approx)")
-- Canal measured in slices ⟂ its centreline every 1 mm (z 1128 → 878), polar wall distances (tools/c1_canal.py).
-- Dural sac z 1128 → rounded tip z 943 (upper S2, 11 % down S2); arachnoid 0.2 mm inside; filum internum conus (z 1055) → tip; dural filum → back of coccyx.
-- Sac area at mid-disc L2-3/L3-4/L4-5/L5-S1: 176/202/236/217 mm² (all >100). Margins: front 1.0, back 0.8 (3.0 at midline fat pad), sides 2.5 mm; width cap 17 mm.
-- Roots L3–S2 L/R: ventral + dorsal + DRG + dural sleeve + spinal nerve (50 parts). Template = Z-Anatomy L2 (ventral r 0.47, dorsal 0.535, ganglion 5.1×2.7 mm) scaled to DRG width. Leave sac at z 1065/1029/995/964/951.
-- DRG L3/L4 medial zone, L5 lateral zone, S1/S2 in the sacral canal at their foramen opening. Narrowest gap to bone/disc/ligament 0.76 mm (S2); lumbar ≥0.93.
-- Flavum L3-4, L4-5, L5-S1 L/R solid, 3.09 mm at half length; L5-S1 reaches S1. Supraspinous absent at L5-S1 marked normal (GAPS).
-- 21 old parts renamed "(old)", hidden (old roots L3–S4, central cauda bundle, old flavum sheets): tools/c1_old.py (run once after build_assets).
-- Viewer: Parts groups Roots/Ganglia/Spinal nerves/Cord & filum/Old (superseded); "(Phase C)" now only Facet joint, Endplate; info source "rules (approx)"; manifest "hidden" honoured; Show all keeps old parts hidden.
+# PROGRESS (updated 2026-11-24, Phase C2 done except step 8 colours; next = C2 step 8, then Phase D)
+Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. lumbar.glb 240 objects 380k tris; gaps.glb 162 objects 208k tris, 1.4 MB (total 588k ≤ 600k; 12k spare).
+## Done (C2, all "rules (approx)"; numbers in docs/CHECKS.md §9, data/raw/c2_checks.json)
+- Endplates (6): outer face = bony endplate, 0.46 mm centre → 1.0 mm AP rim / 0.78 lateral (mean 0.71); edge 3.5 mm inside disc outline; 70 % of disc face.
+- Facet joints L3-4..L5-S1 L/R: cartilage fills bone gap (1.6–2.8 mm) minus 0.4 mm joint space, thins at margin; capsule 1 mm, recesses +3 mm sup/inf, open anteromedially ~125° (flavum).
+- Epidural fat: posterior pads per level (19–26 mm long, depth 3.4–6.5), prelaminar bands L3, L4, S1; foraminal fat L3–L5 L/R (1.5–2.8 mm). New layer "epidural_fat" (on).
+- Veins: anterior internal plexus L/R (z 1072→959, r 0.3–1.3, 35° body / 55° disc from midline), basivertebral L3–L5, 6 intervertebral veins to lumbar/asc. lumbar/iliolumbar; posterior plexus hidden.
+- Nerves: L3/L4 dorsal ramus + medial branch over L4/L5 TP–SAP junction; L5 dorsal ramus in ala–SAP groove; SVN L3–L5 L/R (asc 12, desc 5 mm).
+- Landmarks (42): Kambin's triangle, lateral recess, foraminal entry/middle/exit zones, axilla/shoulder of traversing roots.
+- Viewer: Parts groups Medial branch / SVN, Epidural & foraminal fat, Vertebral venous plexus, Landmarks; "(Phase C)" entries gone. Disc-level filter includes small nerves.
+- Fixed: "epidural" matched the dura colour rule (now \bdura); landmark names with "root" got nerve colour (landmarks keep their look).
 ## Decisions
-- Z-Anatomy "Spinal dura" is a sheath on the cord/conus (2 mm wide at z 1066), not a sac: the new sac starts at the region top and contains it (no join at mid-L3 possible).
-- S1 DRG 7.0×12 mm, S2 5.0×8 mm: approx (SPEC gives no numbers). DRG axis lumbar (lat, -0.35 ant, -0.45 down); sacral along the canal toward the opening.
-- Spinal nerves end on the nearest Z-Anatomy plexus nerve (L3 obturator, L4/L5 nerve to quadratus femoris, S1/S2 old root end).
+- Endplate overlaps the outer ~0.4 mm of the disc (disc touches bone, median gap 0.3 mm). Ring apophysis 3.5 mm, recess 3 mm, capsule 1 mm: approx.
+- Medial branch at the TP of the vertebra BELOW (L3 MB at L4), as for RF targets. Small nerves keep ≥0.1 mm (field) from bone/disc/ligament/neural parts.
+- Second clearance field (F2) includes dura, roots, DRG, sleeves, spinal nerves (c2_build.neural_field).
 ## Known problems
-- S1 not the shortest root (27.4 mm vs L4 25.6); S1/S2 spinal nerves graze bone in the sacral foramina (−0.4 mm); S1/S2 DRGs partly overlap the tapering sac tip.
-- Sac above L2 slightly bumpy (context level). Arachnoid not in sleeves. S3–S5 roots now only as hidden "(old)". Lumbosacral trunk still missing.
-- Not yet tested on a Quest. Colours of new dura/arachnoid = old dura estimate (C2 step 8).
+- Step 8 colours NOT done: Bassett photo site blocked (403). Upload the 3 images to data/upload/ (links in the session report).
+- Kambin L5-S1 large (403/472 mm², height 27–30 mm). Prelaminar band L5 missing. Foraminal fat L3 39–41 mm long (includes lateral recess).
+- Venous channels touch bone in ~2 % of points at L5; SVNs touch PLL; medial branches lie 0.6–0.8 mm off bone, not on it. No S1/S2 foraminal fat.
+- Carried over: S1 not the shortest root; S1/S2 nerves graze sacral foramina; facet L3-4 R/L angle 29/41°; not yet tested on a Quest.
 ## Next step
-- C1 committed (860e24e, main). User tests C1 in the viewer (desktop + Quest 3); then Phase C2 (endplates, facet joints, epidural fat, venous plexus, medial branches, sinuvertebral nerves, landmarks, photo colours).
+- User tests C2 (desktop + Quest 3) and uploads the Bassett photos → C2 step 8 (dura, arachnoid, epidural fat, vein colours in tissues.json cadaver/realistic). Then Phase D.
 ## Key files
-- tools/build_gaps.py (runs c1_canal, c1_flavum, c1_dura, c1_space, c1_cauda, c1_roots), c1_old.py · assets/gaps.glb, gaps.json · log data/raw/gaps_log.txt, numbers data/raw/c1_checks.json
-- Rebuild: `python3 -I tools/build_gaps.py` (~40 s; needs data/raw/lumbar_raw.glb). Viewer: js/spine.js (groups), menu2.js, anatomy.js, menu.js.
+- tools/c2_build.py (called by build_gaps.py) → c2_endplate, c2_facet, c2_fat, c2_veins, c2_nerves, c2_marks, c2_geom (mesh helpers).
+- Rebuild: `python3 -I tools/build_gaps.py` (~50 s; needs data/raw/lumbar_raw.glb). Log data/raw/gaps_log.txt. Viewer: js/spine.js, menu2.js, looks.js, tissues.js; assets/look.json.

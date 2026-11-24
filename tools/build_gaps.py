@@ -1,6 +1,7 @@
 """Phase C: approximate structures missing from the source, built inside this model's bony canal and foramina
 -> assets/gaps.glb + assets/gaps.json (approx: true, source "rules (approx)"). Phase C1: dural sac, arachnoid, filum
 terminale, L3-S2 ventral/dorsal roots, dural root sleeves, DRG, spinal nerves, ligamentum flavum L3-4..L5-S1.
+Phase C2 (tools/c2_build.py): endplates, facet joints, epidural/foraminal fat, venous plexus, small nerves, landmarks.
 Run from the repo root:  python3 -I tools/build_gaps.py   (~1 min; then python3 -I tools/c1_old.py once)
 Needs: numpy, scipy; data/raw/lumbar_raw.glb (build_assets.py); Node.js (npx) for meshopt.
 Log: data/raw/gaps_log.txt; measurements: data/raw/c1_checks.json (written into docs/CHECKS.md by hand)."""
@@ -8,7 +9,7 @@ import os, sys, json, subprocess, time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 import numpy as np
-import glbio, c1_canal, c1_flavum, c1_dura, c1_space, c1_roots
+import glbio, c1_canal, c1_flavum, c1_dura, c1_space, c1_roots, c2_build
 
 RAW_OUT = os.path.join(ROOT, 'data/raw/gaps_raw.glb')
 OUT = os.path.join(ROOT, 'assets')
@@ -27,8 +28,9 @@ def main():
     log = lambda *a: (print(*a, file=log_f, flush=True), print(*a))
     K = c1_canal.build(log=log); D = c1_canal.load()
     items = []
-    def add(name, mesh, layer, mat, level='', side='mid', part='', note=''):
-        items.append(dict(name=name, mesh=mesh, layer=layer, mat=mat, level=level, side=side, part=part, note=note))
+    def add(name, mesh, layer, mat, level='', side='mid', part='', note='', hidden=False):
+        items.append(dict(name=name, mesh=mesh, layer=layer, mat=mat, level=level, side=side, part=part, note=note,
+                          hidden=hidden))
     fl = c1_flavum.build(K, log)
     for f in fl:
         add(f['name'], (f['V'], f['F']), 'ligament_capsule', 'Ligament', f['level'], f['side'], 'ligamentum flavum')
@@ -47,11 +49,14 @@ def main():
         add('%s spinal ganglion (%s)' % (lv, sd), m['drg'], 'neural', 'Nerve', lv, sd, 'spinal ganglion')
         add('%s dural root sleeve (%s)' % (lv, sd), m['sleeve'], 'neural', 'Fascia', lv, sd, 'dural sleeve')
         add('%s spinal nerve (%s)' % (lv, sd), m['nerve'], 'neural', 'Nerve', lv, sd, 'spinal nerve')
+    c2_build.build(K, D, fl, sac, F, EX, roots, add, log, os.path.join(ROOT, 'data/raw/c2_checks.json'))
     gj = []
     for it in items:
         V, Fc = it['mesh']
         e = dict(name=it['name'], layer=it['layer'], source=SRC, approx=True, triangles=int(len(Fc)),
                  level=it['level'], side=it['side'], part=it['part'])
+        if it['hidden']:
+            e['hidden'] = True
         gj.append(e)
     glbio.write(RAW_OUT, [(it['name'], [(gltf(it['mesh'][0]), it['mesh'][1], it['mat'])]) for it in items])
     json.dump(gj, open(os.path.join(OUT, 'gaps.json'), 'w'), indent=1)

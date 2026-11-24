@@ -7,7 +7,7 @@ const ABOVE = { L3: 'L2-3', L4: 'L3-4', L5: 'L4-5', S1: 'L5-S1' }, BELOW = { L3:
 const UPPER = { 'L2-3': 'L2', 'L3-4': 'L3', 'L4-5': 'L4', 'L5-S1': 'L5' }, LOWER = { 'L3-4': 'L4', 'L4-5': 'L5', 'L5-S1': 'S1' };
 const discName = (d) => 'Annulus fibrosus ' + d.replace(/^L(\d)-(\d)$/, 'L$1-L$2');
 
-// Parts tab: [label, test(struct)]; PLANNED are shown greyed when the model has none yet (Phase C).
+// Parts tab: [label, test(struct)]; PLANNED (now empty) are shown greyed when the model has none yet.
 const P = (part) => (s) => s.part === part;
 export const GROUPS = [
   ['Body', P('body')], ['Pedicle', P('pedicle')], ['Pars interarticularis', P('pars interarticularis')], ['Lamina', P('lamina')],
@@ -18,14 +18,18 @@ export const GROUPS = [
   ['Ant. longitudinal lig.', P('anterior longitudinal ligament')], ['Post. longitudinal lig.', P('posterior longitudinal ligament')],
   ['Ligamentum flavum', P('ligamentum flavum')], ['Interspinous lig.', P('interspinous ligament')],
   ['Supraspinous lig.', P('supraspinous ligament')], ['Intertransverse lig.', P('intertransverse ligament')],
-  ['Dura', (s) => /dura|arachnoid/i.test(s.name) && !/\(old\)/.test(s.name)], ['Cord & filum', (s) => /filum|spinal cord/i.test(s.name)],
+  ['Dura', (s) => /\bdura|arachnoid/i.test(s.name) && !/\(old\)/.test(s.name)], ['Cord & filum', (s) => /filum|spinal cord/i.test(s.name)],
   ['Roots', (s) => s.layer === 'neural' && /(^| )root$/.test(s.part)], ['Ganglia', (s) => /ganglion/i.test(s.part || s.name)],
   ['Spinal nerves', (s) => s.part === 'spinal nerve'],
+  ['Medial branch / SVN', (s) => /medial branch|dorsal ramus|sinuvertebral/.test(s.part)],
+  ['Epidural & foraminal fat', (s) => s.layer === 'epidural_fat' || s.part === 'prelaminar band'],
+  ['Vertebral venous plexus', (s) => /venous plexus|basivertebral|intervertebral vein/.test(s.part)],
   ['Vessels', (s) => s.layer === 'artery' || s.layer === 'vein'],
   ['Muscles & fascia', (s) => s.layer === 'muscle' || s.layer === 'fascia_retinacula'],
+  ['Landmarks', (s) => s.layer === 'landmark'],
   ['Old (superseded)', (s) => s.part === 'superseded'],
 ];
-export const PLANNED = new Set(['Facet joint', 'Endplate']);
+export const PLANNED = new Set();   // Phase C2 built the last planned parts (facet joints, endplates)
 
 export class Spine {
   constructor(app) {
