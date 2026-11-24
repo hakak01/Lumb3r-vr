@@ -8,7 +8,7 @@ Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. A1/A2 (assets): lumbar.g
 - Views: start, Surgeon (prone, back up, head to your left = you stand on the patient's left), MRI axial (from the feet, patient right on screen left, cut at mid-disc), MRI sagittal (from the left, anterior on screen left, midline cut), Foramen (lateral), Posterolateral 45° (parallel to the disc). Level chooser L3-4/L4-5/L5-S1.
 - Fly-in: max zoom 40×, near plane 1 mm, dura/roots/discs/flavum/PLL double-sided; "Inside canal at L4-5" (20×) and "Inside left L5-S1 foramen" (25×). Left thumbstick zoom, Zoom ±, Life size (VR 1:1).
 - Ruler (true mm at any zoom), info panel with level/side/source, labels for the chosen level (88 auto labels).
-- Headless check: node tools/check_viewer.mjs <dir with node_modules/three> <out dir> (serve repo on :8766). No errors; ruler 38.07 = 38.07 mm.
+- Headless check: node tools/check_viewer.mjs <dir with node_modules/three> <out dir> (serve repo on :8766). Final run (commit add080b): no errors; ruler 38.07 = 38.07 mm; foramen centres L/R symmetric.
 ## Decisions
 - Disc frames measured in the viewer (PCA of annulus): tilt from vertical L3-4 6.4°, L4-5 13.3°, L5-S1 27.1°. Canal centre = midway back of disc/PLL ↔ flavum/arch; AP 16.9/18.3/15.4 mm (Phase A midline 21.0/20.4/19.5 measured to the lamina).
 - S1 has no pedicle part: its mid-pedicle plane copies L5's pedicle offset from the disc above (marked "estimated").
@@ -19,7 +19,7 @@ Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. A1/A2 (assets): lumbar.g
 - No facet joints, endplates, L3-S1 ganglia, dura below mid-L3 yet → shown greyed "(Phase C)". kit.js still the shoulder API (Phase D).
 - New dura/annulus/nucleus colours are estimates (not photo-measured like the others). Not tested on a Quest yet.
 ## Next step
-- Phase C (gaps.glb) per SPEC; then D (kit).
+- User tests Phase B on the Quest 3 (views, fly-in, Parts, Cut, ruler, MR, fps); then Phase C (gaps.glb) per SPEC; then D (kit).
 ## Key files
 - js/spine.js (landmarks, part groups), views.js, ruler.js, menu2.js (Parts/Cut/Views), anatomy.js (ghost, X-ray, snaps), main.js, xr.js · assets/model.json, look.json, tissues.json · tools/viewer_marks.py, check_viewer.mjs
 - Phase A rebuild: Z-Anatomy.zip → data/raw/zblend/; BodyParts3D STLs → data/raw/bp3d/…/stl/; `pip install bpy scipy`; `python3 -I tools/build_assets.py && python3 -I tools/check_lumbar.py && python3 -I tools/viewer_marks.py`.
