@@ -1,25 +1,24 @@
-# PROGRESS (updated 2026-11-24, Phase B done; next = Phase C gaps)
-Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. A1/A2 (assets): lumbar.glb 240 objects, 380k tris, 2.9 MB; parts per level/side (see git log).
-## Done (Phase B viewer)
-- assets/model.json: glb, gaps, title, center = L4-5 disc centre [0.00001, 0.99703, -0.00529] (glTF m) → origin; "foramen" = 6 foramen centres from Phase A (tools/viewer_marks.py).
-- Starts in Realistic; skin, fat, muscles AND fascia hidden (posterior TLF would cover the spine). New layers disc, neural; looks/tissues dura, annulus, nucleus.
-- Menu tabs: Layers · Parts (level L3…All, side, one toggle per part, ghost slider 0–60 %) · Cut (X-ray rim outlines, isolate, clip snaps) · Views · Search · Tools.
-- Clip snaps: axial mid-disc (plane parallel to the disc, PCA normal) L3-4/L4-5/L5-S1; mid-pedicle L3/L4/L5/S1; sagittal midline and through each foramen (L/R). Slider/right stick move ±3 cm.
-- Views: start, Surgeon (prone, back up, head to your left = you stand on the patient's left), MRI axial (from the feet, patient right on screen left, cut at mid-disc), MRI sagittal (from the left, anterior on screen left, midline cut), Foramen (lateral), Posterolateral 45° (parallel to the disc). Level chooser L3-4/L4-5/L5-S1.
-- Fly-in: max zoom 40×, near plane 1 mm, dura/roots/discs/flavum/PLL double-sided; "Inside canal at L4-5" (20×) and "Inside left L5-S1 foramen" (25×). Left thumbstick zoom, Zoom ±, Life size (VR 1:1).
-- Ruler (true mm at any zoom), info panel with level/side/source, labels for the chosen level (88 auto labels).
-- Headless check: node tools/check_viewer.mjs <dir with node_modules/three> <out dir> (serve repo on :8766). Final run (commit add080b): no errors; ruler 38.07 = 38.07 mm; foramen centres L/R symmetric.
+# PROGRESS (updated 2026-11-24, Phase C1 done; next = Phase C2)
+Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md (Phase C replaced by C1/C2 text). lumbar.glb 240 objects 380k tris; gaps.glb 60 objects 146k tris, 0.9 MB (total 526k ≤ 600k).
+## Done (C1: neural parts + ligamentum flavum, all "rules (approx)")
+- Canal measured in slices ⟂ its centreline every 1 mm (z 1128 → 878), polar wall distances (tools/c1_canal.py).
+- Dural sac z 1128 → rounded tip z 943 (upper S2, 11 % down S2); arachnoid 0.2 mm inside; filum internum conus (z 1055) → tip; dural filum → back of coccyx.
+- Sac area at mid-disc L2-3/L3-4/L4-5/L5-S1: 176/202/236/217 mm² (all >100). Margins: front 1.0, back 0.8 (3.0 at midline fat pad), sides 2.5 mm; width cap 17 mm.
+- Roots L3–S2 L/R: ventral + dorsal + DRG + dural sleeve + spinal nerve (50 parts). Template = Z-Anatomy L2 (ventral r 0.47, dorsal 0.535, ganglion 5.1×2.7 mm) scaled to DRG width. Leave sac at z 1065/1029/995/964/951.
+- DRG L3/L4 medial zone, L5 lateral zone, S1/S2 in the sacral canal at their foramen opening. Narrowest gap to bone/disc/ligament 0.76 mm (S2); lumbar ≥0.93.
+- Flavum L3-4, L4-5, L5-S1 L/R solid, 3.09 mm at half length; L5-S1 reaches S1. Supraspinous absent at L5-S1 marked normal (GAPS).
+- 21 old parts renamed "(old)", hidden (old roots L3–S4, central cauda bundle, old flavum sheets): tools/c1_old.py (run once after build_assets).
+- Viewer: Parts groups Roots/Ganglia/Spinal nerves/Cord & filum/Old (superseded); "(Phase C)" now only Facet joint, Endplate; info source "rules (approx)"; manifest "hidden" honoured; Show all keeps old parts hidden.
 ## Decisions
-- Disc frames measured in the viewer (PCA of annulus): tilt from vertical L3-4 6.4°, L4-5 13.3°, L5-S1 27.1°. Canal centre = midway back of disc/PLL ↔ flavum/arch; AP 16.9/18.3/15.4 mm (Phase A midline 21.0/20.4/19.5 measured to the lamina).
-- S1 has no pedicle part: its mid-pedicle plane copies L5's pedicle offset from the disc above (marked "estimated").
-- Hidden parts = s.hidden; the ghost slider shows them at 0–60 % and they stay pickable (solid parts win).
-- Runtime foramen search from the pedicle parts failed (pedicle part boxes reach the midline), so Phase A values are baked into model.json.
+- Z-Anatomy "Spinal dura" is a sheath on the cord/conus (2 mm wide at z 1066), not a sac: the new sac starts at the region top and contains it (no join at mid-L3 possible).
+- S1 DRG 7.0×12 mm, S2 5.0×8 mm: approx (SPEC gives no numbers). DRG axis lumbar (lat, -0.35 ant, -0.45 down); sacral along the canal toward the opening.
+- Spinal nerves end on the nearest Z-Anatomy plexus nerve (L3 obturator, L4/L5 nerve to quadratus femoris, S1/S2 old root end).
 ## Known problems
-- Source ligaments: interspinous/intertransverse/supraspinous are long opaque sheets that hide the spinous processes from behind (hide with Parts or X-ray).
-- No facet joints, endplates, L3-S1 ganglia, dura below mid-L3 yet → shown greyed "(Phase C)". kit.js still the shoulder API (Phase D).
-- New dura/annulus/nucleus colours are estimates (not photo-measured like the others). Not tested on a Quest yet.
+- S1 not the shortest root (27.4 mm vs L4 25.6); S1/S2 spinal nerves graze bone in the sacral foramina (−0.4 mm); S1/S2 DRGs partly overlap the tapering sac tip.
+- Sac above L2 slightly bumpy (context level). Arachnoid not in sleeves. S3–S5 roots now only as hidden "(old)". Lumbosacral trunk still missing.
+- Not yet tested on a Quest. Colours of new dura/arachnoid = old dura estimate (C2 step 8).
 ## Next step
-- User tests Phase B on the Quest 3 (views, fly-in, Parts, Cut, ruler, MR, fps); then Phase C (gaps.glb) per SPEC; then D (kit).
+- User tests C1 in the viewer; then Phase C2 (endplates, facet joints, epidural fat, venous plexus, medial branches, sinuvertebral nerves, landmarks, photo colours).
 ## Key files
-- js/spine.js (landmarks, part groups), views.js, ruler.js, menu2.js (Parts/Cut/Views), anatomy.js (ghost, X-ray, snaps), main.js, xr.js · assets/model.json, look.json, tissues.json · tools/viewer_marks.py, check_viewer.mjs
-- Phase A rebuild: Z-Anatomy.zip → data/raw/zblend/; BodyParts3D STLs → data/raw/bp3d/…/stl/; `pip install bpy scipy`; `python3 -I tools/build_assets.py && python3 -I tools/check_lumbar.py && python3 -I tools/viewer_marks.py`.
+- tools/build_gaps.py (runs c1_canal, c1_flavum, c1_dura, c1_space, c1_cauda, c1_roots), c1_old.py · assets/gaps.glb, gaps.json · log data/raw/gaps_log.txt, numbers data/raw/c1_checks.json
+- Rebuild: `python3 -I tools/build_gaps.py` (~40 s; needs data/raw/lumbar_raw.glb). Viewer: js/spine.js (groups), menu2.js, anatomy.js, menu.js.

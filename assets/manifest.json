@@ -1708,64 +1708,70 @@
   "context": true
  },
  {
-  "name": "Ligamentum flavum L3-4 (right)",
+  "name": "Ligamentum flavum L3-4 (right) (old)",
   "layer": "ligament_capsule",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 696,
   "level": "L3-4",
   "side": "right",
-  "part": "ligamentum flavum"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "Ligamentum flavum L3-4 (left)",
+  "name": "Ligamentum flavum L3-4 (left) (old)",
   "layer": "ligament_capsule",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 658,
   "level": "L3-4",
   "side": "left",
-  "part": "ligamentum flavum"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "Ligamentum flavum L4-5 (right)",
+  "name": "Ligamentum flavum L4-5 (right) (old)",
   "layer": "ligament_capsule",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 778,
   "level": "L4-5",
   "side": "right",
-  "part": "ligamentum flavum"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "Ligamentum flavum L4-5 (left)",
+  "name": "Ligamentum flavum L4-5 (left) (old)",
   "layer": "ligament_capsule",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 738,
   "level": "L4-5",
   "side": "left",
-  "part": "ligamentum flavum"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "Ligamentum flavum L5-S1 (right)",
+  "name": "Ligamentum flavum L5-S1 (right) (old)",
   "layer": "ligament_capsule",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 326,
   "level": "L5-S1",
   "side": "right",
-  "part": "ligamentum flavum"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "Ligamentum flavum L5-S1 (left)",
+  "name": "Ligamentum flavum L5-S1 (left) (old)",
   "layer": "ligament_capsule",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 304,
   "level": "L5-S1",
   "side": "left",
-  "part": "ligamentum flavum"
+  "part": "superseded",
+  "hidden": true
  },
  {
   "name": "Interspinous ligament L1-3",
@@ -2172,157 +2178,172 @@
   "context": true
  },
  {
-  "name": "L3 root (left)",
+  "name": "L3 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 192,
   "level": "L3",
   "side": "left",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "L3 root (right)",
+  "name": "L3 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 192,
   "level": "L3",
   "side": "right",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "L4 root (left)",
+  "name": "L4 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "L4",
   "side": "left",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "L4 root (right)",
+  "name": "L4 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "L4",
   "side": "right",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "L5 root (left)",
+  "name": "L5 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "L5",
   "side": "left",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "L5 root (right)",
+  "name": "L5 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "L5",
   "side": "right",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "S1 root (left)",
+  "name": "S1 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 576,
   "level": "S1",
   "side": "left",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "S1 root (right)",
+  "name": "S1 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 576,
   "level": "S1",
   "side": "right",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "S2 root (left)",
+  "name": "S2 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "S2",
   "side": "left",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "S2 root (right)",
+  "name": "S2 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "S2",
   "side": "right",
-  "part": "root (cauda equina branch)"
+  "part": "superseded",
+  "hidden": true
  },
  {
-  "name": "S3 root (left)",
+  "name": "S3 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "S3",
   "side": "left",
-  "part": "root (cauda equina branch)",
-  "context": true
+  "part": "superseded",
+  "context": true,
+  "hidden": true
  },
  {
-  "name": "S3 root (right)",
+  "name": "S3 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "S3",
   "side": "right",
-  "part": "root (cauda equina branch)",
-  "context": true
+  "part": "superseded",
+  "context": true,
+  "hidden": true
  },
  {
-  "name": "S4 root (left)",
+  "name": "S4 root (left) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "S4",
   "side": "left",
-  "part": "root (cauda equina branch)",
-  "context": true
+  "part": "superseded",
+  "context": true,
+  "hidden": true
  },
  {
-  "name": "S4 root (right)",
+  "name": "S4 root (right) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 384,
   "level": "S4",
   "side": "right",
-  "part": "root (cauda equina branch)",
-  "context": true
+  "part": "superseded",
+  "context": true,
+  "hidden": true
  },
  {
-  "name": "Cauda equina (central bundle)",
+  "name": "Cauda equina (central bundle) (old)",
   "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 3840,
   "level": "",
   "side": "mid",
-  "part": "cauda equina"
+  "part": "superseded",
+  "hidden": true
  }
 ]

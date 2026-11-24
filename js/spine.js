@@ -18,12 +18,14 @@ export const GROUPS = [
   ['Ant. longitudinal lig.', P('anterior longitudinal ligament')], ['Post. longitudinal lig.', P('posterior longitudinal ligament')],
   ['Ligamentum flavum', P('ligamentum flavum')], ['Interspinous lig.', P('interspinous ligament')],
   ['Supraspinous lig.', P('supraspinous ligament')], ['Intertransverse lig.', P('intertransverse ligament')],
-  ['Dura', (s) => /dura|arachnoid/i.test(s.name)], ['Cord & cauda equina', (s) => /cauda equina \(central|spinal cord/i.test(s.name)],
-  ['Roots', (s) => s.layer === 'neural' && /(^| )root/.test(s.part)], ['Ganglia', (s) => /ganglion/i.test(s.part || s.name)],
+  ['Dura', (s) => /dura|arachnoid/i.test(s.name) && !/\(old\)/.test(s.name)], ['Cord & filum', (s) => /filum|spinal cord/i.test(s.name)],
+  ['Roots', (s) => s.layer === 'neural' && /(^| )root$/.test(s.part)], ['Ganglia', (s) => /ganglion/i.test(s.part || s.name)],
+  ['Spinal nerves', (s) => s.part === 'spinal nerve'],
   ['Vessels', (s) => s.layer === 'artery' || s.layer === 'vein'],
   ['Muscles & fascia', (s) => s.layer === 'muscle' || s.layer === 'fascia_retinacula'],
+  ['Old (superseded)', (s) => s.part === 'superseded'],
 ];
-export const PLANNED = new Set(['Facet joint', 'Endplate', 'Ganglia']);
+export const PLANNED = new Set(['Facet joint', 'Endplate']);
 
 export class Spine {
   constructor(app) {

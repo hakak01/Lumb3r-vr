@@ -60,7 +60,7 @@ export class Anatomy {
       if (!e) { console.warn('not in manifest', node.name); continue; }
       if (gone.has(e.name)) { node.removeFromParent(); continue; }
       const s = { name: e.name, layer: e.layer, kind: e.kind || null, approx: !!e.approx, source: e.source, label: e.label,
-        level: e.level || '', side: e.side || '', part: e.part || '', context: !!e.context, node, meshes: [], hidden: false, ghost: false };
+        level: e.level || '', side: e.side || '', part: e.part || '', context: !!e.context, node, meshes: [], hidden: !!e.hidden, ghost: false };
       node.traverse((m) => {
         if (!m.isMesh) return;
         const key = lookKey(e.layer, m.material && m.material.name, s.kind, e.name);
@@ -143,7 +143,7 @@ export class Anatomy {
   }
   showAll() {
     this.isolated = null;
-    for (const s of this.structs) { s.hidden = false; s.ghost = false; }
+    for (const s of this.structs) { s.hidden = s.part === 'superseded'; s.ghost = false; }   // old parts stay hidden
     for (const k in this.layers) if (k !== 'attachment' && k !== 'fat') { this.layers[k].on = true; if (this.layers[k].opacity < 0.05) this.layers[k].opacity = 1; }
     this.apply();
   }

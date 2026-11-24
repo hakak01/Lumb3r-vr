@@ -1,4 +1,4 @@
-# CHECKS — measurements vs ANATOMY CHECKS (docs/SPEC.md), updated after Phase A2
+# CHECKS — measurements vs ANATOMY CHECKS (docs/SPEC.md), updated after Phase C1
 Measured by `python3 -I tools/check_lumbar.py` on data/raw/lumbar_raw.glb (numbers: data/raw/checks.json). Nothing was changed to fit.
 One adult male body (Z-Anatomy soft tissue; BodyParts3D L1–L5 and hip bones). **FLAG** = big difference from the reference.
 Frames: disc axis = its thinnest direction (PCA); vertebra axis = mean of the discs above and below.
@@ -37,23 +37,34 @@ A2 note: a slicing bug (rows outside the cut window could fill a whole row) was 
 | L5–S1 | 17.9 / 17.0 | 11.3 / 11.1 | 8.8 / 8.5 | 16.3 / 16.9 | OK (width ref ~8.7). Under the L5 pedicle the S1 SAP tip rises to 5 mm above mid-disc. |
 - Posterior disc height (10 % inside the posterior margin): 6.1 / 7.0 / 14.7 mm, all above Hasegawa's 4 mm.
 
-## 4. Dorsal root ganglia
-- **Not measurable**: no DRG at L3–S1 in the source (ganglia exist only for T12–L2). Phase C.
+## 4. Dorsal root ganglia (Phase C1, gaps.glb; numbers: data/raw/c1_checks.json)
+Shape = Z-Anatomy "L2 spinal ganglion" (5.1 × 2.7 mm) scaled to the reference size. Zone = thirds between the medial and lateral pedicle walls.
+| DRG | Width × length (mm) | Reference | Position (R / L) | Reference | Narrowest gap R / L (mm) |
+|---|---|---|---|---|---|
+| L3 | 5.1 × 7.0 | 4.9–5.3 × ~7 | medial zone, 3.5 / 3.5 mm below the pedicle | medial zone | 1.80 / 2.05 |
+| L4 | 5.95 × 8.5 | 5.8–6.1 × ~8.5 | medial zone, 7.5 / 4.0 mm below the pedicle | medial zone | 1.48 / 1.40 |
+| L5 | 6.35 × 11.5 | 6.2–6.5 × ~11.5 | lateral zone, 4.5 / 4.5 mm below the pedicle | lateral zone | 1.70 / 1.83 |
+| S1 | 7.0 × 12.0 (approx, "largest") | no number | in the sacral canal, 5.2 mm from the axis, at the S1 foramen opening | often in the canal | 1.47 / 1.54 |
+| S2 | 5.0 × 8.0 (approx) | no number | in the sacral canal at the S2 foramen opening | — | 1.36 / 1.37 |
+- Sizes are inputs (scaled to the reference), so they match by construction; positions come from free space in this model's foramina.
 
-## 5. Canal at mid-disc (disc + PLL in front, flavum + bone behind, medial pedicle walls at the sides)
-| Level | Area (mm²) | Midsagittal AP (mm) | Result |
-|---|---|---|---|
-| L3–4 | 412 | 21.0 | AP OK (>12) |
-| L4–5 | 439 | 20.4 | AP OK |
-| L5–S1 | 573 | 19.5 | AP OK |
-- Whole canal, **not the dural sac** (no dura below mid-L3): the >100 mm² dural sac check waits for Phase C.
+## 5. Canal and dural sac at mid-disc
+| Level | Canal area (mm²) | Canal AP (mm) | Dural sac area (mm²) | Sac width × AP (mm) | Result |
+|---|---|---|---|---|---|
+| L2–3 | – | – | 176 | 19.8 × 13.2 | OK (>100) |
+| L3–4 | 412 | 21.0 | 202 | 17.0 × 16.2 | OK |
+| L4–5 | 439 | 20.4 | 236 | 17.1 × 16.2 | OK |
+| L5–S1 | 573 | 19.5 | 217 | 17.0 × 13.7 | OK |
+- Sac = canal wall minus 1.0 mm in front, 0.8 mm (3.0 mm at the posterior midline fat pad) behind, 2.5 mm at the sides; width capped at 17 mm (approx). Cut perpendicular to the canal axis.
+- Sac tip z 943.1 = upper S2: 1.8 mm below the S1 foramen opening (z 944.9), S2 opening z 929.1 → 11 % down S2. OK (Senoglu 2013).
 
-## 6. Ligamentum flavum (thickness at half its length, axial cut at mid-disc)
+## 6. Ligamentum flavum (Phase C1 solid ligament; thickness at half its length, perpendicular to the canal axis)
 | Level | Right / Left (mm) | Reference | Result |
 |---|---|---|---|
-| L3–4 | 0.6 / 0.6 | 3.1 ± 0.8 (AJNR 2010) | **FLAG: far too thin** |
-| L4–5 | 0.6 / 0.6 | 3.1 ± 0.8 | **FLAG** |
-| L5–S1 | not in the cut | 3.1 ± 0.8 | **FLAG: missing** in the interlaminar space |
+| L3–4 | 3.09 / 3.09 | 3.1 ± 0.8 (AJNR 2010) | OK (rule value) |
+| L4–5 | 3.09 / 3.09 | 3.1 ± 0.8 | OK |
+| L5–S1 | 3.09 / 3.09 | 3.1 ± 0.8 | OK; now reaches the S1 lamina (z 956) |
+- Old 0.6 mm sheets kept as "... (old)", hidden.
 
 ## 7. Facet orientation (upper IAP vs lower SAP parts; axial cut at mid-joint)
 | Level | Right / Left | Reference (2013 CT) | Bone-to-bone gap R / L | Result |
@@ -62,10 +73,15 @@ A2 note: a slicing bug (rows outside the cut window could fill a whole row) was 
 | L4–5 | 41.3° / 48.0° | 47° | 2.0 / 2.7 mm | OK |
 | L5–S1 | 43.9° / 45.4° | 47.3° | 2.4 / 2.2 mm | OK (left: 4 % of points overlap, max 0.4 mm) |
 
-## 8. Root topography (cauda equina branches, now named "L3 root" … "S4 root")
-| Root | Crosses | Height above mid-disc | Below upper pedicle edge | Result |
-|---|---|---|---|---|
-| L3 | L3–4 foramen | (A1: 3.3 mm) | (A1: 9.3 mm) | OK |
-| L4 R / L | L4–5 foramen | 6.3 / 6.3 mm | 4.5 / 4.3 mm | OK |
-| L5 R / L | L5–S1 foramen | 7.1 / 7.1 mm | 6.1 / 6.4 mm | OK |
-- **FLAG: no traversing course.** Each branch leaves the midline bundle 11–17 mm below the disc above, so it is not in the lateral recess at that disc. Rebuild in Phase C.
+## 8. Root topography (Phase C1 roots; old schematic roots kept as "... (old)", hidden)
+| Root | Leaves the sac (z) | Disc above its foramen (mid z) | Sleeve exit → DRG centre (mm) | Angle to canal axis | Narrowest gap ventral / dorsal, R / L (mm) |
+|---|---|---|---|---|---|
+| L3 | 1065 | L2–3 (1066) | 35.6 / 33.5 | 4° | 1.01, 1.22 / 1.08, 1.14 |
+| L4 | 1029 | L3–4 (1031) | 25.6 / 25.7 | 13° / 19° | 0.94, 2.06 / 0.96, 2.51 |
+| L5 | 995 | L4–5 (997) | 27.3 / 28.6 | 48° / 47° | 1.01, 0.95 / 0.93, 1.13 |
+| S1 | 964 | L5–S1 (962), upper half | 27.4 / 27.4 | 22° | 0.91, 1.15 / 0.93, 1.18 |
+| S2 | 951 | (S1 level) | 34.6 / 34.5 | 19° | 0.76, 0.99 / 0.76, 0.91 |
+- All roots and DRGs keep ≥0.5 mm from bone, disc and ligament (narrowest 0.76 mm, S2). Exiting roots run under their own pedicle; traversing roots sit in the lateral recess at the disc (cut at mid L4–5: L5 sleeves anterolateral to the sac).
+- S1 leaves more cephalad and more vertically than L5 (22° vs 47°). **Not the shortest**: S1 27.4 mm vs L4 25.6 and L5 28 mm (Hasegawa 1996 says shortest) — reported, not forced.
+- Spinal nerves (not in the ≥0.5 mm rule): L3–L5 1.8–4.8 mm; S1 −0.4 mm and S2 −0.1 mm (graze bone inside the sacral foramina).
+- Intrathecal arrangement: largest overlap between neighbouring roots 0.4 mm before smoothing (packing rule; roots of 0.9–1.4 mm radius).

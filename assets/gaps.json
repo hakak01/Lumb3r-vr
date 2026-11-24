@@ -1,0 +1,602 @@
+[
+ {
+  "name": "Ligamentum flavum L3-4 (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2284,
+  "level": "L3-4",
+  "side": "left",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L3-4 (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2388,
+  "level": "L3-4",
+  "side": "right",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L4-5 (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2284,
+  "level": "L4-5",
+  "side": "left",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L4-5 (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2596,
+  "level": "L4-5",
+  "side": "right",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L5-S1 (left)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3012,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L5-S1 (right)",
+  "layer": "ligament_capsule",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2908,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Dural sac",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 28080,
+  "level": "",
+  "side": "mid",
+  "part": "dura"
+ },
+ {
+  "name": "Arachnoid mater",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 28080,
+  "level": "",
+  "side": "mid",
+  "part": "arachnoid"
+ },
+ {
+  "name": "Filum terminale internum",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3664,
+  "level": "",
+  "side": "mid",
+  "part": "filum terminale"
+ },
+ {
+  "name": "Filum terminale externum (dural filum)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1840,
+  "level": "",
+  "side": "mid",
+  "part": "filum terminale"
+ },
+ {
+  "name": "L3 ventral root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1660,
+  "level": "L3",
+  "side": "left",
+  "part": "ventral root"
+ },
+ {
+  "name": "L3 dorsal root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1660,
+  "level": "L3",
+  "side": "left",
+  "part": "dorsal root"
+ },
+ {
+  "name": "L3 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "L3",
+  "side": "left",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "L3 dural root sleeve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 924,
+  "level": "L3",
+  "side": "left",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "L3 spinal nerve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 144,
+  "level": "L3",
+  "side": "left",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "L3 ventral root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1660,
+  "level": "L3",
+  "side": "right",
+  "part": "ventral root"
+ },
+ {
+  "name": "L3 dorsal root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1660,
+  "level": "L3",
+  "side": "right",
+  "part": "dorsal root"
+ },
+ {
+  "name": "L3 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "L3",
+  "side": "right",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "L3 dural root sleeve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 924,
+  "level": "L3",
+  "side": "right",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "L3 spinal nerve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 384,
+  "level": "L3",
+  "side": "right",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "L4 ventral root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2180,
+  "level": "L4",
+  "side": "left",
+  "part": "ventral root"
+ },
+ {
+  "name": "L4 dorsal root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2180,
+  "level": "L4",
+  "side": "left",
+  "part": "dorsal root"
+ },
+ {
+  "name": "L4 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "L4",
+  "side": "left",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "L4 dural root sleeve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 924,
+  "level": "L4",
+  "side": "left",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "L4 spinal nerve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 384,
+  "level": "L4",
+  "side": "left",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "L4 ventral root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2180,
+  "level": "L4",
+  "side": "right",
+  "part": "ventral root"
+ },
+ {
+  "name": "L4 dorsal root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2180,
+  "level": "L4",
+  "side": "right",
+  "part": "dorsal root"
+ },
+ {
+  "name": "L4 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "L4",
+  "side": "right",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "L4 dural root sleeve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 924,
+  "level": "L4",
+  "side": "right",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "L4 spinal nerve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 336,
+  "level": "L4",
+  "side": "right",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "L5 ventral root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2680,
+  "level": "L5",
+  "side": "left",
+  "part": "ventral root"
+ },
+ {
+  "name": "L5 dorsal root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2680,
+  "level": "L5",
+  "side": "left",
+  "part": "dorsal root"
+ },
+ {
+  "name": "L5 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "L5",
+  "side": "left",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "L5 dural root sleeve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 924,
+  "level": "L5",
+  "side": "left",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "L5 spinal nerve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 96,
+  "level": "L5",
+  "side": "left",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "L5 ventral root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2680,
+  "level": "L5",
+  "side": "right",
+  "part": "ventral root"
+ },
+ {
+  "name": "L5 dorsal root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 2680,
+  "level": "L5",
+  "side": "right",
+  "part": "dorsal root"
+ },
+ {
+  "name": "L5 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "L5",
+  "side": "right",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "L5 dural root sleeve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 924,
+  "level": "L5",
+  "side": "right",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "L5 spinal nerve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 96,
+  "level": "L5",
+  "side": "right",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "S1 ventral root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3140,
+  "level": "S1",
+  "side": "left",
+  "part": "ventral root"
+ },
+ {
+  "name": "S1 dorsal root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3140,
+  "level": "S1",
+  "side": "left",
+  "part": "dorsal root"
+ },
+ {
+  "name": "S1 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "S1",
+  "side": "left",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "S1 dural root sleeve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 952,
+  "level": "S1",
+  "side": "left",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "S1 spinal nerve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 600,
+  "level": "S1",
+  "side": "left",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "S1 ventral root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3140,
+  "level": "S1",
+  "side": "right",
+  "part": "ventral root"
+ },
+ {
+  "name": "S1 dorsal root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3140,
+  "level": "S1",
+  "side": "right",
+  "part": "dorsal root"
+ },
+ {
+  "name": "S1 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "S1",
+  "side": "right",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "S1 dural root sleeve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 952,
+  "level": "S1",
+  "side": "right",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "S1 spinal nerve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 600,
+  "level": "S1",
+  "side": "right",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "S2 ventral root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3500,
+  "level": "S2",
+  "side": "left",
+  "part": "ventral root"
+ },
+ {
+  "name": "S2 dorsal root (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3500,
+  "level": "S2",
+  "side": "left",
+  "part": "dorsal root"
+ },
+ {
+  "name": "S2 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "S2",
+  "side": "left",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "S2 dural root sleeve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1316,
+  "level": "S2",
+  "side": "left",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "S2 spinal nerve (left)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 144,
+  "level": "S2",
+  "side": "left",
+  "part": "spinal nerve"
+ },
+ {
+  "name": "S2 ventral root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3500,
+  "level": "S2",
+  "side": "right",
+  "part": "ventral root"
+ },
+ {
+  "name": "S2 dorsal root (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 3500,
+  "level": "S2",
+  "side": "right",
+  "part": "dorsal root"
+ },
+ {
+  "name": "S2 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 320,
+  "level": "S2",
+  "side": "right",
+  "part": "spinal ganglion"
+ },
+ {
+  "name": "S2 dural root sleeve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 1316,
+  "level": "S2",
+  "side": "right",
+  "part": "dural sleeve"
+ },
+ {
+  "name": "S2 spinal nerve (right)",
+  "layer": "neural",
+  "source": "rules (approx)",
+  "approx": true,
+  "triangles": 144,
+  "level": "S2",
+  "side": "right",
+  "part": "spinal nerve"
+ }
+]

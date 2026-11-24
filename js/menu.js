@@ -103,7 +103,7 @@ export class Menus {
       p.button(575, 12, 50, 50, '✕', () => { A.select(null); this.refresh(); });
       p.text(20, 112, 'Layer: ' + (LAYER_LABEL[s.layer] || s.layer) + (s.kind ? ' · ' + s.kind : ''), { size: 21, color: '#bcd' });
       p.text(20, 142, 'Level: ' + (s.level || '–') + '   ·   Side: ' + (s.side || '–') + (s.context ? '   (context)' : ''), { size: 21, color: '#bcd' });
-      p.text(20, 172, 'Source: ' + (s.approx ? 'approx (built here)' : s.source || ''), { size: 18, color: '#99a', wrap: 600, maxLines: 1 });
+      p.text(20, 172, 'Source: ' + (s.source || (s.approx ? 'rules (approx)' : '')), { size: 18, color: '#99a', wrap: 600, maxLines: 1 });
       if (s.approx) p.text(20, 200, 'APPROXIMATE – check', { size: 22, bold: true, color: '#ffb02e' });
       const b = [['Hide', () => A.hide(s)], ['Ghost', () => A.toggleGhost(s)], ['Isolate', () => A.isolate(s)],
         ['Show all', () => A.showAll()], ['Focus', () => this.app.focus(s)]];
