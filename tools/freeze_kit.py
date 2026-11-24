@@ -1,4 +1,4 @@
-"""Freeze the shoulder kit (Phase E): copy the viewer, JS modules and assets into kit/<version>/ and record a
+"""Freeze the lumbar kit (Phase D): copy the viewer, JS modules and assets into kit/<version>/ and record a
 sha256 for every file in kit/<version>/FILES.json. A frozen version is never changed: this refuses to overwrite it.
   python3 -I tools/freeze_kit.py v1           make kit/v1
   python3 -I tools/freeze_kit.py v1 --check   verify kit/v1 is unchanged (exit 1 if not)
@@ -7,9 +7,10 @@ import hashlib, json, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FILES = ['index.html', 'demo.html', 'ATTRIBUTION.md']
+FILES = ['index.html', 'ATTRIBUTION.md']
 DIRS = {'js': '*.js', 'assets': '*.json', 'assets/tex': '*.ktx2', 'assets/env': '*.hdr'}
-GLB = ['shoulder.glb', 'gaps.glb', 'landmarks.glb']
+_M = json.loads((ROOT / 'assets/model.json').read_text())
+GLB = [_M['glb'], _M['gaps']]   # lumbar.glb, gaps.glb (landmarks are inside gaps.glb)
 
 
 def sha(p):
