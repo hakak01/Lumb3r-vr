@@ -1,23 +1,23 @@
-# PROGRESS (updated 2026-11-24, Phase A1 done; next = Phase A2)
-Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. Copied pipeline/viewer from Shoul3er-vr (no rig/wrap/ropes/move menu).
-## Done (A1 = SPEC Phase A steps 1–3, 5–7)
-- tools/region.py LUMBAR (whitelist, both sides, top of L1 z 1.134 → coccyx z 0.830); zsel.py whitelist mode, names "X (left)/(right)", level/side.
-- tools/build_assets.py → assets/lumbar.glb (meshopt 2.4 MB) + manifest.json: 143 objects, 338,566 triangles (no decimation needed).
-- Bone swap (ICP, mean/max mm): L1 0.74/3.5, L2 0.73/4.1, L3 0.75/6.9, L4 0.64/4.4, L5 0.78/4.8, hips 0.82, 0.74 → BodyParts3D; sacrum 4.07 → kept Z-Anatomy; coccyx no BP3D.
-- All 9 bones watertight (tools/meshfix.py: islands removed, holes filled). Disc–endplate fit −0.2…+0.5 mm.
-- Long ligaments, rotatores, dura, roots, ganglia, cord, vertebral skin cut at z 1.134; pelvic nerves cut at z 0.870 (femoral n. under inguinal lig., sciatic n. under piriformis).
-- Subdivided once (≤0.3 mm): ALL, PLL, flava, interspinous, supraspinous, roots, cauda equina, ganglia, dura, discs, nuclei.
-- docs/GAPS.md, docs/CHECKS.md (tools/check_lumbar.py + lgeom.py; numbers in data/raw/checks.json).
+# PROGRESS (updated 2026-11-24, Phase A2 done; next = Phase B viewer)
+Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. Pipeline/viewer copied from Shoul3er-vr (no rig/wrap/ropes/move menu).
+## Done
+- A1: LUMBAR region (both sides, top of L1 z 1.134 → coccyx 0.830), BodyParts3D bones L1–L5 + hips (ICP mean ≤0.82 mm), sacrum/coccyx Z-Anatomy, all bones watertight, curves → meshes, one Loop subdivision of soft structures, docs/GAPS.md, CHECKS.md.
+- A2 (SPEC step 4): assets/lumbar.glb 240 objects, 380,463 triangles, 2.9 MB (assets/ 13 MB). Manifest adds "part" and "context".
+  - L3/L4/L5 → 14 parts each, S1 → 7 parts + "Sacrum (rest)" (tools/bparts.py landmarks + regions, tools/bsplit.py exact booleans). Part volumes sum to the bone within 0.003 %; all parts closed.
+  - Ligaments split at mid body / spinous / TP of L3, L4, L5, S1 (flavum: 4 mm below each lamina's upper edge, + left/right) → "<ligament> L4-5", context pieces L1-3, S1-5.
+  - Roots/ganglia split by foramen: T12–L2 ventral/dorsal roots + ganglia (source objects); cauda equina → central bundle + "L3 root" … "S4 root" per side.
+  - "Annulus fibrosus Lx-Ly" = disc − nucleus (exact); nucleus kept.
+- CHECKS re-measured on parts (tools/check_lumbar.py; slicing bug fixed in lgeom.section).
 ## Decisions
-- World coordinates kept (Z-Anatomy, metres, +x left, +y posterior, +z up; GLB is y-up). Layers: bone, context_bone (L1, L2, hips, coccyx, discs L1–3), disc, neural, nerve, ligament_capsule, muscle, fascia_retinacula, attachment, artery, vein, skin.
-- Midline objects keep exact names (source objects renamed "[source]" to avoid ".001").
-- Sacrum level "S1" until A2 split; un-split multi-level objects have level "".
-## Known problems (source)
-- No dura, roots or DRG below L2–L3; cauda equina = schematic 0.5 mm curves; no traversing root course → Phase C rebuild.
-- Ligamentum flavum 0.6 mm sheet and absent at L5–S1; supraspinous ends at L4; L3–4 nucleus 6 mm; L3–4 disc 6.4 mm; L5–S1 posterior > anterior height.
-- Checks still unreliable: L5 pedicle (TP merges on axial cuts), L5–S1 foramen height; pedicle angles read 39–51° (local method) → re-measure on A2 parts.
+- World coordinates kept (Z-Anatomy metres, +x left, +y posterior, +z up; GLB y-up). Layers: bone, context_bone (L1, L2, hips, coccyx, discs L1–3), disc, neural, nerve, ligament_capsule, muscle, fascia_retinacula, attachment, artery, vein, skin.
+- Boolean fragments are joined to the part they touch (touching shell, exact); slivers <0.5 mm³ dropped; failed booleans retried with a 0.02–0.05 mm shift / no self-check.
+- Root level = first disc (going down) whose mid-plane the root's foramen crossing lies above.
+## Known problems (source; to fix in Phase C)
+- No dura/arachnoid below mid-L3; no separate roots or DRG at L3–S1 (cauda equina = schematic tubes, no traversing course).
+- Flavum 0.6 mm sheet, L5–S1 only a strip on L5; supraspinous ends at L4–5; L3–4 disc 6.4 mm and nucleus 6 mm; L5–S1 posterior > anterior height.
+- Pedicle angles 31° (L3–L4) vs 20° (L5): order reversed vs literature (short parts). L3–4 facets differ 16° L/R.
 ## Next step
-- Phase A2 (new session): SPEC step 4 split (bone parts, ligaments per level/side, roots/ganglia per level, annulus), re-export, update GAPS.md and CHECKS.md.
+- Phase B (viewer) per SPEC; then C (gaps), D (kit).
 ## Key files
-- tools/region.py, zsel.py, build_assets.py, meshfix.py, boneswap.py, check_lumbar.py, lgeom.py · assets/lumbar.glb, manifest.json · data/raw/build_log.txt (git-ignored)
-- Rebuild: put Z-Anatomy.zip → data/raw/zblend/, BodyParts3D STLs FMA13072-6, 16202, 16586-7 → data/raw/bp3d/…; `pip install bpy scipy`; `python3 -I tools/build_assets.py && python3 -I tools/check_lumbar.py`.
+- tools/region.py, zsel.py, build_assets.py, split_a2.py, bparts.py, bsplit.py, meshfix.py, boneswap.py, check_lumbar.py, lgeom.py · assets/lumbar.glb, manifest.json · data/raw/a2_landmarks.json, build_log.txt (git-ignored)
+- Rebuild: Z-Anatomy.zip → data/raw/zblend/; BodyParts3D STLs FMA13072-6, 16202, 16586-7 → data/raw/bp3d/assets/BodyParts3D_data/stl/; `pip install bpy scipy`; `python3 -I tools/build_assets.py` (~5 min) `&& python3 -I tools/check_lumbar.py`.

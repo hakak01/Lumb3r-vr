@@ -105,7 +105,7 @@ def section(meshes, o, e1, e2, half, px=0.1 * MM):
             c = np.cumsum(w)                                   # non-zero winding: inside where count > 0
             for x0, x1 in zip(x[:-1][c[:-1] > 0], x[1:][c[:-1] > 0]):
                 j0, j1 = int(np.ceil((x0 + half) / px - 0.5)), int(np.floor((x1 + half) / px - 0.5))
-                if j1 >= j0:
+                if j1 >= j0 and j1 >= 0 and j0 <= n - 1:          # skip runs fully outside the window
                     layer[i, max(j0, 0):min(j1, n - 1) + 1] = True
         img |= layer
     return img, px

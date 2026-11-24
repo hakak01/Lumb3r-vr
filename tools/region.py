@@ -54,7 +54,7 @@ SHOULDER = dict(
 )
 
 LUMBAR = dict(
-    name='lumbar', glb='lumbar.glb', whitelist=True, both_sides=True,
+    name='lumbar', glb='lumbar.glb', whitelist=True, both_sides=True, split=True,
     # top of L1 (1.134) to the coccyx (0.830); measured on Z-Anatomy Vertebra L1 / Coccyx bounding boxes
     z_lo=0.830, z_hi=1.134,
     bones=r'^(Vertebra L[345]|Sacrum)$',

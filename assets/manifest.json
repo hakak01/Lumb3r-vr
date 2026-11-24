@@ -27,15 +27,6 @@
   "side": "right"
  },
  {
-  "name": "Anterior longitudinal ligament",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 5600,
-  "level": "",
-  "side": "mid"
- },
- {
   "name": "Anterior root of posterior femoral cutaneous nerve (left)",
   "layer": "nerve",
   "source": "Z-Anatomy",
@@ -50,24 +41,6 @@
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 240,
-  "level": "",
-  "side": "right"
- },
- {
-  "name": "Anterior root of spinal nerve (left)",
-  "layer": "neural",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 472,
-  "level": "",
-  "side": "left"
- },
- {
-  "name": "Anterior root of spinal nerve (right)",
-  "layer": "neural",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 472,
   "level": "",
   "side": "right"
  },
@@ -90,17 +63,8 @@
   "side": "right"
  },
  {
-  "name": "Cauda equina",
-  "layer": "nerve",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 9216,
-  "level": "",
-  "side": "mid"
- },
- {
   "name": "Coccyx",
-  "layer": "bone",
+  "layer": "context_bone",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 1166,
@@ -461,78 +425,6 @@
   "side": "right"
  },
  {
-  "name": "Interspinous ligaments",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 688,
-  "level": "",
-  "side": "mid"
- },
- {
-  "name": "Intertransverse ligaments (left)",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 3146,
-  "level": "",
-  "side": "left"
- },
- {
-  "name": "Intertransverse ligaments (right)",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 3146,
-  "level": "",
-  "side": "right"
- },
- {
-  "name": "Intervertebral disc L1-L2",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 3132,
-  "level": "L1-2",
-  "side": "mid"
- },
- {
-  "name": "Intervertebral disc L2-L3",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 3388,
-  "level": "L2-3",
-  "side": "mid"
- },
- {
-  "name": "Intervertebral disc L3-L4",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 12464,
-  "level": "L3-4",
-  "side": "mid"
- },
- {
-  "name": "Intervertebral disc L4-L5",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 13144,
-  "level": "L4-5",
-  "side": "mid"
- },
- {
-  "name": "Intervertebral disc L5-S1",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 14344,
-  "level": "L5-S1",
-  "side": "mid"
- },
- {
   "name": "Lateral femoral cutaneous nerve (left)",
   "layer": "nerve",
   "source": "Z-Anatomy",
@@ -574,15 +466,6 @@
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 816,
-  "level": "",
-  "side": "mid"
- },
- {
-  "name": "Ligamenta flava",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 4560,
   "level": "",
   "side": "mid"
  },
@@ -810,48 +693,53 @@
  },
  {
   "name": "Nucleus pulposus L1-L2",
-  "layer": "ligament_capsule",
+  "layer": "context_bone",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 960,
   "level": "L1-2",
-  "side": "mid"
+  "side": "mid",
+  "part": "nucleus pulposus"
  },
  {
   "name": "Nucleus pulposus L2-L3",
-  "layer": "ligament_capsule",
+  "layer": "context_bone",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 960,
   "level": "L2-3",
-  "side": "mid"
+  "side": "mid",
+  "part": "nucleus pulposus"
  },
  {
   "name": "Nucleus pulposus L3-L4",
-  "layer": "ligament_capsule",
+  "layer": "disc",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 3840,
   "level": "L3-4",
-  "side": "mid"
+  "side": "mid",
+  "part": "nucleus pulposus"
  },
  {
   "name": "Nucleus pulposus L4-L5",
-  "layer": "ligament_capsule",
+  "layer": "disc",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 3840,
   "level": "L4-5",
-  "side": "mid"
+  "side": "mid",
+  "part": "nucleus pulposus"
  },
  {
   "name": "Nucleus pulposus L5-S1",
-  "layer": "ligament_capsule",
+  "layer": "disc",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 3840,
   "level": "L5-S1",
-  "side": "mid"
+  "side": "mid",
+  "part": "nucleus pulposus"
  },
  {
   "name": "Obturator nerve (left)",
@@ -899,15 +787,6 @@
   "side": "right"
  },
  {
-  "name": "Posterior longitudinal ligament",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 7344,
-  "level": "",
-  "side": "mid"
- },
- {
   "name": "Posterior root of posterior femoral cutaneous nerve (left)",
   "layer": "nerve",
   "source": "Z-Anatomy",
@@ -922,24 +801,6 @@
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 672,
-  "level": "",
-  "side": "right"
- },
- {
-  "name": "Posterior root of spinal nerve (left)",
-  "layer": "neural",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 472,
-  "level": "",
-  "side": "left"
- },
- {
-  "name": "Posterior root of spinal nerve (right)",
-  "layer": "neural",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 472,
   "level": "",
   "side": "right"
  },
@@ -1106,15 +967,6 @@
   "side": "mid"
  },
  {
-  "name": "Sacrum",
-  "layer": "bone",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 11670,
-  "level": "S1",
-  "side": "mid"
- },
- {
   "name": "Spinal branch of iliolumbar artery (left)",
   "layer": "artery",
   "source": "Z-Anatomy",
@@ -1134,30 +986,12 @@
  },
  {
   "name": "Spinal dura",
-  "layer": "nerve",
+  "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 8188,
   "level": "",
   "side": "mid"
- },
- {
-  "name": "Spinal ganglion (left)",
-  "layer": "neural",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 1000,
-  "level": "",
-  "side": "left"
- },
- {
-  "name": "Spinal ganglion (right)",
-  "layer": "neural",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 1000,
-  "level": "",
-  "side": "right"
  },
  {
   "name": "Spinalis thoracis muscle (left)",
@@ -1196,15 +1030,6 @@
   "side": "right"
  },
  {
-  "name": "Supraspinous ligament",
-  "layer": "ligament_capsule",
-  "source": "Z-Anatomy",
-  "approx": false,
-  "triangles": 704,
-  "level": "",
-  "side": "mid"
- },
- {
   "name": "Ventral parts of lateral intertransversarii lumborum muscles (left)",
   "layer": "muscle",
   "source": "Z-Anatomy",
@@ -1224,7 +1049,7 @@
  },
  {
   "name": "Vertebra L1",
-  "layer": "bone",
+  "layer": "context_bone",
   "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
   "approx": false,
   "triangles": 12946,
@@ -1233,38 +1058,11 @@
  },
  {
   "name": "Vertebra L2",
-  "layer": "bone",
+  "layer": "context_bone",
   "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
   "approx": false,
   "triangles": 6946,
   "level": "L2",
-  "side": "mid"
- },
- {
-  "name": "Vertebra L3",
-  "layer": "bone",
-  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
-  "approx": false,
-  "triangles": 14750,
-  "level": "L3",
-  "side": "mid"
- },
- {
-  "name": "Vertebra L4",
-  "layer": "bone",
-  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
-  "approx": false,
-  "triangles": 15426,
-  "level": "L4",
-  "side": "mid"
- },
- {
-  "name": "Vertebra L5",
-  "layer": "bone",
-  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
-  "approx": false,
-  "triangles": 17282,
-  "level": "L5",
   "side": "mid"
  },
  {
@@ -1287,11 +1085,1244 @@
  },
  {
   "name": "White matter of spinal cord",
-  "layer": "nerve",
+  "layer": "neural",
   "source": "Z-Anatomy",
   "approx": false,
   "triangles": 2588,
   "level": "",
   "side": "mid"
+ },
+ {
+  "name": "L3 spinous process",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 2042,
+  "level": "L3",
+  "side": "mid",
+  "part": "spinous process"
+ },
+ {
+  "name": "L3 transverse process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 928,
+  "level": "L3",
+  "side": "right",
+  "part": "transverse process"
+ },
+ {
+  "name": "L3 transverse process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1186,
+  "level": "L3",
+  "side": "left",
+  "part": "transverse process"
+ },
+ {
+  "name": "L3 body",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 4854,
+  "level": "L3",
+  "side": "mid",
+  "part": "body"
+ },
+ {
+  "name": "L3 pedicle (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 694,
+  "level": "L3",
+  "side": "right",
+  "part": "pedicle"
+ },
+ {
+  "name": "L3 pedicle (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 922,
+  "level": "L3",
+  "side": "left",
+  "part": "pedicle"
+ },
+ {
+  "name": "L3 superior articular process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1736,
+  "level": "L3",
+  "side": "right",
+  "part": "superior articular process"
+ },
+ {
+  "name": "L3 superior articular process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1528,
+  "level": "L3",
+  "side": "left",
+  "part": "superior articular process"
+ },
+ {
+  "name": "L3 inferior articular process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1062,
+  "level": "L3",
+  "side": "right",
+  "part": "inferior articular process"
+ },
+ {
+  "name": "L3 inferior articular process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1096,
+  "level": "L3",
+  "side": "left",
+  "part": "inferior articular process"
+ },
+ {
+  "name": "L3 pars interarticularis (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 964,
+  "level": "L3",
+  "side": "right",
+  "part": "pars interarticularis"
+ },
+ {
+  "name": "L3 pars interarticularis (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1216,
+  "level": "L3",
+  "side": "left",
+  "part": "pars interarticularis"
+ },
+ {
+  "name": "L3 lamina (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1220,
+  "level": "L3",
+  "side": "right",
+  "part": "lamina"
+ },
+ {
+  "name": "L3 lamina (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1140,
+  "level": "L3",
+  "side": "left",
+  "part": "lamina"
+ },
+ {
+  "name": "L4 spinous process",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1830,
+  "level": "L4",
+  "side": "mid",
+  "part": "spinous process"
+ },
+ {
+  "name": "L4 transverse process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1110,
+  "level": "L4",
+  "side": "right",
+  "part": "transverse process"
+ },
+ {
+  "name": "L4 transverse process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1046,
+  "level": "L4",
+  "side": "left",
+  "part": "transverse process"
+ },
+ {
+  "name": "L4 body",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 5370,
+  "level": "L4",
+  "side": "mid",
+  "part": "body"
+ },
+ {
+  "name": "L4 pedicle (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 748,
+  "level": "L4",
+  "side": "right",
+  "part": "pedicle"
+ },
+ {
+  "name": "L4 pedicle (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 788,
+  "level": "L4",
+  "side": "left",
+  "part": "pedicle"
+ },
+ {
+  "name": "L4 superior articular process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1562,
+  "level": "L4",
+  "side": "right",
+  "part": "superior articular process"
+ },
+ {
+  "name": "L4 superior articular process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1378,
+  "level": "L4",
+  "side": "left",
+  "part": "superior articular process"
+ },
+ {
+  "name": "L4 inferior articular process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1250,
+  "level": "L4",
+  "side": "right",
+  "part": "inferior articular process"
+ },
+ {
+  "name": "L4 inferior articular process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1130,
+  "level": "L4",
+  "side": "left",
+  "part": "inferior articular process"
+ },
+ {
+  "name": "L4 pars interarticularis (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1086,
+  "level": "L4",
+  "side": "right",
+  "part": "pars interarticularis"
+ },
+ {
+  "name": "L4 pars interarticularis (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1012,
+  "level": "L4",
+  "side": "left",
+  "part": "pars interarticularis"
+ },
+ {
+  "name": "L4 lamina (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1118,
+  "level": "L4",
+  "side": "right",
+  "part": "lamina"
+ },
+ {
+  "name": "L4 lamina (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1074,
+  "level": "L4",
+  "side": "left",
+  "part": "lamina"
+ },
+ {
+  "name": "L5 spinous process",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1248,
+  "level": "L5",
+  "side": "mid",
+  "part": "spinous process"
+ },
+ {
+  "name": "L5 transverse process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1932,
+  "level": "L5",
+  "side": "right",
+  "part": "transverse process"
+ },
+ {
+  "name": "L5 transverse process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1814,
+  "level": "L5",
+  "side": "left",
+  "part": "transverse process"
+ },
+ {
+  "name": "L5 body",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 6018,
+  "level": "L5",
+  "side": "mid",
+  "part": "body"
+ },
+ {
+  "name": "L5 pedicle (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1166,
+  "level": "L5",
+  "side": "right",
+  "part": "pedicle"
+ },
+ {
+  "name": "L5 pedicle (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1138,
+  "level": "L5",
+  "side": "left",
+  "part": "pedicle"
+ },
+ {
+  "name": "L5 superior articular process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1314,
+  "level": "L5",
+  "side": "right",
+  "part": "superior articular process"
+ },
+ {
+  "name": "L5 superior articular process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1514,
+  "level": "L5",
+  "side": "left",
+  "part": "superior articular process"
+ },
+ {
+  "name": "L5 inferior articular process (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1198,
+  "level": "L5",
+  "side": "right",
+  "part": "inferior articular process"
+ },
+ {
+  "name": "L5 inferior articular process (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1104,
+  "level": "L5",
+  "side": "left",
+  "part": "inferior articular process"
+ },
+ {
+  "name": "L5 pars interarticularis (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1048,
+  "level": "L5",
+  "side": "right",
+  "part": "pars interarticularis"
+ },
+ {
+  "name": "L5 pars interarticularis (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1206,
+  "level": "L5",
+  "side": "left",
+  "part": "pars interarticularis"
+ },
+ {
+  "name": "L5 lamina (right)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1462,
+  "level": "L5",
+  "side": "right",
+  "part": "lamina"
+ },
+ {
+  "name": "L5 lamina (left)",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1340,
+  "level": "L5",
+  "side": "left",
+  "part": "lamina"
+ },
+ {
+  "name": "S1 superior articular process (right)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 440,
+  "level": "S1",
+  "side": "right",
+  "part": "superior articular process"
+ },
+ {
+  "name": "S1 superior articular process (left)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 410,
+  "level": "S1",
+  "side": "left",
+  "part": "superior articular process"
+ },
+ {
+  "name": "S1 lamina (right)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 638,
+  "level": "S1",
+  "side": "right",
+  "part": "lamina"
+ },
+ {
+  "name": "S1 lamina (left)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 642,
+  "level": "S1",
+  "side": "left",
+  "part": "lamina"
+ },
+ {
+  "name": "S1 body",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1950,
+  "level": "S1",
+  "side": "mid",
+  "part": "body"
+ },
+ {
+  "name": "S1 ala (right)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2282,
+  "level": "S1",
+  "side": "right",
+  "part": "ala"
+ },
+ {
+  "name": "S1 ala (left)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2230,
+  "level": "S1",
+  "side": "left",
+  "part": "ala"
+ },
+ {
+  "name": "Sacrum (rest)",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 8506,
+  "level": "S2-5",
+  "side": "mid",
+  "part": "rest of sacrum"
+ },
+ {
+  "name": "Anterior longitudinal ligament L1-3",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2434,
+  "level": "L1-3",
+  "side": "mid",
+  "part": "anterior longitudinal ligament",
+  "context": true
+ },
+ {
+  "name": "Anterior longitudinal ligament L3-4",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1244,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "anterior longitudinal ligament"
+ },
+ {
+  "name": "Anterior longitudinal ligament L4-5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1140,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "anterior longitudinal ligament"
+ },
+ {
+  "name": "Anterior longitudinal ligament L5-S1",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1534,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "anterior longitudinal ligament"
+ },
+ {
+  "name": "Anterior longitudinal ligament S1-5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 896,
+  "level": "S1-5",
+  "side": "mid",
+  "part": "anterior longitudinal ligament",
+  "context": true
+ },
+ {
+  "name": "Posterior longitudinal ligament L1-3",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3762,
+  "level": "L1-3",
+  "side": "mid",
+  "part": "posterior longitudinal ligament",
+  "context": true
+ },
+ {
+  "name": "Posterior longitudinal ligament L3-4",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1400,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "posterior longitudinal ligament"
+ },
+ {
+  "name": "Posterior longitudinal ligament L4-5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1824,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "posterior longitudinal ligament"
+ },
+ {
+  "name": "Posterior longitudinal ligament L5-S1",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1594,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "posterior longitudinal ligament"
+ },
+ {
+  "name": "Ligamentum flavum L1-3 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1606,
+  "level": "L1-3",
+  "side": "right",
+  "part": "ligamentum flavum",
+  "context": true
+ },
+ {
+  "name": "Ligamentum flavum L1-3 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1506,
+  "level": "L1-3",
+  "side": "left",
+  "part": "ligamentum flavum",
+  "context": true
+ },
+ {
+  "name": "Ligamentum flavum L3-4 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 696,
+  "level": "L3-4",
+  "side": "right",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L3-4 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 658,
+  "level": "L3-4",
+  "side": "left",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L4-5 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 778,
+  "level": "L4-5",
+  "side": "right",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L4-5 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 738,
+  "level": "L4-5",
+  "side": "left",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L5-S1 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 326,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Ligamentum flavum L5-S1 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 304,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "ligamentum flavum"
+ },
+ {
+  "name": "Interspinous ligament L1-3",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 446,
+  "level": "L1-3",
+  "side": "mid",
+  "part": "interspinous ligament",
+  "context": true
+ },
+ {
+  "name": "Interspinous ligament L3-4",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 182,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "interspinous ligament"
+ },
+ {
+  "name": "Interspinous ligament L4-5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 170,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "interspinous ligament"
+ },
+ {
+  "name": "Interspinous ligament L5-S1",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 166,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "interspinous ligament"
+ },
+ {
+  "name": "Supraspinous ligament L1-3",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 570,
+  "level": "L1-3",
+  "side": "mid",
+  "part": "supraspinous ligament",
+  "context": true
+ },
+ {
+  "name": "Supraspinous ligament L3-4",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 320,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "supraspinous ligament"
+ },
+ {
+  "name": "Supraspinous ligament L4-5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 110,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "supraspinous ligament"
+ },
+ {
+  "name": "Intertransverse ligament L1-3 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1640,
+  "level": "L1-3",
+  "side": "left",
+  "part": "intertransverse ligament",
+  "context": true
+ },
+ {
+  "name": "Intertransverse ligament L3-4 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 668,
+  "level": "L3-4",
+  "side": "left",
+  "part": "intertransverse ligament"
+ },
+ {
+  "name": "Intertransverse ligament L4-5 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 608,
+  "level": "L4-5",
+  "side": "left",
+  "part": "intertransverse ligament"
+ },
+ {
+  "name": "Intertransverse ligament L5-S1 (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 426,
+  "level": "L5-S1",
+  "side": "left",
+  "part": "intertransverse ligament"
+ },
+ {
+  "name": "Intertransverse ligament L1-3 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1640,
+  "level": "L1-3",
+  "side": "right",
+  "part": "intertransverse ligament",
+  "context": true
+ },
+ {
+  "name": "Intertransverse ligament L3-4 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 668,
+  "level": "L3-4",
+  "side": "right",
+  "part": "intertransverse ligament"
+ },
+ {
+  "name": "Intertransverse ligament L4-5 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 604,
+  "level": "L4-5",
+  "side": "right",
+  "part": "intertransverse ligament"
+ },
+ {
+  "name": "Intertransverse ligament L5-S1 (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 414,
+  "level": "L5-S1",
+  "side": "right",
+  "part": "intertransverse ligament"
+ },
+ {
+  "name": "Annulus fibrosus L1-L2",
+  "layer": "context_bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4103,
+  "level": "L1-2",
+  "side": "mid",
+  "part": "annulus fibrosus",
+  "context": true
+ },
+ {
+  "name": "Annulus fibrosus L2-L3",
+  "layer": "context_bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4348,
+  "level": "L2-3",
+  "side": "mid",
+  "part": "annulus fibrosus",
+  "context": true
+ },
+ {
+  "name": "Annulus fibrosus L3-L4",
+  "layer": "disc",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 16304,
+  "level": "L3-4",
+  "side": "mid",
+  "part": "annulus fibrosus"
+ },
+ {
+  "name": "Annulus fibrosus L4-L5",
+  "layer": "disc",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 16984,
+  "level": "L4-5",
+  "side": "mid",
+  "part": "annulus fibrosus"
+ },
+ {
+  "name": "Annulus fibrosus L5-S1",
+  "layer": "disc",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 18184,
+  "level": "L5-S1",
+  "side": "mid",
+  "part": "annulus fibrosus"
+ },
+ {
+  "name": "L1 ventral root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L1",
+  "side": "left",
+  "part": "ventral root",
+  "context": true
+ },
+ {
+  "name": "L2 ventral root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L2",
+  "side": "left",
+  "part": "ventral root",
+  "context": true
+ },
+ {
+  "name": "T12 ventral root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 88,
+  "level": "T12",
+  "side": "left",
+  "part": "ventral root",
+  "context": true
+ },
+ {
+  "name": "L1 ventral root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L1",
+  "side": "right",
+  "part": "ventral root",
+  "context": true
+ },
+ {
+  "name": "L2 ventral root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L2",
+  "side": "right",
+  "part": "ventral root",
+  "context": true
+ },
+ {
+  "name": "T12 ventral root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 88,
+  "level": "T12",
+  "side": "right",
+  "part": "ventral root",
+  "context": true
+ },
+ {
+  "name": "T12 dorsal root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 88,
+  "level": "T12",
+  "side": "left",
+  "part": "dorsal root",
+  "context": true
+ },
+ {
+  "name": "L2 dorsal root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L2",
+  "side": "left",
+  "part": "dorsal root",
+  "context": true
+ },
+ {
+  "name": "L1 dorsal root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L1",
+  "side": "left",
+  "part": "dorsal root",
+  "context": true
+ },
+ {
+  "name": "T12 dorsal root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 88,
+  "level": "T12",
+  "side": "right",
+  "part": "dorsal root",
+  "context": true
+ },
+ {
+  "name": "L2 dorsal root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L2",
+  "side": "right",
+  "part": "dorsal root",
+  "context": true
+ },
+ {
+  "name": "L1 dorsal root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L1",
+  "side": "right",
+  "part": "dorsal root",
+  "context": true
+ },
+ {
+  "name": "T12 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 360,
+  "level": "T12",
+  "side": "left",
+  "part": "spinal ganglion",
+  "context": true
+ },
+ {
+  "name": "L2 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 320,
+  "level": "L2",
+  "side": "left",
+  "part": "spinal ganglion",
+  "context": true
+ },
+ {
+  "name": "L1 spinal ganglion (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 320,
+  "level": "L1",
+  "side": "left",
+  "part": "spinal ganglion",
+  "context": true
+ },
+ {
+  "name": "T12 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 360,
+  "level": "T12",
+  "side": "right",
+  "part": "spinal ganglion",
+  "context": true
+ },
+ {
+  "name": "L1 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 320,
+  "level": "L1",
+  "side": "right",
+  "part": "spinal ganglion",
+  "context": true
+ },
+ {
+  "name": "L2 spinal ganglion (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 320,
+  "level": "L2",
+  "side": "right",
+  "part": "spinal ganglion",
+  "context": true
+ },
+ {
+  "name": "L3 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L3",
+  "side": "left",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "L3 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192,
+  "level": "L3",
+  "side": "right",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "L4 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "L4",
+  "side": "left",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "L4 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "L4",
+  "side": "right",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "L5 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "L5",
+  "side": "left",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "L5 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "L5",
+  "side": "right",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "S1 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 576,
+  "level": "S1",
+  "side": "left",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "S1 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 576,
+  "level": "S1",
+  "side": "right",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "S2 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "S2",
+  "side": "left",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "S2 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "S2",
+  "side": "right",
+  "part": "root (cauda equina branch)"
+ },
+ {
+  "name": "S3 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "S3",
+  "side": "left",
+  "part": "root (cauda equina branch)",
+  "context": true
+ },
+ {
+  "name": "S3 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "S3",
+  "side": "right",
+  "part": "root (cauda equina branch)",
+  "context": true
+ },
+ {
+  "name": "S4 root (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "S4",
+  "side": "left",
+  "part": "root (cauda equina branch)",
+  "context": true
+ },
+ {
+  "name": "S4 root (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "S4",
+  "side": "right",
+  "part": "root (cauda equina branch)",
+  "context": true
+ },
+ {
+  "name": "Cauda equina (central bundle)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3840,
+  "level": "",
+  "side": "mid",
+  "part": "cauda equina"
  }
 ]

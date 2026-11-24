@@ -3,6 +3,23 @@ import bmesh
 from mathutils import Vector
 
 
+def crop_plane(me, co, no):
+    """Keep the side where no.(x - co) <= 0; fill the cut. Returns faces left."""
+    bm = bmesh.new()
+    bm.from_mesh(me)
+    geom = bm.verts[:] + bm.edges[:] + bm.faces[:]
+    r = bmesh.ops.bisect_plane(bm, geom=geom, dist=1e-9, plane_co=Vector(co), plane_no=Vector(no),
+                               clear_outer=True, clear_inner=False)
+    cut = [e for e in r['geom_cut'] if isinstance(e, bmesh.types.BMEdge) and e.is_valid and e.is_boundary]
+    if cut:
+        bmesh.ops.holes_fill(bm, edges=cut, sides=0)
+    bmesh.ops.triangulate(bm, faces=bm.faces)
+    n = len(bm.faces)
+    bm.to_mesh(me)
+    bm.free()
+    return n
+
+
 def crop(me, z, keep='below'):
     """Remove the part above (keep='below') or below (keep='above') the plane z; fill the cut.
     Returns the number of faces left."""

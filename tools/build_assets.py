@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.join(ROOT, 'tools'))
 import bpy, bmesh
 import numpy as np
 from scipy.spatial import cKDTree
-import zsel, boneswap, decimate, subdiv, meshfix
+import zsel, boneswap, decimate, subdiv, meshfix, split_a2
 from region import ACTIVE as REG, R
 
 BLEND = os.path.join(ROOT, 'data/raw/zblend/Z-Anatomy/Startup.blend')
@@ -81,14 +81,15 @@ def extract():
         while name in used:
             name += ' 2'
         used.add(name)
+        lay, side, sysn = zsel.layer(o), zsel.side_of(o.name), zsel.system(o)   # before any renaming
         clash = bpy.data.objects.get(name)
         if clash is not None:                 # source object has the same name: rename it so ours keeps the exact name
             clash.name = name + ' [source]'
         no = bpy.data.objects.new(name, me)
         assert no.name == name, (no.name, name)
         col.objects.link(no)
-        out.append(dict(obj=no, name=name, src=o.name, layer=zsel.layer(o), kind=kind, sys=zsel.system(o),
-                        side=zsel.side_of(o.name), level=zsel.level_of(name), source='Z-Anatomy'))
+        out.append(dict(obj=no, name=name, src=o.name, layer=lay, kind=kind, sys=sysn,
+                        side=side, level=zsel.level_of(name), source='Z-Anatomy'))
     return out
 
 
@@ -203,6 +204,10 @@ def main():
             log('subdivide %-45s %5d -> %6d  max shape change %.2f mm (vertex move %.2f)' % (
                 it['name'], len(f), len(nf), dev, subdiv.smooth.moved))
             tri[it['name']] = len(nf)
+    if REG.get('split'):
+        items = split_a2.split_bones(items, log)
+        items = split_a2.split_soft(items, log)
+        tri = {it['name']: len(it['obj'].data.polygons) for it in items}
     log('before budget: %d triangles' % sum(tri.values()))
     decimate.MAX_DEV = REG['reduce_dev']
     pat = R.get('reducible', R['context_bones'])
@@ -219,6 +224,10 @@ def main():
             e['kind'] = it['kind']
         if REG.get('both_sides'):
             e['level'], e['side'] = it['level'], it['side']
+        if it.get('part'):
+            e['part'] = it['part']
+        if it.get('context'):
+            e['context'] = True
         man.append(e)
     json.dump(man, open(os.path.join(OUT, 'manifest.json'), 'w'), indent=1)
     subprocess.run('npx -y -q @gltf-transform/cli meshopt "%s" "%s" --level medium' % (

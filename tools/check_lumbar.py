@@ -10,6 +10,27 @@ sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from lgeom import MM, load, pca, frame, to_local, to_world, ray, section, holes, chord, samples, unit
 
 G = load(os.path.join(ROOT, 'data/raw/lumbar_raw.glb'))
+MAN = json.load(open(os.path.join(ROOT, 'assets/manifest.json')))
+
+
+def concat(names):
+    V, F, o = [], [], 0
+    for n in names:
+        v, f = G[n]
+        V.append(v); F.append(f + o); o += len(v)
+    return np.vstack(V), np.vstack(F)
+
+
+# Phase A2 split the model into parts; rebuild whole structures for the measurements
+for v in ('L3', 'L4', 'L5'):
+    G['Vertebra ' + v] = concat([e['name'] for e in MAN if e['layer'] == 'bone' and e.get('level') == v])
+G['Sacrum'] = concat([e['name'] for e in MAN if e['layer'] == 'bone' and e['name'].startswith(('S1 ', 'Sacrum'))])
+ANN = {}
+for d in ('L2-L3', 'L3-L4', 'L4-L5', 'L5-S1'):
+    ANN['Intervertebral disc ' + d] = G['Annulus fibrosus ' + d]
+    G['Intervertebral disc ' + d] = concat(['Annulus fibrosus ' + d, 'Nucleus pulposus ' + d])
+G['Ligamenta flava'] = concat([e['name'] for e in MAN if e['name'].startswith('Ligamentum flavum')])
+G['Posterior longitudinal ligament'] = concat([e['name'] for e in MAN if e['name'].startswith('Posterior longitudinal ligament')])
 OUT = {}
 DISCS = {'L2-3': ('Intervertebral disc L2-L3', 'Vertebra L2', 'Vertebra L3'),
          'L3-4': ('Intervertebral disc L3-L4', 'Vertebra L3', 'Vertebra L4'),
@@ -20,7 +41,7 @@ r1 = lambda x: None if x is None else round(float(x), 1)
 
 
 def disc_frame(k):
-    P, _ = samples(*G[DISCS[k][0]], spacing=0.5 * MM)
+    P, _ = samples(*ANN[DISCS[k][0]], spacing=0.5 * MM)
     c, U, _ = pca(P)
     return frame(U[:, 2], c)
 
@@ -33,118 +54,77 @@ def first(V, F, o, d):
     return t[0] if len(t) else np.nan
 
 
+def dfirst(name, o, d):
+    """Disc outer surface seen from inside the disc: last hit on the annulus (its inner face lines the nucleus)."""
+    t = ray(*ANN[name], o, d)
+    t = t[t < 0.03]
+    return t[-1] if len(t) else np.nan
+
+
 # ---- 1. disc heights (rays along the disc axis at 10 %, 50 %, 90 % of the midsagittal AP depth) ----
 for k in LEVELS:
     Fr, (dn, up, lo) = DF[k], DISCS[k]
     o, n, a = Fr['o'], Fr['n'], Fr['a']
-    tp, ta = first(*G[dn], o, a), first(*G[dn], o, -a)
+    tp, ta = dfirst(dn, o, a), dfirst(dn, o, -a)
     depth = tp + ta
     res = dict(ap_depth=r1(depth / MM))
     for nm, s in (('anterior', -ta + 0.1 * depth), ('middle', (tp - ta) / 2), ('posterior', tp - 0.1 * depth)):
         p = o + s * a
-        du, dd = first(*G[dn], p, n), first(*G[dn], p, -n)
+        du, dd = dfirst(dn, p, n), dfirst(dn, p, -n)
         bu, bd = first(*G[up], p, n), first(*G[lo], p, -n)
         res[nm] = dict(disc=r1((du + dd) / MM), bone_gap=r1((bu + bd) / MM),
                        gap_top=r1((bu - du) / MM), gap_bottom=r1((bd - dd) / MM))
     OUT.setdefault(k, {})['disc_height'] = res
     OUT[k]['disc_centre'] = [round(float(x), 5) for x in o]
 
-# ---- 2. pedicles. Pedicle mid-height = centre of the pedicle's coronal cut 3 mm behind the body wall.
-#      On the axial cut there, each row (along AP) is scanned from the canal outward; the bone run = pedicle.
-#      Axis = line through the run midpoints around the narrowest row; transverse width = narrowest run x cos(angle). ----
+# ---- 2. pedicles, measured on the separate pedicle parts (Phase A2). Axial cut at the part's mid-height:
+#      centreline = line through the mid-points of the front and back quarters of the section (front = body cut,
+#      back = cut at the SAP/TP junction); transverse width = narrowest row x cos(angle). ----
 VERT = {'L3': ('Vertebra L3', 'L2-3', 'L3-4'), 'L4': ('Vertebra L4', 'L3-4', 'L4-5'), 'L5': ('Vertebra L5', 'L4-5', 'L5-S1')}
 VF, PED = {}, {}
 HALF = 45 * MM
-
-
-def side_comp(img, px, half, sg):
-    lab, k = ndimage.label(img)
-    best = None
-    for c in range(1, k + 1):
-        ii, jj = np.nonzero(lab == c)
-        l = jj.mean() * px - half
-        if sg * l > 4 * MM and (best is None or len(ii) > len(best[0])):
-            best = (ii, jj)
-    return best
-
-
 for v, (bn, d1, d2) in VERT.items():
     VF[v] = Fr = frame(DF[d1]['n'] + DF[d2]['n'], (DF[d1]['o'] + DF[d2]['o']) / 2)
-    V, F = G[bn]
-    wall = first(V, F, Fr['o'], Fr['a'])                     # posterior wall of the body (midline)
     PED[v] = {}
     for side, sg in (('right', -1), ('left', 1)):
-        nc = None
-        for amm in np.arange(1.0, 8.01, 0.5):                  # first coronal cut where this side is separate
-            img, px = section([G[bn]], to_world(Fr, [0, wall + amm * MM, 0]), Fr['l'], Fr['n'], 40 * MM)
-            c = side_comp(img, px, 40 * MM, sg)
-            if c is not None and np.ptp(c[1]) * px < 30 * MM:
-                nc = ((c[0].min() + c[0].max()) / 2) * px - 40 * MM
-                break
-        if nc is None:
-            PED[v][side] = None
-            continue
+        Vp, Fp = G['%s pedicle (%s)' % (v, side)]
+        q = to_local(Fr, Vp)
+        nm = (np.percentile(q[:, 2], 5) + np.percentile(q[:, 2], 95)) / 2
         res = []
-        HP = 62 * MM                                            # L5 transverse processes reach +-53 mm
-        for dz in range(-6, 7):
-            img, px = section([G[bn]], to_world(Fr, [0, 0, nc + dz * MM]), Fr['l'], Fr['a'], HP)
-            j0 = int(HP / px)
-            rows = []
-            for i in range(int((wall + HP) / px) + 1, int((wall + 16 * MM + HP) / px)):
-                if img[i, j0]:
-                    continue                                    # midline must be canal
-                j = j0
-                while 0 < j < img.shape[1] - 1 and not img[i, j]:
-                    j += sg
-                a_ = j
-                while 0 < j < img.shape[1] - 1 and img[i, j]:
-                    j += sg
-                if 0 < j < img.shape[1] - 1:
-                    rows.append((i, abs(j - a_) * px, (a_ + j) / 2))
+        for dz in (-2, -1, 0, 1, 2):
+            img, px = section([(Vp, Fp)], to_world(Fr, [0, 0, nm + dz * MM]), Fr['l'], Fr['a'], HALF)
+            lab, k = ndimage.label(img)
+            if not k:
+                continue
+            big = np.argmax(np.bincount(lab.ravel())[1:]) + 1
+            ii, jj = np.nonzero(lab == big)
+            rows = np.array([(i, jj[ii == i].min(), jj[ii == i].max()) for i in np.unique(ii)], float)
             if len(rows) < 8:
                 continue
-            R = np.array(rows)
-            R = R[np.argmax(R[:, 1] >= 1.5 * MM):]                 # skip slivers at the body corner
-            k, t = 0, 0                                         # walk back from the body; stop at the TP flare
-            for t in range(len(R)):
-                if t and (R[t, 0] - R[t - 1, 0]) > 3:
-                    break
-                if R[t, 1] < R[k, 1]:
-                    k = t
-                if R[t, 1] > R[k, 1] + 3 * MM:
-                    break
-            R = R[:t + 1]
-            near = np.abs(R[:, 0] - R[k, 0]) * px <= 4 * MM
-            pa, pl = R[near, 0] * px, R[near, 2] * px
-            slope = np.polyfit(pa, pl, 1)[0] if near.sum() > 3 else 0.0   # dl/da
-            ang = np.degrees(np.arctan(abs(slope)))
-            medial = slope * sg > 0                             # moving posterior, axis goes lateral
-            behind = R[k, 0] * px - HP - wall
-            if R[k, 1] > 15 * MM or behind < 1.5 * MM:            # pedicle merged with the TP / body at this height
-                continue
-            res.append(dict(dz=dz, width=R[k, 1] * np.cos(np.radians(ang)) / MM, angle=ang, medial=bool(medial),
-                            centre_local=np.array([R[k, 2] * px - HP, R[k, 0] * px - HP, nc + dz * MM]),
-                            run=R[k, 1] / MM))
-        if not res:
-            PED[v][side] = None
-            continue
-        mid = [r for r in res if r['dz'] == 0]
-        r = mid[0] if mid else max(res, key=lambda x: x['width'])
-        near2 = [x['width'] for x in res if abs(x['dz'] - r['dz']) <= 2]
-        r['range'] = [r1(min(near2)), r1(max(near2))]
-        r['valid_dz'] = [x['dz'] for x in res]
+            q4 = max(2, len(rows) // 4)
+            f, b = rows[:q4], rows[-q4:]
+            dl = ((b[:, 1] + b[:, 2]).mean() - (f[:, 1] + f[:, 2]).mean()) / 2
+            da = b[:, 0].mean() - f[:, 0].mean()
+            ang = np.degrees(np.arctan2(abs(dl), da))
+            run = (rows[:, 2] - rows[:, 1] + 1) * px
+            kmin = int(np.argmin(run))
+            res.append(dict(dz=dz, width=run[kmin] * np.cos(np.radians(ang)) / MM, angle=ang, medial=bool(dl * sg > 0),
+                            run=run[kmin] / MM, length=(rows[-1, 0] - rows[0, 0] + 1) * px / MM,
+                            centre_local=np.array([(rows[kmin, 1] + rows[kmin, 2]) / 2 * px - HALF,
+                                                   rows[kmin, 0] * px - HALF, nm + dz * MM])))
+        r = [x for x in res if x['dz'] == 0][0]
+        r['range'] = [r1(min(x['width'] for x in res)), r1(max(x['width'] for x in res))]
         PED[v][side] = r
-    OUT.setdefault(v, {})['pedicle'] = {s: (None if r is None else dict(
-        transverse_width=r1(r['width']), width_range_pm2mm=r['range'], transverse_angle=r1(r['angle']),
-        medial=r['medial'], isthmus_behind_body_wall_mm=r1((r['centre_local'][1] - wall) / MM), slice_dz_mm=r['dz'], valid_dz_mm=r['valid_dz'],
-        mid_height_mm=r1(r['centre_local'][2] / MM))) for s, r in PED[v].items()}
+    OUT.setdefault(v, {})['pedicle'] = {s_: dict(transverse_width=r1(r['width']), width_range_pm2mm=r['range'],
+                                                 transverse_angle=r1(r['angle']), medial=r['medial'],
+                                                 section_length_mm=r1(r['length']))
+                                        for s_, r in PED[v].items()}
     R_, L_ = PED[v]['right'], PED[v]['left']
-    if R_ and L_:
-        q = (R_['centre_local'] + L_['centre_local']) / 2
-        t = ray(V, F, to_world(Fr, [0, 0, q[2]]), Fr['a'])      # body wall exit, then lamina inner surface
-        OUT[v]['bony_canal'] = dict(interpedicular=r1((L_['centre_local'][0] - R_['centre_local'][0]
-                                                       - (L_['run'] + R_['run']) / 2 * MM) / MM),
-                                    ap_midline_at_pedicle=r1((t[1] - t[0]) / MM) if len(t) > 1 else None)
+    q = (R_['centre_local'] + L_['centre_local']) / 2
+    t = ray(*G[bn], to_world(Fr, [0, 0, q[2]]), Fr['a'])
+    OUT[v]['bony_canal'] = dict(interpedicular=r1((L_['centre_local'][0] - R_['centre_local'][0]
+                                                   - (L_['run'] + R_['run']) / 2 * MM) / MM),
+                                ap_midline_at_pedicle=r1((t[1] - t[0]) / MM) if len(t) > 1 else None)
 
 # ---- 3. foramina (Hasegawa 1995): parasagittal cut through the upper pedicle centre.
 #      height = upper pedicle lower edge to lower pedicle upper edge; width = AP gap from the back of the
@@ -152,7 +132,7 @@ for v, (bn, d1, d2) in VERT.items():
 for k in LEVELS:
     Fr, (dn, up, lo) = DF[k], DISCS[k]
     v = up.split()[-1]
-    tp = first(*G[dn], Fr['o'], Fr['a'])
+    tp = dfirst(dn, Fr['o'], Fr['a'])
     OUT[k]['posterior_disc_height_edge'] = r1((first(*G[up], Fr['o'] + (tp - MM) * Fr['a'], Fr['n'])
                                                + first(*G[lo], Fr['o'] + (tp - MM) * Fr['a'], -Fr['n'])) / MM)
     OUT[k]['foramen'] = {}
@@ -178,6 +158,23 @@ for k in LEVELS:
             if i > 0:
                 hgt.append((top - i) * px)
                 edges.append(((top + 1) * px - H, (i + 1) * px - H))
+        # Hasegawa: maximum pedicle-to-pedicle height = largest free vertical gap through the foramen,
+        # over columns from the back of the disc to 3 mm behind the pedicle centre (bone and disc as borders)
+        hmax = []
+        if edges:
+            i0 = int((np.median([e[0] for e in edges]) - 0.5 * MM + H) / px)
+            for j in range(int((tp + 0.5 * MM + H) / px), int((cq[1] + 3 * MM + H) / px)):
+                if full[i0, j]:
+                    continue
+                i = i0
+                while i < full.shape[0] - 1 and not full[i, j]:
+                    i += 1
+                top = i
+                i = i0
+                while i > 0 and not full[i, j]:
+                    i -= 1
+                if i > 0 and top < full.shape[0] - 1:
+                    hmax.append(((top - i - 1) * px, j))
         wid = []
         i_lo, i_hi = int(H / px), int((cq[2] + H) / px)
         for i in range(i_lo, i_hi):
@@ -192,7 +189,10 @@ for k in LEVELS:
             print('width profile (n mm, width mm):', [(r1((i - H / px) * px / MM), r1(w / MM)) for i, w in zip(range(i_lo, i_hi), wid)][::5])
         wid = np.array(wid)
         ok = ~np.isnan(wid)
-        OUT[k]['foramen'][side] = dict(height=r1(max(hgt) / MM) if hgt else None,
+        hb = max(hmax) if hmax else None
+        OUT[k]['foramen'][side] = dict(height_max=r1(hb[0] / MM) if hb else None,
+                                       height_max_at_a_mm=r1((hb[1] * px - H) / MM) if hb else None,
+                                       height_at_pedicle_line=r1(max(hgt) / MM) if hgt else None,
                                        width_narrowest=r1(wid[ok].min() / MM) if ok.any() else None,
                                        narrowest_at_n_mm=r1(np.flatnonzero(ok)[np.argmin(wid[ok])] * px / MM) if ok.any() else None,
                                        width_at_mid_disc=r1(wid[0] / MM) if ok[0] else None,
@@ -203,7 +203,7 @@ for k in LEVELS:
 for k in LEVELS:
     Fr, (dn, up, lo) = DF[k], DISCS[k]
     v = up.split()[-1]
-    tp = first(*G[dn], Fr['o'], Fr['a'])
+    tp = dfirst(dn, Fr['o'], Fr['a'])
     R_, L_ = PED[v]['right'], PED[v]['left']
     img, px = section([G[dn], G[up], G[lo], G['Posterior longitudinal ligament'], G['Ligamenta flava']],
                       Fr['o'], Fr['l'], Fr['a'], HALF)
@@ -240,32 +240,35 @@ for k in LEVELS:
         OUT[k]['ligamentum_flavum'][side] = dict(thickness=r1((st.max() - st.min() + px) / MM),
                                                  length=r1((t.max() - t.min()) / MM))
 
-# ---- 5. facet joints: gap between upper IAP and lower SAP; joint line on an axial cut at mid-joint ----
+# ---- 5. facet joints (Phase A2 parts): upper IAP vs lower SAP; joint line on an axial cut at mid-joint ----
+def facet(k, Fr, side, Pl, Nl, Pu):
+    d, idx = cKDTree(Pl).query(Pu)
+    s_ = ((Pu - Pl[idx]) * Nl[idx]).sum(1)
+    q = to_local(Fr, (Pu + Pl[idx]) / 2)
+    m = d < 4 * MM
+    if m.sum() < 20:
+        OUT[k]['facet'][side] = 'no contact zone'
+        return
+    zm = np.median(q[m, 2])
+    mm_ = m & (np.abs(q[:, 2] - zm) < 1.5 * MM)
+    c, U, _ = pca(q[mm_][:, :2])
+    ang = np.degrees(np.arctan2(abs(U[0, 0]), abs(U[1, 0])))
+    ov = s_[m] < 0
+    OUT[k]['facet'][side] = dict(angle_from_sagittal=r1(ang),
+                                 gap_median=r1(np.median(d[m & (s_ >= 0)]) / MM) if (m & (s_ >= 0)).any() else None,
+                                 overlap_fraction=round(float(ov.mean()), 2),
+                                 overlap_max=r1(-s_[m][ov].min() / MM) if ov.any() else 0.0,
+                                 mid_joint_height_mm=r1(zm / MM))
+
+
 for k in LEVELS:
     Fr, (dn, up, lo) = DF[k], DISCS[k]
-    tp = first(*G[dn], Fr['o'], Fr['a'])
-    Pl, Nl = samples(*G[lo], spacing=0.3 * MM)
-    Pu, _ = samples(*G[up], spacing=0.3 * MM, seed=1)
-    d, idx = cKDTree(Pl).query(Pu)
-    s = ((Pu - Pl[idx]) * Nl[idx]).sum(1)
-    M = (Pu + Pl[idx]) / 2
-    q = to_local(Fr, M)
-    near = (d < 4 * MM) & (q[:, 1] > tp + 2 * MM) & (np.abs(q[:, 0]) > 5 * MM)
     OUT[k]['facet'] = {}
-    for side, sgn in (('right', -1), ('left', 1)):
-        m = near & (sgn * q[:, 0] > 0)
-        if m.sum() < 20:
-            OUT[k]['facet'][side] = 'no contact zone'
-            continue
-        zm = np.median(q[m, 2])
-        mm_ = m & (np.abs(q[:, 2] - zm) < 1.5 * MM)
-        c, U, _ = pca(q[mm_][:, :2])
-        ang = np.degrees(np.arctan2(abs(U[0, 0]), abs(U[1, 0])))
-        ov = s[m] < 0
-        OUT[k]['facet'][side] = dict(angle_from_sagittal=r1(ang), gap_median=r1(np.median(d[m & (s >= 0)]) / MM) if (m & (s >= 0)).any() else None,
-                                     overlap_fraction=round(float(ov.mean()), 2),
-                                     overlap_max=r1(-s[m][ov].min() / MM) if ov.any() else 0.0,
-                                     mid_joint_height_mm=r1(zm / MM))
+    lv, uv = ('S1' if lo == 'Sacrum' else lo.split()[-1]), up.split()[-1]
+    for side in ('right', 'left'):
+        Pl, Nl = samples(*G['%s superior articular process (%s)' % (lv, side)], spacing=0.3 * MM)
+        Pu, _ = samples(*G['%s inferior articular process (%s)' % (uv, side)], spacing=0.3 * MM, seed=1)
+        facet(k, Fr, side, Pl, Nl, Pu)
 
 # ---- 6. root topography: Z-Anatomy L3-S1 roots exist only as the cauda equina branch curves ----
 try:
@@ -319,10 +322,8 @@ except ImportError:
 
 # ---- 7. source z-ranges of long structures (what each level actually has) ----
 OUT['z_ranges_mm'] = {n: [r1(G[n][0][:, 2].min() / MM), r1(G[n][0][:, 2].max() / MM)] for n in
-                      ['Anterior longitudinal ligament', 'Posterior longitudinal ligament', 'Ligamenta flava',
-                       'Interspinous ligaments', 'Supraspinous ligament', 'Intertransverse ligaments (right)',
-                       'Spinal dura', 'Spinal ganglion (right)', 'Anterior root of spinal nerve (right)',
-                       'Posterior root of spinal nerve (right)', 'Cauda equina', 'White matter of spinal cord']}
+                      ['Ligamenta flava', 'Posterior longitudinal ligament', 'Spinal dura', 'Cauda equina (central bundle)',
+                       'White matter of spinal cord']}
 OUT['disc_mid_z_mm'] = {k: r1(DF[k]['o'][2] / MM) for k in DISCS}
 for k in LEVELS:
     OUT[k]['nucleus_size_mm'] = [r1(x / MM) for x in np.ptp(to_local(DF[k], G['Nucleus pulposus ' + DISCS[k][0].split()[-1]][0]), 0)]
