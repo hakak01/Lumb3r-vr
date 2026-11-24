@@ -2,7 +2,7 @@
 // a "label" point (glTF metres). Shown when the toggle is on and the structure itself is visible.
 import * as THREE from 'three';
 
-const COLOR = '#7fe3ff', HEIGHT = 0.011;   // label text height in metres (model scale)
+const COLOR = '#7fe3ff', HEIGHT = 0.004;   // label text height in metres (model scale)
 
 function sprite(text) {
   const c = document.createElement('canvas'), g = c.getContext('2d'), font = 'bold 48px system-ui, sans-serif';
@@ -19,7 +19,7 @@ function sprite(text) {
 
 export class Labels {
   constructor(A, on) {
-    this.A = A; this.on = on; this.items = [];
+    this.A = A; this.on = on; this.items = []; this.filter = null;   // filter(struct) -> show its label?
     const parent = A.center, lineMat = new THREE.LineBasicMaterial({ color: COLOR, depthTest: false, transparent: true, opacity: 0.8 });
     parent.updateMatrixWorld(true);
     for (const s of A.structs) {
@@ -37,6 +37,6 @@ export class Labels {
   }
   set(on) { this.on = on; this.update(); }
   update() {
-    for (const { s, sp, line } of this.items) sp.visible = line.visible = this.on && this.A.visibleOf(s);
+    for (const { s, sp, line } of this.items) sp.visible = line.visible = this.on && this.A.visibleOf(s) && !s.hidden && (!this.filter || this.filter(s));
   }
 }

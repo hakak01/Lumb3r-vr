@@ -1,8 +1,7 @@
 // WebXR: Enter VR / MR, controllers, wrist menu, ray selection, grab / two-hand zoom.
 import * as THREE from 'three';
 import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
-
-const MIN_S = 0.5, MAX_S = 20;
+import { MIN_S, MAX_S } from './views.js';
 
 export class XR {
   constructor(app) {
@@ -37,7 +36,7 @@ export class XR {
     this.wrist = new THREE.Group();
     this.wrist.position.set(0.14, 0.03, 0.0); this.wrist.rotation.x = -0.6;
     this.wrist.add(app.menus.menu.mesh);
-    app.menus.info.mesh.position.set(0, 0.14 + 0.065, 0); this.wrist.add(app.menus.info.mesh);
+    app.menus.info.mesh.position.set(0, 0.172 + 0.06, 0); this.wrist.add(app.menus.info.mesh);
     this.panels = [app.menus.menu, app.menus.info];
     this.setupButtons();
   }
@@ -111,6 +110,7 @@ export class XR {
     const ph = this.panelHit();
     if (ph) { const p = ph.object.userData.panel; p.down(...p.uvToPx(ph.uv)); return; }
     const hit = this.app.anatomy.pick(this.ray);
+    if (this.app.ruler.on) { if (hit) this.app.ruler.add(hit.point); return; }
     this.app.anatomy.select(hit ? hit.struct : null);
     this.app.menus.refresh();
   }
@@ -136,6 +136,11 @@ export class XR {
         this.stickMoved = true;
       } else if (this.stickMoved) { this.stickMoved = false; this.app.menus.refresh(); }
     }
+    // left thumbstick (up/down) zooms
+    const Lh = this.hands.left, lg = Lh && Lh.source && Lh.source.gamepad;
+    if (lg && lg.axes.length >= 4 && Math.abs(lg.axes[3]) > 0.15 && !this.grabbing.size) {
+      this.app.views.zoom(Math.exp(-lg.axes[3] * dt * 1.2)); this.zoomed = true;
+    } else if (this.zoomed) { this.zoomed = false; this.app.menus.refresh(); }
     if (this.arm) {
       this.app.rig.dragTo(this.arm.grip.getWorldPosition(new THREE.Vector3()));
       if ((this.armN = (this.armN || 0) + 1) % 8 === 0 && this.app.menus.tab === 'move') this.app.menus.refresh();

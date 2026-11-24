@@ -4,7 +4,7 @@ import * as THREE from 'three';
 const PATTERNS = { none: 0, porous: 1, fibre: 2, fascicle: 3, mottle: 4, lobule: 5 };
 
 const NOISE = /* glsl */`
-uniform vec3 uAxis; uniform float uScale; uniform float uAlong; uniform float uStrength; uniform vec3 uCut;
+uniform vec3 uAxis; uniform float uScale; uniform float uAlong; uniform float uStrength; uniform vec3 uCut; uniform float uBack;
 varying vec3 vNPos;
 float hsh(vec3 p){ p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
 float vnoise(vec3 x){ vec3 i = floor(x); vec3 f = fract(x); f = f * f * (3.0 - 2.0 * f);
@@ -54,7 +54,7 @@ function patch(shader, mat) {
     .replace('#include <roughnessmap_fragment>',
       '#include <roughnessmap_fragment>\nroughnessFactor = clamp(roughnessFactor + uStrength * (patN - 0.5), 0.04, 1.0);')
     .replace('#include <opaque_fragment>',
-      'if (!gl_FrontFacing) outgoingLight = uCut;\n#include <opaque_fragment>');
+      'if (!gl_FrontFacing && uBack > 0.5) outgoingLight = uCut;\n#include <opaque_fragment>');
 }
 
 // Which look a mesh gets: by glTF material name first, then by layer.
@@ -64,10 +64,13 @@ export function lookKey(layer, matName, kind, structName) {
   if (m.includes('Cartilage')) return 'cartilage';
   if (m === 'Tendon') return 'tendon';
   if (layer === 'skin') return (m === 'Nail' || /Nail/.test(structName)) ? 'nail' : 'skin';
+  if (/nucleus pulposus/i.test(structName)) return 'nucleus';
+  if (/annulus fibrosus/i.test(structName)) return 'annulus';
+  if (/dura|arachnoid/i.test(structName)) return 'dura';
   if (layer === 'landmark') return /outline/i.test(m) ? 'landmarkLine' : 'landmark';
   return { bone: 'bone', context_bone: 'bone', muscle: 'muscle', ligament_capsule: 'ligament', fascia_retinacula: 'fascia',
     tendon_sheath: 'sheath', bursa: 'sheath', lymph_node: 'lymph', nerve: 'nerve', artery: 'artery', vein: 'vein',
-    fat: 'fat' }[layer] || 'ligament';
+    fat: 'fat', neural: 'nerve', disc: 'annulus' }[layer] || 'ligament';
 }
 
 // Main direction of a mesh (for lengthwise fibres), in model space.
@@ -111,7 +114,7 @@ export function makeMaterial(look, key, mesh, noiseMat, clipPlanes) {
       uAxis: { value: fib ? principalAxis(mesh.geometry, noiseMat) : new THREE.Vector3(0, 1, 0) },
       uScale: { value: L.patternScale || 1000 }, uAlong: { value: L.patternAlong || 50 },
       uStrength: { value: L.patternStrength || 0 },
-      uCut: { value: new THREE.Color(L.color).multiplyScalar(0.8) },
+      uCut: { value: new THREE.Color(L.color).multiplyScalar(0.8) }, uBack: { value: 1 },
     },
   };
   mat.onBeforeCompile = (shader) => patch(shader, mat);

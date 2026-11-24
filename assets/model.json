@@ -1,0 +1,43 @@
+{
+ "glb": "lumbar.glb",
+ "gaps": "gaps.glb",
+ "title": "Lumbosacral spine",
+ "center": [
+  1e-05,
+  0.99703,
+  -0.00529
+ ],
+ "_help": "center = centre of the L4-5 disc; foramen = foramen centres from Phase A (tools/viewer_marks.py). glTF metres: +x patient left, +y up, +z anterior; the viewer puts center at the origin.",
+ "foramen": {
+  "L3-4 right": [
+   -0.01783,
+   1.036,
+   -0.02157
+  ],
+  "L3-4 left": [
+   0.01677,
+   1.03596,
+   -0.02067
+  ],
+  "L4-5 right": [
+   -0.0183,
+   1.00325,
+   -0.02432
+  ],
+  "L4-5 left": [
+   0.0184,
+   1.00311,
+   -0.02468
+  ],
+  "L5-S1 right": [
+   -0.02143,
+   0.97463,
+   -0.03141
+  ],
+  "L5-S1 left": [
+   0.02117,
+   0.9754,
+   -0.03105
+  ]
+ }
+}

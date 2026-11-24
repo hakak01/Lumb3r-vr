@@ -3,7 +3,24 @@ import * as THREE from 'three';
 import { lookKey, makeMaterial } from './looks.js';
 import { Labels } from './labels.js';
 
-const GHOST = 0.25;
+const GHOST = 0.25, XRAY = 0.12;
+const BONE = new Set(['bone', 'context_bone']);
+// drawn from both sides so they stay visible from inside (fly-in): dura, roots, discs, canal walls
+const DOUBLE = (s) => ['neural', 'disc'].includes(s.layer) || /annulus|nucleus|flavum|posterior longitudinal/i.test(s.name);
+const RIM = { vertexShader: `#include <common>
+#include <clipping_planes_pars_vertex>
+varying vec3 vN, vV;
+void main() {
+#include <begin_vertex>
+#include <project_vertex>
+#include <clipping_planes_vertex>
+  vN = normalize(normalMatrix * normal); vV = normalize(-mvPosition.xyz); }`,
+  fragmentShader: `#include <common>
+#include <clipping_planes_pars_fragment>
+uniform vec3 uColor; varying vec3 vN, vV;
+void main() {
+#include <clipping_planes_fragment>
+  float r = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.2); gl_FragColor = vec4(uColor * r, r); }` };
 const mats = (m) => { const { present, real } = m.userData.mats; return real && real !== present ? [present, real] : [present]; };
 const AXES = { sagittal: new THREE.Vector3(1, 0, 0), axial: new THREE.Vector3(0, 1, 0), coronal: new THREE.Vector3(0, 0, 1) };
 
@@ -18,7 +35,8 @@ export class Anatomy {
     this.isolated = null; this.selected = null; this.onChange = () => {};
     this.worldPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 1e6);
     this.clipPlanes = [this.worldPlane];
-    this.clip = { mode: 'off', pos: 0.5, flip: false };
+    this.clip = { mode: 'off', pos: 0.5, flip: false, frame: null };   // frame: {p, n, span} = snapped plane (model space)
+    this.hideGhost = 0; this.xray = false;   // hideGhost: opacity of hidden parts (0-0.6)
     this.skinTone = look.skinTone ?? 0.2;
     this.highlight = new THREE.Color(look.highlight);
 
@@ -42,7 +60,7 @@ export class Anatomy {
       if (!e) { console.warn('not in manifest', node.name); continue; }
       if (gone.has(e.name)) { node.removeFromParent(); continue; }
       const s = { name: e.name, layer: e.layer, kind: e.kind || null, approx: !!e.approx, source: e.source, label: e.label,
-        node, meshes: [], hidden: false, ghost: false };
+        level: e.level || '', side: e.side || '', part: e.part || '', context: !!e.context, node, meshes: [], hidden: false, ghost: false };
       node.traverse((m) => {
         if (!m.isMesh) return;
         const key = lookKey(e.layer, m.material && m.material.name, s.kind, e.name);
@@ -50,6 +68,7 @@ export class Anatomy {
         m.userData.gltfMat = m.material && m.material.name;
         m.material = makeMaterial(look, key, m, nm, this.clipPlanes);
         m.userData.mats = { present: m.material };   // 'real' is added by tissues.js
+        if (DOUBLE(s)) { m.material.side = THREE.DoubleSide; m.material.userData.dbl = true; m.material.userData.u.uBack.value = 0; }
         m.userData.struct = s;
         s.meshes.push(m);
       });
@@ -63,7 +82,7 @@ export class Anatomy {
 
   visibleOf(s) {
     const L = this.layers[s.layer];
-    if (!L || !L.on || s.hidden) return false;
+    if (!L || !L.on || (s.hidden && this.hideGhost < 0.01)) return false;
     if (s.kind === 'origin' && !this.showOrigins) return false;
     if (s.kind === 'insertion' && !this.showInsertions) return false;
     if (this.isolated && !this.isolated.has(s)) return false;
@@ -72,9 +91,10 @@ export class Anatomy {
 
   apply() {
     for (const s of this.structs) {
-      const vis = this.visibleOf(s), f = this.layers[s.layer].opacity * (s.ghost ? GHOST : 1);
+      const vis = this.visibleOf(s), f = this.layers[s.layer].opacity * (s.ghost ? GHOST : 1) * (s.hidden ? this.hideGhost : 1)
+        * (this.xray && BONE.has(s.layer) && s !== this.selected ? XRAY : 1);
       for (const m of s.meshes) {
-        m.visible = vis;
+        m.visible = vis; if (m.userData.rim) m.userData.rim.visible = this.xray;
         for (const mat of mats(m)) {
           const op = mat.userData.baseOpacity * f, tr = op < 0.999;
           mat.opacity = op;
@@ -97,6 +117,19 @@ export class Anatomy {
   setFootprints(origins, insertions) {
     this.showOrigins = origins; this.showInsertions = insertions;
     this.layers.attachment.on = origins || insertions; this.apply();
+  }
+  setHideGhost(v) { this.hideGhost = v; this.apply(); }
+  // X-ray: bones ghosted, with a bright rim (outline) drawn on top
+  setXray(on) {
+    this.xray = on;
+    if (on && !this.rimMat) {
+      this.rimMat = new THREE.ShaderMaterial({ ...RIM, uniforms: { uColor: { value: new THREE.Color(0x9fd8ff) } }, transparent: true,
+        depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, clipping: true, clippingPlanes: this.clipPlanes });
+      for (const s of this.structs) if (BONE.has(s.layer)) for (const m of s.meshes) {
+        const r = new THREE.Mesh(m.geometry, this.rimMat); r.renderOrder = 5; r.raycast = () => {}; m.add(r); m.userData.rim = r;
+      }
+    }
+    this.apply();
   }
   select(s) { this.selected = s; this.apply(); }
   hide(s) { s.hidden = true; if (this.selected === s) this.selected = null; this.apply(); }
@@ -145,26 +178,36 @@ export class Anatomy {
 
   setClip(mode) {
     const wasOn = this.clip.mode !== 'off', on = mode !== 'off';
-    this.clip.mode = mode;
+    this.clip.mode = mode; this.clip.frame = null;
     if (wasOn !== on) for (const s of this.structs) for (const m of s.meshes) for (const mat of mats(m)) {
-      mat.side = on ? THREE.DoubleSide : THREE.FrontSide; mat.needsUpdate = true;
+      mat.side = on || mat.userData.dbl ? THREE.DoubleSide : THREE.FrontSide; mat.needsUpdate = true;
+      if (mat.userData.dbl) mat.userData.u.uBack.value = on ? 1 : 0;   // cut faces filled only while clipping
     }
     this.updateClip();
   }
   updateClip() {
     const c = this.clip;
     if (c.mode === 'off') { this.worldPlane.set(new THREE.Vector3(0, 1, 0), 1e6); return; }
+    if (c.frame) {
+      const n = c.frame.n.clone().multiplyScalar(c.flip ? -1 : 1), p = c.frame.p.clone().addScaledVector(c.frame.n, (c.pos - 0.5) * c.frame.span);
+      this.worldPlane.setFromNormalAndCoplanarPoint(n, p).applyMatrix4(this.root.matrixWorld); return;
+    }
     const n = AXES[c.mode].clone(), k = c.mode === 'sagittal' ? 'x' : c.mode === 'axial' ? 'y' : 'z';
     const p = new THREE.Vector3(); p[k] = this.box.min[k] + c.pos * (this.box.max[k] - this.box.min[k]);
     if (c.flip) n.negate();
     this.worldPlane.setFromNormalAndCoplanarPoint(n, p).applyMatrix4(this.root.matrixWorld);
+  }
+  // Plane through model-space point p with normal n (kept side = n); slider/thumbstick move it ±span/2.
+  snapClip(mode, p, n, flip = false, span = 0.06) {
+    this.setClip(mode); Object.assign(this.clip, { frame: { p: p.clone(), n: n.clone().normalize(), span }, pos: 0.5, flip });
+    this.updateClip();
   }
   // Is a world point on the visible side of the clip plane?
   kept(pt) { return this.clip.mode === 'off' || this.worldPlane.distanceToPoint(pt) >= 0; }
 
   pick(raycaster) {
     const hits = raycaster.intersectObjects(this.pickables, false).filter((h) => this.kept(h.point));
-    const solid = hits.find((h) => h.object.material.opacity > 0.5);
+    const solid = hits.find((h) => h.object.material.opacity > 0.5 && !h.object.userData.struct.hidden);
     const h = solid || hits[0];
     return h ? { struct: h.object.userData.struct, distance: h.distance, point: h.point } : null;
   }

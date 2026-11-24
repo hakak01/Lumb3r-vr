@@ -1,9 +1,11 @@
-// Wrist menu (Layers / Search / Tools) and the selection info panel.
+// Wrist menu (Layers / Parts / Cut / Views / Search / Tools; the lumbar tabs are in menu2.js) and the selection info panel.
 import { Panel } from './panel.js';
+import { LumbarTabs, inLevel } from './menu2.js';
 
 const LAYER_LABEL = { skin: 'Skin', fat: 'Subcutaneous fat', fascia_retinacula: 'Fascia & retinacula', muscle: 'Muscles & tendons',
   tendon_sheath: 'Tendon sheaths', ligament_capsule: 'Ligaments & capsules', bursa: 'Bursae', nerve: 'Nerves',
-  artery: 'Arteries', vein: 'Veins', lymph_node: 'Lymph nodes', bone: 'Bones', context_bone: 'Ribs, sternum, spine',
+  artery: 'Arteries', vein: 'Veins', lymph_node: 'Lymph nodes', bone: 'Bones', context_bone: 'L1, L2, hips, coccyx',
+  disc: 'Discs', neural: 'Dura, cauda equina, roots',
   attachment: 'Origins/insertions', landmark: 'Landmarks' };
 const KEYS = ['ABCDEFGHI', 'JKLMNOPQR', 'STUVWXYZ-'];
 
@@ -11,8 +13,8 @@ export class Menus {
   // app: { anatomy, resetView(), focus(s), exitXR(), inXR() , fps }
   constructor(app) {
     this.app = app; this.tab = 'layers'; this.query = ''; this.page = 0;
-    this.menu = new Panel(640, 900, 0.22);
-    this.info = new Panel(640, 330, 0.22);
+    this.menu = new Panel(640, 1000, 0.22);
+    this.info = new Panel(640, 340, 0.22);
     this.refresh();
   }
   get A() { return this.app.anatomy; }
@@ -20,8 +22,8 @@ export class Menus {
 
   buildMenu() {
     const p = this.menu; p.clear();
-    [['layers', 'Layers'], ['search', 'Search'], ['tools', 'Tools']].forEach(([k, l], i) =>
-      p.button(15 + i * 154, 12, 148, 56, l, () => { this.tab = k; this.refresh(); }, { active: this.tab === k, size: 26 }));
+    [['layers', 'Layers'], ['parts', 'Parts'], ['cut', 'Cut'], ['views', 'Views'], ['search', 'Search'], ['tools', 'Tools']].forEach(([k, l], i) =>
+      p.button(15 + i * 103, 12, 98, 56, l, () => { this.tab = k; this.refresh(); }, { active: this.tab === k, size: 23 }));
     this['tab_' + this.tab](p);
     p.draw();
   }
@@ -31,7 +33,7 @@ export class Menus {
     p.text(300, y + 10, 'show', { size: 18, color: '#9aa' }); p.text(440, y + 10, 'opacity', { size: 18, color: '#9aa' });
     y += 26;
     for (const k of Object.keys(LAYER_LABEL)) {
-      const L = A.layers[k]; if (!L) continue;
+      const L = A.layers[k]; if (!L || !A.structs.some((s) => s.layer === k)) continue;
       p.button(15, y, 265, 42, (L.on ? '✓ ' : '   ') + (L.label || LAYER_LABEL[k]),
         () => { A.setLayer(k, !L.on); this.refresh(); }, { active: L.on, size: 21 });
       p.text(625, y + 21, Math.round(L.opacity * 100) + '%', { size: 20, align: 'right' });
@@ -69,16 +71,7 @@ export class Menus {
 
 
   tab_tools(p) {
-    const A = this.A, c = A.clip; let y = 90;
-    p.text(20, y + 10, 'Cross-section (clipping plane)', { size: 22, bold: true }); y += 34;
-    ['off', 'axial', 'sagittal', 'coronal'].forEach((m, i) =>
-      p.button(15 + i * 154, y, 146, 52, m[0].toUpperCase() + m.slice(1), () => { A.setClip(m); this.refresh(); },
-        { active: c.mode === m, size: 22 }));
-    y += 64;
-    p.slider(15, y, 460, 52, c.pos, (v) => { c.pos = v; A.updateClip(); });
-    p.button(490, y, 135, 52, 'Flip', () => { c.flip = !c.flip; A.updateClip(); this.refresh(); }, { active: c.flip });
-    y += 58;
-    p.text(20, y + 8, 'Right thumbstick also moves the plane.', { size: 18, color: '#9aa' }); y += 34;
+    const A = this.A; let y = 90;
     p.text(20, y + 10, 'Muscle footprints', { size: 22, bold: true }); y += 34;
     p.button(15, y, 300, 52, 'Origins (red)', () => { A.setFootprints(!A.showOrigins, A.showInsertions); this.refresh(); },
       { active: A.showOrigins, color: '#c0392b' });
@@ -104,18 +97,21 @@ export class Menus {
     if (!s) {
       p.text(20, 60, this.app.inXR() ? 'Point the right controller at a structure and pull the trigger.'
         : 'Click or tap a structure to select it.', { size: 24, wrap: 600, color: '#bbb' });
-      p.button(15, 250, 300, 62, 'Show all', () => { A.showAll(); this.refresh(); });
+      p.button(15, 210, 300, 56, 'Show all', () => { A.showAll(); this.refresh(); });
     } else {
       p.text(20, 36, s.name, { size: 30, bold: true, wrap: 560, maxLines: 2 });
       p.button(575, 12, 50, 50, '✕', () => { A.select(null); this.refresh(); });
-      p.text(20, 120, 'Layer: ' + (LAYER_LABEL[s.layer] || s.layer) + (s.kind ? ' · ' + s.kind : ''), { size: 21, color: '#bcd' });
-      p.text(20, 150, 'Source: ' + (s.source || ''), { size: 18, color: '#99a', wrap: 600, maxLines: 1 });
-      if (s.approx) p.text(20, 182, 'APPROXIMATE – check', { size: 24, bold: true, color: '#ffb02e' });
+      p.text(20, 112, 'Layer: ' + (LAYER_LABEL[s.layer] || s.layer) + (s.kind ? ' · ' + s.kind : ''), { size: 21, color: '#bcd' });
+      p.text(20, 142, 'Level: ' + (s.level || '–') + '   ·   Side: ' + (s.side || '–') + (s.context ? '   (context)' : ''), { size: 21, color: '#bcd' });
+      p.text(20, 172, 'Source: ' + (s.approx ? 'approx (built here)' : s.source || ''), { size: 18, color: '#99a', wrap: 600, maxLines: 1 });
+      if (s.approx) p.text(20, 200, 'APPROXIMATE – check', { size: 22, bold: true, color: '#ffb02e' });
       const b = [['Hide', () => A.hide(s)], ['Ghost', () => A.toggleGhost(s)], ['Isolate', () => A.isolate(s)],
         ['Show all', () => A.showAll()], ['Focus', () => this.app.focus(s)]];
-      b.forEach(([l, f], i) => p.button(15 + i * 123, 240, 116, 72, l, () => { f(); this.refresh(); },
+      b.forEach(([l, f], i) => p.button(15 + i * 123, 218, 116, 56, l, () => { f(); this.refresh(); },
         { size: 22, active: (l === 'Ghost' && s.ghost) || (l === 'Isolate' && !!A.isolated) }));
     }
+    p.button(15, 280, 610, 50, 'Labels: ' + (A.labels.on ? 'ON (level chosen in Parts)' : 'off'),
+      () => { A.labels.set(!A.labels.on); this.refresh(); }, { active: A.labels.on, size: 21 });
     p.draw();
   }
 
@@ -128,3 +124,10 @@ export class Menus {
     this.page = 0; this.refresh();
   }
 }
+
+Object.assign(Menus.prototype, LumbarTabs);
+// labels: structures of the level chosen in the Parts tab (All = bodies, discs, roots)
+Menus.prototype.labelFilter = function (s) {
+  const L = this.pLevel || 'All';
+  return L === 'All' ? /^(body|annulus fibrosus|root)/.test(s.part) : inLevel(s, L) && !!s.level;
+};

@@ -24,7 +24,7 @@ const VERT_BODY = /* glsl */`
   vFT = normalize(mat3(modelViewMatrix) * fT); vFB = normalize(mat3(modelViewMatrix) * fB);
 `;
 const FRAG_HEAD = /* glsl */`
-uniform sampler2D uTex; uniform float uBump, uCav, uRVar; uniform vec3 uCut;
+uniform sampler2D uTex; uniform float uBump, uCav, uRVar, uBack; uniform vec3 uCut;
 varying vec3 vTq, vFT, vFB;
 vec3 tnrm(vec4 t, float sx) { vec2 xy = (t.xy * 2.0 - 1.0) * uBump; xy.x *= sx;
   return vec3(xy, sqrt(max(0.0, 1.0 - dot(xy, xy)))); }
@@ -60,7 +60,7 @@ function patch(shader, mat) {
   shader.fragmentShader = shader.fragmentShader
     .replace('#include <common>', '#include <common>\n' + FRAG_HEAD)
     .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\n' + FRAG_BODY)
-    .replace('#include <opaque_fragment>', 'if (!gl_FrontFacing) outgoingLight = uCut;\n#include <opaque_fragment>');
+    .replace('#include <opaque_fragment>', 'if (!gl_FrontFacing && uBack > 0.5) outgoingLight = uCut;\n#include <opaque_fragment>');
 }
 
 // Structure name (+ layer, glTF material name) -> tissue key, or null to keep the present look.
@@ -126,7 +126,7 @@ export class Realism {
       mat.transparent = op < 1; mat.depthWrite = op >= 1;
       if (T.fibre) { addFibreFrames(m.geometry, nm); mat.defines = { ...mat.defines, FIBRE: 1 }; }
       const inv = new THREE.Matrix3().setFromMatrix4(nm).invert();
-      mat.userData = { key, baseOpacity: op, u: {
+      mat.userData = { key, baseOpacity: op, dbl: pm.userData.dbl, u: { uBack: { value: pm.userData.u.uBack.value },
         uNoiseMat: { value: nm }, uTile: { value: 1000 / T.tile }, uTex: { value: tex[T.tex] },
         uFrameT: { value: new THREE.Vector3(0, 1, 0).applyMatrix3(inv).normalize() },
         uFrameB: { value: new THREE.Vector3(1, 0, 0).applyMatrix3(inv).normalize() },

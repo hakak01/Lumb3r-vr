@@ -17,12 +17,16 @@
     "cartilage": { "color": "#d6e2ea", "roughness": 0.2,  "clearcoat": 1.0,  "clearcoatRoughness": 0.04, "tex": "cartilage", "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.05, "roughVar": 0.10 },
     "fat":       { "color": "#e8c050", "roughness": 0.3,  "clearcoat": 0.6,  "clearcoatRoughness": 0.10, "tex": "fat",       "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.22, "roughVar": 0.20 },
     "skin":      { "color": "#d9a88a", "colorDark": "#5c3a26", "roughness": 0.5, "clearcoat": 0.1, "clearcoatRoughness": 0.45, "tex": "skin", "fibre": false, "tile": 6, "bump": 1.0, "cavity": 0.12, "roughVar": 0.20 },
+    "dura":      { "color": "#d3d7d6", "roughness": 0.3,  "clearcoat": 0.8,  "clearcoatRoughness": 0.10, "tex": "ligament",  "fibre": true,  "tile": 10, "bump": 0.5, "cavity": 0.05, "roughVar": 0.15, "opacity": 0.85 },
+    "annulus":   { "color": "#dcd5c4", "roughness": 0.5,  "clearcoat": 0.5,  "clearcoatRoughness": 0.15, "tex": "ligament",  "fibre": true,  "tile": 6,  "bump": 1.0, "cavity": 0.12, "roughVar": 0.25 },
+    "nucleus":   { "color": "#d2dcdc", "roughness": 0.15, "clearcoat": 1.0,  "clearcoatRoughness": 0.05, "tex": "cartilage", "fibre": false, "tile": 15, "bump": 0.6, "cavity": 0.05, "roughVar": 0.10 },
     "nail":      { "color": "#ecd0c6", "roughness": 0.25, "clearcoat": 0.6,  "clearcoatRoughness": 0.10, "tex": "cartilage", "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.05, "roughVar": 0.05 },
     "sheath":    { "color": "#e8eef0", "roughness": 0.15, "clearcoat": 1.0,  "clearcoatRoughness": 0.05, "tex": "vessel",    "fibre": true,  "tile": 10, "bump": 0.6, "cavity": 0.05, "roughVar": 0.05, "opacity": 0.35 }
   },
   "_palettes": "Menu View: Realistic = 'tissues' above (living). Cadaver = same, with these overrides. Colours from 12 embalmed, latex-injected dissection photos (median of small patches). Opacity/tex/tile/fibre cannot change per palette.",
   "palettes": {
     "cadaver": { "tissues": {
+      "dura":     { "color": "#d6ccbc" }, "annulus": { "color": "#e2d4c2" }, "nucleus": { "color": "#dcd3c0" },
       "muscle":   { "color": "#8a5a4a", "roughness": 0.5, "clearcoat": 0.6 },
       "tendon":   { "color": "#f4e8d8" },
       "ligament": { "color": "#e2d4c2" },
@@ -37,6 +41,7 @@
   "_rules": "Structure name -> tissue. First matching rule wins (case-insensitive). 'overrides' (exact name) beat rules. Bone sub-meshes named Cartilage and muscle sub-meshes named Tendon are set automatically.",
   "overrides": { "Articular disc of distal radio-ulnar joint": "cartilage" },
   "rules": [
+    ["dura|arachnoid", "dura"], ["nucleus pulposus", "nucleus"], ["annulus fibrosus", "annulus"], ["spinal cord|root|ganglion|cauda", "nerve"],
     ["fibrous sheath", "ligament"],
     ["sheath|bursa", "sheath"],
     ["tendon|chiasm|central slip|lateral bands|sagittal bands", "tendon"],
@@ -48,6 +53,6 @@
     ["fat", "fat"],
     ["ligament|plate|pulley|retinacul|aponeuros|fascia|septum|capsule|cord", "ligament"]
   ],
-  "layerDefault": { "bone": "bone", "context_bone": "bone", "bursa": "sheath", "muscle": "muscle", "ligament_capsule": "ligament", "fascia_retinacula": "ligament",
+  "layerDefault": { "neural": "nerve", "disc": "annulus", "bone": "bone", "context_bone": "bone", "bursa": "sheath", "muscle": "muscle", "ligament_capsule": "ligament", "fascia_retinacula": "ligament",
     "tendon_sheath": "sheath", "nerve": "nerve", "artery": "artery", "vein": "vein", "fat": "fat", "skin": "skin" }
 }

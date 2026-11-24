@@ -8,8 +8,12 @@ import { Anatomy } from './anatomy.js';
 import { Menus } from './menu.js';
 import { XR } from './xr.js';
 import { Realism } from './tissues.js';
+import { Spine } from './spine.js';
+import { Views } from './views.js';
+import { Ruler } from './ruler.js';
+import { Labels } from './labels.js';
 
-const GLB_SIZE = 6.0e6, GAPS_SIZE = 0.37e6;   // used for the loading bar if the server gives no size
+const GLB_SIZE = 3.0e6, GAPS_SIZE = 0.37e6;   // used for the loading bar if the server gives no size
 const app = { fps: 0 };
 window.app = app;
 
@@ -26,17 +30,17 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 const hemi = new THREE.HemisphereLight(0xffffff, 0x445566, 0.6); scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(0.5, 1, 1.2); scene.add(sun);
 app.lights = { hemi, sun };
-const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.01, 50);
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.001, 20);   // near 1 mm: fly-in
 const controls = new OrbitControls(camera, renderer.domElement);
 app.camera = camera; app.controls = controls;
-controls.enableDamping = true; controls.minDistance = 0.03; controls.maxDistance = 5;
+controls.enableDamping = true; controls.minDistance = 0.001; controls.maxDistance = 3;
 const root = new THREE.Group(); scene.add(root); app.root = root;
 
 const fill = document.getElementById('fill'), loadText = document.getElementById('loadText');
 const fail = (e) => { loadText.textContent = 'Loading failed: ' + e; console.error(e); };
 
 async function load() {
-  // assets/model.json names the files: {glb, gaps, landmarks, title, center (GH joint, glTF metres)}
+  // assets/model.json names the files: {glb, gaps, landmarks, title, center (L4-5 disc centre, glTF metres)}
   const get = (u) => fetch(u, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : []).catch(() => []);
   const model = await get('assets/model.json'); app.model = model;
   if (model.title) document.title = model.title + ' VR';
@@ -54,7 +58,10 @@ async function load() {
   for (const g of [gaps, marks]) if (g) for (const n of [...g.scene.children]) gltf.scene.add(n);   // approximate structures
   loadText.textContent = 'Preparing…';
   const A = new Anatomy(root, gltf.scene, manifest.concat(gapsMan || [], markMan || []), look, model.center); app.anatomy = A;
+  app.spine = new Spine(app); app.views = new Views(app); app.ruler = new Ruler(app);
+  autoLabels(A);
   app.menus = new Menus(app);
+  A.labels.filter = (s) => app.menus.labelFilter(s);
   A.onChange = () => app.menus && app.menus.buildInfo();
   app.menus.menu.attachDom('menuCanvas'); app.menus.info.attachDom('infoCanvas');
   app.xr = new XR(app);
@@ -69,7 +76,18 @@ async function load() {
 function resetView() {
   root.position.set(0, 0, 0); root.quaternion.identity(); root.scale.setScalar(1);
   if (app.xr && app.xr.mode) { app.xr.needPlace = true; return; }
-  camera.position.set(-0.4, -0.05, 1.0); controls.target.set(0, -0.15, 0); controls.update();   // GH joint = 0,0,0; anterolateral view
+  app.views.apply('start');   // L4-5 disc centre = 0,0,0; left posterolateral view
+}
+// Label points for the detailed levels: 25 mm out from the canal axis (glTF coordinates, as labels.js expects).
+function autoLabels(A) {
+  const S = app.spine, zc = S.canal['L4-5'].c.z;
+  for (const s of A.structs) {
+    if (!/^(L3|L4|L5|S1|L3-4|L4-5|L5-S1|S2)$/.test(s.level) || s.context) continue;
+    const c = S.box(s.name).c, d = new THREE.Vector3(c.x, 0, c.z - zc);
+    if (d.length() < 0.004) d.set(0.7, 0, -0.7);
+    s.label = c.add(d.setLength(0.025)).sub(A.center.position).toArray();
+  }
+  A.labels = new Labels(A, A.labels.on);
 }
 function focus(s) {
   if (app.xr && app.xr.mode) return app.xr.focus(s);
@@ -105,6 +123,7 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   if (!downAt || !app.anatomy || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 6) return;
   ray.setFromCamera(new THREE.Vector2(e.clientX / innerWidth * 2 - 1, -e.clientY / innerHeight * 2 + 1), camera);
   const hit = app.anatomy.pick(ray);
+  if (app.ruler.on) { if (hit) app.ruler.add(hit.point); return; }
   app.anatomy.select(hit ? hit.struct : null); app.menus.refresh();
 });
 addEventListener('resize', () => {
@@ -123,7 +142,7 @@ renderer.setAnimationLoop(() => {
   if (app.xr) app.xr.update(dt);
   if (app.realism) app.realism.update();
   if (!app.inXR()) controls.update();
-  if (app.anatomy) { root.updateMatrixWorld(); app.anatomy.updateClip(); }
+  if (app.anatomy) { root.updateMatrixWorld(); app.anatomy.updateClip(); app.ruler.update(); }
   renderer.render(scene, camera);
 });
 
