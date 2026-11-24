@@ -18,7 +18,7 @@ Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md (Phase C replaced by C1/C
 - Sac above L2 slightly bumpy (context level). Arachnoid not in sleeves. S3–S5 roots now only as hidden "(old)". Lumbosacral trunk still missing.
 - Not yet tested on a Quest. Colours of new dura/arachnoid = old dura estimate (C2 step 8).
 ## Next step
-- User tests C1 in the viewer; then Phase C2 (endplates, facet joints, epidural fat, venous plexus, medial branches, sinuvertebral nerves, landmarks, photo colours).
+- C1 committed (860e24e, main). User tests C1 in the viewer (desktop + Quest 3); then Phase C2 (endplates, facet joints, epidural fat, venous plexus, medial branches, sinuvertebral nerves, landmarks, photo colours).
 ## Key files
 - tools/build_gaps.py (runs c1_canal, c1_flavum, c1_dura, c1_space, c1_cauda, c1_roots), c1_old.py · assets/gaps.glb, gaps.json · log data/raw/gaps_log.txt, numbers data/raw/c1_checks.json
 - Rebuild: `python3 -I tools/build_gaps.py` (~40 s; needs data/raw/lumbar_raw.glb). Viewer: js/spine.js (groups), menu2.js, anatomy.js, menu.js.
