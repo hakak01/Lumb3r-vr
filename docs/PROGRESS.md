@@ -19,7 +19,7 @@ Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. lumbar.glb 240 objects 3
 - Venous channels touch bone in ~2 % of points at L5; SVNs touch PLL; medial branches lie 0.6–0.8 mm off bone, not on it. No S1/S2 foraminal fat.
 - Carried over: S1 not the shortest root; S1/S2 nerves graze sacral foramina; facet L3-4 R/L angle 29/41°; not yet tested on a Quest.
 ## Next step
-- User tests C2 (desktop + Quest 3) and uploads the Bassett photos → C2 step 8 (dura, arachnoid, epidural fat, vein colours in tissues.json cadaver/realistic). Then Phase D.
+- C2 committed (06b88fe, main). User tests C2 (desktop + Quest 3) and uploads the Bassett photos → C2 step 8 (dura, arachnoid, epidural fat, vein colours in tissues.json cadaver/realistic). Then Phase D.
 ## Key files
 - tools/c2_build.py (called by build_gaps.py) → c2_endplate, c2_facet, c2_fat, c2_veins, c2_nerves, c2_marks, c2_geom (mesh helpers).
 - Rebuild: `python3 -I tools/build_gaps.py` (~50 s; needs data/raw/lumbar_raw.glb). Log data/raw/gaps_log.txt. Viewer: js/spine.js, menu2.js, looks.js, tissues.js; assets/look.json.
