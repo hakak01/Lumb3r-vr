@@ -13,46 +13,49 @@
     "nerve":     { "color": "#e9d9a4", "roughness": 0.45, "clearcoat": 0.5,  "clearcoatRoughness": 0.14, "tex": "nerve",     "fibre": true,  "tile": 8,  "bump": 1.0, "cavity": 0.14, "roughVar": 0.20 },
     "artery":    { "color": "#a12b22", "roughness": 0.35, "clearcoat": 0.7,  "clearcoatRoughness": 0.10, "tex": "vessel",    "fibre": true,  "tile": 10, "bump": 1.0, "cavity": 0.08, "roughVar": 0.15 },
     "vein":      { "color": "#40305c", "roughness": 0.32, "clearcoat": 0.75, "clearcoatRoughness": 0.08, "tex": "vessel",    "fibre": true,  "tile": 10, "bump": 1.0, "cavity": 0.08, "roughVar": 0.15 },
+    "epidural_vein":      { "color": "#40305c", "roughness": 0.32, "clearcoat": 0.75, "clearcoatRoughness": 0.08, "tex": "vessel",    "fibre": true,  "tile": 10, "bump": 1.0, "cavity": 0.08, "roughVar": 0.15 },
     "bone":      { "color": "#e5dbc2", "roughness": 0.7,  "clearcoat": 0.15, "clearcoatRoughness": 0.35, "tex": "bone",      "fibre": false, "tile": 10, "bump": 1.0, "cavity": 0.16, "roughVar": 0.20 },
     "cartilage": { "color": "#d6e2ea", "roughness": 0.2,  "clearcoat": 1.0,  "clearcoatRoughness": 0.04, "tex": "cartilage", "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.05, "roughVar": 0.10 },
     "fat":       { "color": "#e8c050", "roughness": 0.3,  "clearcoat": 0.6,  "clearcoatRoughness": 0.10, "tex": "fat",       "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.22, "roughVar": 0.20 },
+    "epidural_fat":       { "color": "#e8c050", "roughness": 0.3,  "clearcoat": 0.6,  "clearcoatRoughness": 0.10, "tex": "fat",       "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.22, "roughVar": 0.20 },
     "skin":      { "color": "#d9a88a", "colorDark": "#5c3a26", "roughness": 0.5, "clearcoat": 0.1, "clearcoatRoughness": 0.45, "tex": "skin", "fibre": false, "tile": 6, "bump": 1.0, "cavity": 0.12, "roughVar": 0.20 },
     "dura":      { "color": "#d3d7d6", "roughness": 0.3,  "clearcoat": 0.8,  "clearcoatRoughness": 0.10, "tex": "ligament",  "fibre": true,  "tile": 10, "bump": 0.5, "cavity": 0.05, "roughVar": 0.15, "opacity": 0.85 },
+    "arachnoid":      { "color": "#d3d7d6", "roughness": 0.3,  "clearcoat": 0.8,  "clearcoatRoughness": 0.10, "tex": "ligament",  "fibre": true,  "tile": 10, "bump": 0.5, "cavity": 0.05, "roughVar": 0.15, "opacity": 0.85 },
     "annulus":   { "color": "#dcd5c4", "roughness": 0.5,  "clearcoat": 0.5,  "clearcoatRoughness": 0.15, "tex": "ligament",  "fibre": true,  "tile": 6,  "bump": 1.0, "cavity": 0.12, "roughVar": 0.25 },
     "nucleus":   { "color": "#d2dcdc", "roughness": 0.15, "clearcoat": 1.0,  "clearcoatRoughness": 0.05, "tex": "cartilage", "fibre": false, "tile": 15, "bump": 0.6, "cavity": 0.05, "roughVar": 0.10 },
     "nail":      { "color": "#ecd0c6", "roughness": 0.25, "clearcoat": 0.6,  "clearcoatRoughness": 0.10, "tex": "cartilage", "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.05, "roughVar": 0.05 },
     "sheath":    { "color": "#e8eef0", "roughness": 0.15, "clearcoat": 1.0,  "clearcoatRoughness": 0.05, "tex": "vessel",    "fibre": true,  "tile": 10, "bump": 0.6, "cavity": 0.05, "roughVar": 0.05, "opacity": 0.35 }
   },
-  "_palettes": "Menu View: Realistic = 'tissues' above (living). Cadaver = same, with these overrides. Colours from 12 embalmed, latex-injected dissection photos (median of small patches). Opacity/tex/tile/fibre cannot change per palette.",
+  "_palettes": "Menu View: Realistic = 'tissues' above (living). Cadaver = same, with these overrides. Colours from 12 embalmed, latex-injected dissection photos (median of small patches). Opacity/tex/tile/fibre cannot change per palette. Dura, arachnoid, epidural fat and epidural veins (C2 step 8): Stanford Bassett photos #219-5, #219-6, #33-5 (CC BY-SA 4.0), median of masked patches x 1.17 (brightness gain that matches their fat and skin to this palette). Epidural fat = subcutaneous fat of the same photos (epidural fat was removed in them). Epidural veins are red-latex injected there. Living view keeps living colours.",
   "palettes": {
     "cadaver": { "tissues": {
-      "dura":     { "color": "#d6ccbc" }, "annulus": { "color": "#e2d4c2" }, "nucleus": { "color": "#dcd3c0" },
+      "dura":     { "color": "#af9fa9" }, "arachnoid": { "color": "#9985a1" }, "annulus": { "color": "#e2d4c2" }, "nucleus": { "color": "#dcd3c0" },
       "muscle":   { "color": "#8a5a4a", "roughness": 0.5, "clearcoat": 0.6 },
       "tendon":   { "color": "#f4e8d8" },
       "ligament": { "color": "#e2d4c2" },
       "nerve":    { "color": "#f0c49c", "cavity": 0.18 },
       "artery":   { "color": "#d86a5e", "roughness": 0.3, "clearcoat": 0.85, "clearcoatRoughness": 0.06, "bump": 0.4, "cavity": 0.04 },
-      "vein":     { "color": "#a87c84", "roughness": 0.4, "clearcoat": 0.6 },
+      "vein":     { "color": "#a87c84", "roughness": 0.4, "clearcoat": 0.6 }, "epidural_vein": { "color": "#bc594f", "roughness": 0.4, "clearcoat": 0.6 },
       "bone":     { "color": "#e2d3b0" },
-      "fat":      { "color": "#d6a460", "roughness": 0.35, "cavity": 0.18 },
+      "fat":      { "color": "#d6a460", "roughness": 0.35, "cavity": 0.18 }, "epidural_fat": { "color": "#e2a96f", "roughness": 0.35, "cavity": 0.18 },
       "skin":     { "color": "#d2a690", "colorDark": "#6b4a3a", "clearcoat": 0.2 }
     } }
   },
   "_rules": "Structure name -> tissue. First matching rule wins (case-insensitive). 'overrides' (exact name) beat rules. Bone sub-meshes named Cartilage and muscle sub-meshes named Tendon are set automatically.",
   "overrides": { "Articular disc of distal radio-ulnar joint": "cartilage" },
   "rules": [
-    ["\\bdura|arachnoid", "dura"], ["nucleus pulposus", "nucleus"], ["annulus fibrosus", "annulus"], ["spinal cord|root|ganglion|cauda", "nerve"],
+    ["prelaminar fibrous band", "ligament"], ["arachnoid", "arachnoid"], ["\\bdura", "dura"], ["nucleus pulposus", "nucleus"], ["annulus fibrosus", "annulus"], ["spinal cord|root|ganglion|cauda", "nerve"],
     ["fibrous sheath", "ligament"],
     ["sheath|bursa", "sheath"],
     ["tendon|chiasm|central slip|lateral bands|sagittal bands", "tendon"],
-    ["vein|venous", "vein"],
+    ["internal vertebral venous|basivertebral|intervertebral vein", "epidural_vein"], ["vein|venous", "vein"],
     ["artery|arteries|arterial|palmar arch", "artery"],
     ["nerve|brachial plexus", "nerve"],
     ["cartilage|meniscus", "cartilage"],
     ["nail|perionyx", "nail"],
-    ["fat", "fat"],
+    ["epidural fat|foraminal fat", "epidural_fat"], ["fat", "fat"],
     ["ligament|plate|pulley|retinacul|aponeuros|fascia|septum|capsule|cord", "ligament"]
   ],
   "layerDefault": { "neural": "nerve", "disc": "annulus", "bone": "bone", "context_bone": "bone", "bursa": "sheath", "muscle": "muscle", "ligament_capsule": "ligament", "fascia_retinacula": "ligament",
-    "tendon_sheath": "sheath", "nerve": "nerve", "artery": "artery", "vein": "vein", "fat": "fat", "epidural_fat": "fat", "landmark": null, "skin": "skin" }
+    "tendon_sheath": "sheath", "nerve": "nerve", "artery": "artery", "vein": "vein", "fat": "fat", "epidural_fat": "epidural_fat", "landmark": null, "skin": "skin" }
 }
