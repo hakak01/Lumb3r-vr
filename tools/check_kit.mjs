@@ -61,12 +61,12 @@ const out = await p.evaluate(async () => {
   r.addMesh = `${s.bone}, offset ${(1000 * wp(scr).distanceTo(kit.toWorld(at))).toFixed(4)} mm, by level ${kit.where({ level: 'L4', layer: 'implant' }).length}`;
   kit.root.position.set(0.1, 1.2, -0.3); kit.root.rotation.y = 0.5; kit.update();
   r.moveRoot = `${(1000 * wp(scr).distanceTo(kit.toWorld(at))).toFixed(4)} mm`;
-  kit.root.position.set(0, 0, 0); kit.root.rotation.y = 0;
+  kit.root.position.set(0, 0, 0); kit.root.rotation.y = 0; kit.update();
   r.rootOrigin_mm = (1000 * kit.toWorld(kit.center).length()).toFixed(4);
   kit.clipLevel('L4-5'); r.clip = kit.anatomy.clip.mode; kit.setClip('off');
   const sa = kit.sectionArea('Dural sac', V(kit.levels['L4-5'].disc_frame.centre).add(new THREE.Vector3(0, 0, -0.03)), new THREE.Vector3(0, 1, 0));
   r.sectionArea = sa && sa.area_mm2;
-  r.pick = (() => { const rc = new THREE.Raycaster(); rc.setFromCamera(new THREE.Vector2(0, 0), T.camera); const h = kit.pick(rc); return h ? h.struct.name : null; })();
+  r.pick = (() => { T.camera.updateMatrixWorld(); const rc = new THREE.Raycaster(); rc.setFromCamera(new THREE.Vector2(0, 0), T.camera); const h = kit.pick(rc); return h ? h.struct.name : null; })();
   kit.removeMesh('Test screw'); r.removed = !kit.get('Test screw') && !scr.parent;
   await kit.setView('realistic'); r.view = kit.realism.view;
   kit.update(); T.renderer.render(T.scene, T.camera);

@@ -1,0 +1,443 @@
+{
+ "_help": "Baseline of the normal model per disc level, measured (tools/build_levels.py). Positions and axes: file coordinates (glTF metres; +x patient left, +y up, +z anterior; same as lumbar.glb/gaps.glb). Sizes mm, angles degrees. Disease modules copy a level and change its values. Methods: see \"_methods\".",
+ "_methods": {
+  "disc_height_mm": "rays along the disc cranial axis, midline, at 10/50/90 % of the AP depth (Phase A, check_lumbar.py)",
+  "nucleus_centre": "centroid of the nucleus pulposus mesh",
+  "nucleus_size_mm": "extent along left, cranial, anterior",
+  "dural_sac": "Phase C1 dural sac cut perpendicular to the canal axis at mid-disc (area, width, AP)",
+  "canal_ap_mm": "midsagittal, back of disc/PLL to the first posterior wall on the current model; flavum halves leave a 0.25 mm midline cleft, so the wall is the upper lamina/spinous process (L3-4, L4-5) or the interspinous ligament (L5-S1)",
+  "foramen": "parasagittal cut through the upper pedicle centre: height = max (Hasegawa 1995) and under the pedicle; width = AP at the disc mid-plane (bone)",
+  "flavum_thickness_mm": "Phase C1 solid ligament at half its length (rule value 3.1 mm)",
+  "facet_angle_deg": "joint line from the sagittal plane, axial cut at mid-joint (Phase C2 joint space)",
+  "disc_frame": "PCA of the annulus: centre = middle of its extent; axes are unit vectors; size = width, height, AP",
+  "kit_measures": "the kit's own live measures (kit.measureCanal / measureForamen, js/measure.js) on the unchanged model: compare a changed model with THESE (same method). Foramen = rays through the Phase A foramen centre."
+ },
+ "levels": {
+  "L3-4": {
+   "upper": "L3",
+   "lower": "L4",
+   "disc": "Annulus fibrosus L3-L4",
+   "nucleus": "Nucleus pulposus L3-L4",
+   "disc_height_mm": {
+    "anterior": 6.7,
+    "middle": 6.4,
+    "posterior": 6.1
+   },
+   "bone_gap_mm": {
+    "anterior": 6.4,
+    "middle": 6.8,
+    "posterior": 6.3
+   },
+   "nucleus_centre": [
+    -0.0,
+    1.03085,
+    -0.00115
+   ],
+   "nucleus_size_mm": [
+    6.2,
+    6.2,
+    6.2
+   ],
+   "dural_sac": {
+    "area_mm2": 202.0,
+    "width_mm": 17.0,
+    "ap_mm": 16.2,
+    "ap_midline_ray_mm": 15.3
+   },
+   "canal_ap_mm": 21.0,
+   "canal_ap_phaseA_bone_mm": 21.0,
+   "canal_area_phaseA_mm2": 412.1,
+   "foramen": {
+    "left": {
+     "height_max_mm": 18.5,
+     "height_under_pedicle_mm": 18.5,
+     "width_mid_disc_mm": 10.1,
+     "width_narrowest_mm": 1.7,
+     "centre": [
+      0.01677,
+      1.03596,
+      -0.02067
+     ]
+    },
+    "right": {
+     "height_max_mm": 18.6,
+     "height_under_pedicle_mm": 18.6,
+     "width_mid_disc_mm": 11.7,
+     "width_narrowest_mm": 1.9,
+     "centre": [
+      -0.01783,
+      1.036,
+      -0.02157
+     ]
+    }
+   },
+   "flavum_thickness_mm": {
+    "left": 3.09,
+    "right": 3.09
+   },
+   "facet_angle_deg": {
+    "left": 40.9,
+    "right": 29.2
+   },
+   "facet_gap_mm": {
+    "left": 1.62,
+    "right": 2.6
+   },
+   "disc_frame": {
+    "centre": [
+     1e-05,
+     1.0308,
+     -0.00028
+    ],
+    "anterior": [
+     -0.0002,
+     -0.0893,
+     0.996
+    ],
+    "left": [
+     1.0,
+     -0.0017,
+     -0.0
+    ],
+    "cranial": [
+     0.0017,
+     0.996,
+     0.0893
+    ],
+    "size_mm": {
+     "width": 46.1,
+     "height": 11.1,
+     "ap": 37.2
+    }
+   },
+   "kit_measures": {
+    "canal": {
+     "canal_ap_mm": 20.7,
+     "sac_area_mm2": 186,
+     "sac_width_mm": 17,
+     "sac_ap_mm": 15
+    },
+    "foramen": {
+     "left": {
+      "height_mm": 18.4,
+      "width_mm": 16.1,
+      "up_mm": 9.3,
+      "down_mm": 9,
+      "front_mm": 5.2,
+      "back_mm": 10.8
+     },
+     "right": {
+      "height_mm": 18.5,
+      "width_mm": 19.1,
+      "up_mm": 9.4,
+      "down_mm": 9.1,
+      "front_mm": 5.8,
+      "back_mm": 13.4
+     }
+    },
+    "foramen_soft": {
+     "left": {
+      "height_mm": 18.4,
+      "width_mm": 13.2,
+      "up_mm": 9.3,
+      "down_mm": 9,
+      "front_mm": 5.2,
+      "back_mm": 8
+     },
+     "right": {
+      "height_mm": 18.5,
+      "width_mm": 18.1,
+      "up_mm": 9.4,
+      "down_mm": 9.1,
+      "front_mm": 5.8,
+      "back_mm": 12.4
+     }
+    }
+   }
+  },
+  "L4-5": {
+   "upper": "L4",
+   "lower": "L5",
+   "disc": "Annulus fibrosus L4-L5",
+   "nucleus": "Nucleus pulposus L4-L5",
+   "disc_height_mm": {
+    "anterior": 8.9,
+    "middle": 12.9,
+    "posterior": 7.0
+   },
+   "bone_gap_mm": {
+    "anterior": 9.2,
+    "middle": 12.6,
+    "posterior": 7.1
+   },
+   "nucleus_centre": [
+    -0.0,
+    0.99809,
+    -0.00433
+   ],
+   "nucleus_size_mm": [
+    12.3,
+    12.4,
+    12.3
+   ],
+   "dural_sac": {
+    "area_mm2": 236.0,
+    "width_mm": 17.1,
+    "ap_mm": 16.2,
+    "ap_midline_ray_mm": 15.3
+   },
+   "canal_ap_mm": 19.4,
+   "canal_ap_phaseA_bone_mm": 20.4,
+   "canal_area_phaseA_mm2": 438.9,
+   "foramen": {
+    "left": {
+     "height_max_mm": 19.6,
+     "height_under_pedicle_mm": 18.2,
+     "width_mid_disc_mm": 11.8,
+     "width_narrowest_mm": 2.1,
+     "centre": [
+      0.0184,
+      1.00311,
+      -0.02468
+     ]
+    },
+    "right": {
+     "height_max_mm": 19.4,
+     "height_under_pedicle_mm": 16.5,
+     "width_mid_disc_mm": 10.4,
+     "width_narrowest_mm": 2.2,
+     "centre": [
+      -0.0183,
+      1.00325,
+      -0.02432
+     ]
+    }
+   },
+   "flavum_thickness_mm": {
+    "left": 3.09,
+    "right": 3.09
+   },
+   "facet_angle_deg": {
+    "left": 46.1,
+    "right": 40.8
+   },
+   "facet_gap_mm": {
+    "left": 2.71,
+    "right": 1.8
+   },
+   "disc_frame": {
+    "centre": [
+     -0.0,
+     0.99809,
+     -0.00462
+    ],
+    "anterior": [
+     0.0001,
+     -0.2572,
+     0.9663
+    ],
+    "left": [
+     1.0,
+     0.0003,
+     -0.0
+    ],
+    "cranial": [
+     -0.0003,
+     0.9663,
+     0.2572
+    ],
+    "size_mm": {
+     "width": 50.7,
+     "height": 13.5,
+     "ap": 38.5
+    }
+   },
+   "kit_measures": {
+    "canal": {
+     "canal_ap_mm": 21.6,
+     "sac_area_mm2": 223,
+     "sac_width_mm": 17,
+     "sac_ap_mm": 15.4
+    },
+    "foramen": {
+     "left": {
+      "height_mm": 19.4,
+      "width_mm": 12.3,
+      "up_mm": 11.7,
+      "down_mm": 7.7,
+      "front_mm": 5.2,
+      "back_mm": 7.1
+     },
+     "right": {
+      "height_mm": 19.3,
+      "width_mm": 10.9,
+      "up_mm": 12,
+      "down_mm": 7.3,
+      "front_mm": 4.8,
+      "back_mm": 6.2
+     }
+    },
+    "foramen_soft": {
+     "left": {
+      "height_mm": 19.4,
+      "width_mm": 12.3,
+      "up_mm": 11.7,
+      "down_mm": 7.7,
+      "front_mm": 5.2,
+      "back_mm": 7.1
+     },
+     "right": {
+      "height_mm": 19.3,
+      "width_mm": 10.9,
+      "up_mm": 12,
+      "down_mm": 7.3,
+      "front_mm": 4.8,
+      "back_mm": 6.2
+     }
+    }
+   }
+  },
+  "L5-S1": {
+   "upper": "L5",
+   "lower": "S1",
+   "disc": "Annulus fibrosus L5-S1",
+   "nucleus": "Nucleus pulposus L5-S1",
+   "disc_height_mm": {
+    "anterior": 11.5,
+    "middle": 14.0,
+    "posterior": 14.7
+   },
+   "bone_gap_mm": {
+    "anterior": 11.7,
+    "middle": 14.0,
+    "posterior": 15.1
+   },
+   "nucleus_centre": [
+    -0.0,
+    0.96317,
+    -0.01779
+   ],
+   "nucleus_size_mm": [
+    13.9,
+    13.9,
+    13.9
+   ],
+   "dural_sac": {
+    "area_mm2": 216.8,
+    "width_mm": 17.0,
+    "ap_mm": 13.7,
+    "ap_midline_ray_mm": 13.4
+   },
+   "canal_ap_mm": 15.1,
+   "canal_ap_phaseA_bone_mm": 19.5,
+   "canal_area_phaseA_mm2": 572.8,
+   "foramen": {
+    "left": {
+     "height_max_mm": 17.0,
+     "height_under_pedicle_mm": 11.1,
+     "width_mid_disc_mm": 8.5,
+     "width_narrowest_mm": 2.5,
+     "centre": [
+      0.02117,
+      0.9754,
+      -0.03105
+     ]
+    },
+    "right": {
+     "height_max_mm": 17.9,
+     "height_under_pedicle_mm": 11.3,
+     "width_mid_disc_mm": 8.8,
+     "width_narrowest_mm": 2.6,
+     "centre": [
+      -0.02143,
+      0.97463,
+      -0.03141
+     ]
+    }
+   },
+   "flavum_thickness_mm": {
+    "left": 3.09,
+    "right": 3.09
+   },
+   "facet_angle_deg": {
+    "left": 47.3,
+    "right": 46.1
+   },
+   "facet_gap_mm": {
+    "left": 2.03,
+    "right": 2.75
+   },
+   "disc_frame": {
+    "centre": [
+     2e-05,
+     0.96143,
+     -0.01613
+    ],
+    "anterior": [
+     0.0024,
+     -0.4647,
+     0.8855
+    ],
+    "left": [
+     1.0,
+     0.0052,
+     -0.0
+    ],
+    "cranial": [
+     -0.0046,
+     0.8855,
+     0.4647
+    ],
+    "size_mm": {
+     "width": 50.6,
+     "height": 19.7,
+     "ap": 40.9
+    }
+   },
+   "kit_measures": {
+    "canal": {
+     "canal_ap_mm": 15.4,
+     "sac_area_mm2": 231,
+     "sac_width_mm": 17,
+     "sac_ap_mm": 14.9
+    },
+    "foramen": {
+     "left": {
+      "height_mm": 17.4,
+      "width_mm": 11.5,
+      "up_mm": 9.1,
+      "down_mm": 8.3,
+      "front_mm": 6.8,
+      "back_mm": 4.7
+     },
+     "right": {
+      "height_mm": 18.2,
+      "width_mm": 11.1,
+      "up_mm": 10.8,
+      "down_mm": 7.4,
+      "front_mm": 7.4,
+      "back_mm": 3.7
+     }
+    },
+    "foramen_soft": {
+     "left": {
+      "height_mm": 17.4,
+      "width_mm": 11.5,
+      "up_mm": 9.1,
+      "down_mm": 8.3,
+      "front_mm": 6.8,
+      "back_mm": 4.7
+     },
+     "right": {
+      "height_mm": 18.2,
+      "width_mm": 11.1,
+      "up_mm": 10.8,
+      "down_mm": 7.4,
+      "front_mm": 7.4,
+      "back_mm": 3.7
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,25 +1,21 @@
-# PROGRESS (updated 2026-11-24, Phase C2 done except step 8 colours; next = C2 step 8, then Phase D)
-Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. lumbar.glb 240 objects 380k tris; gaps.glb 162 objects 208k tris, 1.4 MB (total 588k ≤ 600k; 12k spare).
-## Done (C2, all "rules (approx)"; numbers in docs/CHECKS.md §9, data/raw/c2_checks.json)
-- Endplates (6): outer face = bony endplate, 0.46 mm centre → 1.0 mm AP rim / 0.78 lateral (mean 0.71); edge 3.5 mm inside disc outline; 70 % of disc face.
-- Facet joints L3-4..L5-S1 L/R: cartilage fills bone gap (1.6–2.8 mm) minus 0.4 mm joint space, thins at margin; capsule 1 mm, recesses +3 mm sup/inf, open anteromedially ~125° (flavum).
-- Epidural fat: posterior pads per level (19–26 mm long, depth 3.4–6.5), prelaminar bands L3, L4, S1; foraminal fat L3–L5 L/R (1.5–2.8 mm). New layer "epidural_fat" (on).
-- Veins: anterior internal plexus L/R (z 1072→959, r 0.3–1.3, 35° body / 55° disc from midline), basivertebral L3–L5, 6 intervertebral veins to lumbar/asc. lumbar/iliolumbar; posterior plexus hidden.
-- Nerves: L3/L4 dorsal ramus + medial branch over L4/L5 TP–SAP junction; L5 dorsal ramus in ala–SAP groove; SVN L3–L5 L/R (asc 12, desc 5 mm).
-- Landmarks (42): Kambin's triangle, lateral recess, foraminal entry/middle/exit zones, axilla/shoulder of traversing roots.
-- Viewer: Parts groups Medial branch / SVN, Epidural & foraminal fat, Vertebral venous plexus, Landmarks; "(Phase C)" entries gone. Disc-level filter includes small nerves.
-- Fixed: "epidural" matched the dura colour rule (now \bdura); landmark names with "root" got nerve colour (landmarks keep their look).
+# PROGRESS (updated 2026-11-24, Phase D done; next = user test, C2 step 8 colours, then Phase E)
+Repo: github.com/hakak01/Lumb3r-vr. Spec: docs/SPEC.md. Kit guide: docs/KIT.md (future sessions read only KIT.md). lumbar.glb 380k + gaps.glb 208k tris.
+## Done (Phase D)
+- assets/levels.json (tools/build_levels.py): per L3-4/L4-5/L5-S1 disc height ant/mid/post, nucleus centre+size, dural sac area/width/AP, canal AP, foramen height/width L/R + centre, flavum thickness, facet angle+gap L/R, disc frame (centre, anterior, left, cranial, size), kit_measures (live-method baseline), _methods.
+- js/kit.js rewritten for the lumbar model (was the shoulder kit): loadLumbar, where/show/hide/ghost/isolate by name or {level, side, part, group, layer}, setClip/clipPlane/clipLevel, discFrame, baseline, measureCanal, measureForamen, sectionArea, addMesh(bone) / removeMesh. js/measure.js = live measures.
+- kit/v1 frozen: 35 files, 14.1 MB, from commit c6e9b0f (FILES.json sha256). Check: python3 -I tools/freeze_kit.py v1 --check.
+- Headless tests on kit/v1: tools/check_kit.mjs (all API calls OK, 0 errors); tools/check_viewer.mjs on kit/v1/index.html.
 ## Decisions
-- Endplate overlaps the outer ~0.4 mm of the disc (disc touches bone, median gap 0.3 mm). Ring apophysis 3.5 mm, recess 3 mm, capsule 1 mm: approx.
-- Medial branch at the TP of the vertebra BELOW (L3 MB at L4), as for RF targets. Small nerves keep ≥0.1 mm (field) from bone/disc/ligament/neural parts.
-- Second clearance field (F2) includes dura, roots, DRG, sleeves, spinal nerves (c2_build.neural_field).
+- Baseline values (mm): disc ant/mid/post L3-4 6.7/6.4/6.1, L4-5 8.9/12.9/7.0, L5-S1 11.5/14.0/14.7; sac 202/236/217 mm²; canal AP 21.0/19.4/15.1; flavum 3.1; facets L/R 40.9/29.2°, 46.1/40.8°, 47.3/46.1°.
+- Canal AP = midline, back of disc/PLL to first posterior wall. Flavum halves leave a 0.25 mm midline cleft, so the wall is lamina/spinous (L3-4, L4-5) or the L5-S1 interspinous ligament (15.1 mm; it lies 0.7 mm behind the sac).
+- Live measures differ from Phase A/C methods (sac cut in the disc plane not perpendicular to canal: 186/223/231 vs 202/236/217 mm²; foramen rays through the Phase A centre). Disease modules compare with levels[d].kit_measures.
+- Live disc frame (vertex PCA) is within 0.31 mm / 1.7° of levels.json (surface-sample PCA).
+- Site URL is hakak01.github.io/Lumb3r-vr/kit/v1/ (SPEC says Lumbar-vr; the repo name is Lumb3r-vr). GitHub Pages must be on (main, root).
 ## Known problems
-- Step 8 colours NOT done: Bassett photo site blocked (403). Upload the 3 images to data/upload/ (links in the session report).
-- Kambin L5-S1 large (403/472 mm², height 27–30 mm). Prelaminar band L5 missing. Foraminal fat L3 39–41 mm long (includes lateral recess).
-- Venous channels touch bone in ~2 % of points at L5; SVNs touch PLL; medial branches lie 0.6–0.8 mm off bone, not on it. No S1/S2 foraminal fat.
-- Carried over: S1 not the shortest root; S1/S2 nerves graze sacral foramina; facet L3-4 R/L angle 29/41°; not yet tested on a Quest.
+- C2 step 8 colours still not done. Bassett screenshots were uploaded to Data/ (capital D, 7 phone screenshots, 6 MB, committed) instead of data/upload/.
+- Carried over: L3-4 disc thin (6.4 mm), L5-S1 posterior > anterior, L3-4 nucleus small, facet L3-4 R/L 29/41°, L5 pedicle angle low, Kambin L5-S1 large, no S1/S2 foraminal fat, not yet tested on a Quest.
 ## Next step
-- C2 committed (06b88fe, main). User tests C2 (desktop + Quest 3) and uploads the Bassett photos → C2 step 8 (dura, arachnoid, epidural fat, vein colours in tissues.json cadaver/realistic). Then Phase D.
+- User tests kit/v1 viewer on desktop + Quest 3. Then C2 step 8 colours (goes to main assets and kit/v2, never kit/v1), then Phase E corrections.
 ## Key files
-- tools/c2_build.py (called by build_gaps.py) → c2_endplate, c2_facet, c2_fat, c2_veins, c2_nerves, c2_marks, c2_geom (mesh helpers).
-- Rebuild: `python3 -I tools/build_gaps.py` (~50 s; needs data/raw/lumbar_raw.glb). Log data/raw/gaps_log.txt. Viewer: js/spine.js, menu2.js, looks.js, tissues.js; assets/look.json.
+- tools/build_levels.py (needs data/raw/checks.json, c1_checks.json, c2_checks.json, kit_live.json, lumbar_raw.glb, gaps_raw.glb), tools/freeze_kit.py, tools/check_kit.mjs (4th arg writes data/raw/kit_live.json).
+- js/kit.js, js/measure.js, js/spine.js (disc frames, canal centre, GROUPS). Rebuild order: build_gaps.py → build_levels.py → check_kit.mjs … kit_live.json → build_levels.py.

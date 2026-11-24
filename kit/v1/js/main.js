@@ -1,0 +1,149 @@
+// Entry point: renderer, loading, desktop/phone controls, render loop.
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { Anatomy } from './anatomy.js';
+import { Menus } from './menu.js';
+import { XR } from './xr.js';
+import { Realism } from './tissues.js';
+import { Spine } from './spine.js';
+import { Views } from './views.js';
+import { Ruler } from './ruler.js';
+import { Labels } from './labels.js';
+
+const GLB_SIZE = 3.0e6, GAPS_SIZE = 0.37e6;   // used for the loading bar if the server gives no size
+const app = { fps: 0 };
+window.app = app;
+
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c3d'), antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.localClippingEnabled = true;
+app.renderer = renderer;
+
+const scene = new THREE.Scene(); app.scene = scene;
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+const hemi = new THREE.HemisphereLight(0xffffff, 0x445566, 0.6); scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(0.5, 1, 1.2); scene.add(sun);
+app.lights = { hemi, sun };
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.001, 20);   // near 1 mm: fly-in
+const controls = new OrbitControls(camera, renderer.domElement);
+app.camera = camera; app.controls = controls;
+controls.enableDamping = true; controls.minDistance = 0.001; controls.maxDistance = 3;
+const root = new THREE.Group(); scene.add(root); app.root = root;
+
+const fill = document.getElementById('fill'), loadText = document.getElementById('loadText');
+const fail = (e) => { loadText.textContent = 'Loading failed: ' + e; console.error(e); };
+
+async function load() {
+  // assets/model.json names the files: {glb, gaps, landmarks, title, center (L4-5 disc centre, glTF metres)}
+  const get = (u) => fetch(u, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : []).catch(() => []);
+  const model = await get('assets/model.json'); app.model = model;
+  if (model.title) document.title = model.title + ' VR';
+  const js = (g) => 'assets/' + (g || '').replace(/\.glb$/, '.json');
+  const [look, manifest, gapsMan, markMan] = await Promise.all(['assets/look.json', 'assets/manifest.json',
+    js(model.gaps), js(model.landmarks)].map(get));
+  app.bg = new THREE.Color(look.background); scene.background = app.bg;
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  const got = {}, tot = {};
+  const bar = () => { fill.style.width = Math.min(100, 100 * (got.h + got.g || 0) / ((tot.h || GLB_SIZE) + (tot.g || GAPS_SIZE))) + '%'; };
+  const prog = (k) => (e) => { got[k] = e.loaded; tot[k] = e.total; bar(); };
+  got.h = got.g = 0;
+  const opt = (f, k) => f ? loader.loadAsync('assets/' + f, k && prog(k)).catch((e) => { console.warn(f + ' not loaded', e); return null; }) : null;
+  const [gltf, gaps, marks] = await Promise.all([loader.loadAsync('assets/' + model.glb, prog('h')), opt(model.gaps, 'g'), opt(model.landmarks)]);
+  for (const g of [gaps, marks]) if (g) for (const n of [...g.scene.children]) gltf.scene.add(n);   // approximate structures
+  loadText.textContent = 'Preparing…';
+  const A = new Anatomy(root, gltf.scene, manifest.concat(gapsMan || [], markMan || []), look, model.center); app.anatomy = A;
+  app.spine = new Spine(app); app.views = new Views(app); app.ruler = new Ruler(app);
+  autoLabels(A);
+  app.menus = new Menus(app);
+  A.labels.filter = (s) => app.menus.labelFilter(s);
+  A.onChange = () => app.menus && app.menus.buildInfo();
+  app.menus.menu.attachDom('menuCanvas'); app.menus.info.attachDom('infoCanvas');
+  app.xr = new XR(app);
+  resetView();
+  renderer.compile(scene, camera);
+  document.getElementById('loading').style.display = 'none';
+  app.realism = new Realism(app);   // realistic view loads in the background, then switches if startView says so
+  const cfg = await fetch('assets/tissues.json', { cache: 'no-cache' }).then((r) => r.json()).catch(() => ({}));
+  if (cfg.startView && cfg.startView !== 'present') app.realism.setView(cfg.startView);
+}
+
+function resetView() {
+  root.position.set(0, 0, 0); root.quaternion.identity(); root.scale.setScalar(1);
+  if (app.xr && app.xr.mode) { app.xr.needPlace = true; return; }
+  app.views.apply('start');   // L4-5 disc centre = 0,0,0; left posterolateral view
+}
+// Label points for the detailed levels: 25 mm out from the canal axis (glTF coordinates, as labels.js expects).
+function autoLabels(A) {
+  const S = app.spine, zc = S.canal['L4-5'].c.z;
+  for (const s of A.structs) {
+    if (!/^(L3|L4|L5|S1|L3-4|L4-5|L5-S1|S2)$/.test(s.level) || s.context) continue;
+    const c = S.box(s.name).c, d = new THREE.Vector3(c.x, 0, c.z - zc);
+    if (d.length() < 0.004) d.set(0.7, 0, -0.7);
+    s.label = c.add(d.setLength(0.025)).sub(A.center.position).toArray();
+  }
+  A.labels = new Labels(A, A.labels.on);
+}
+function focus(s) {
+  if (app.xr && app.xr.mode) return app.xr.focus(s);
+  root.updateMatrixWorld(true);
+  const { center, size } = app.anatomy.bounds(s);
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  controls.target.copy(center);
+  camera.position.copy(center).addScaledVector(dir, Math.max(size * 2.2, 0.08));
+  controls.update();
+}
+Object.assign(app, {
+  resetView, focus,
+  inXR: () => !!(app.xr && app.xr.mode),
+  exitXR: () => app.xr && app.xr.end(),
+  onPose: () => { if (app.menus && app.anatomy.selected && !app.menus.info.drag) app.menus.buildInfo(); },
+  onXREnd: () => { app.xr.cursor.visible = false; resetView(); },
+});
+
+// menu button (show/hide the on-screen menu)
+const menuBtn = document.getElementById('menuBtn');
+menuBtn.onclick = () => { const c = document.getElementById('menuCanvas'); c.style.display = c.style.display === 'none' ? '' : 'none'; };
+if (innerWidth < 700) setTimeout(() => menuBtn.onclick(), 0);   // phones start with the menu closed
+addEventListener('keydown', (e) => {
+  if (!app.menus) return;
+  if (e.key === 'v' && app.menus.tab !== 'search') return app.realism && app.realism.toggle();
+  app.menus.key(e);
+});
+
+// click / tap to select (ignore drags)
+const ray = new THREE.Raycaster(); let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (e) => { downAt = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener('pointerup', (e) => {
+  if (!downAt || !app.anatomy || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 6) return;
+  ray.setFromCamera(new THREE.Vector2(e.clientX / innerWidth * 2 - 1, -e.clientY / innerHeight * 2 + 1), camera);
+  const hit = app.anatomy.pick(ray);
+  if (app.ruler.on) { if (hit) app.ruler.add(hit.point); return; }
+  app.anatomy.select(hit ? hit.struct : null); app.menus.refresh();
+});
+addEventListener('resize', () => {
+  if (renderer.xr.isPresenting) return;
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight);
+});
+
+const clock = new THREE.Clock(); let frames = 0, tFps = 0;
+renderer.setAnimationLoop(() => {
+  const dt = Math.min(clock.getDelta(), 0.1);
+  frames++; tFps += dt;
+  if (tFps >= 1) {
+    app.fps = Math.round(frames / tFps); frames = 0; tFps = 0;
+    if (app.menus && app.menus.tab === 'tools') app.menus.refresh();
+  }
+  if (app.xr) app.xr.update(dt);
+  if (app.realism) app.realism.update();
+  if (!app.inXR()) controls.update();
+  if (app.anatomy) { root.updateMatrixWorld(); app.anatomy.updateClip(); app.ruler.update(); }
+  renderer.render(scene, camera);
+});
+
+load().catch(fail);
