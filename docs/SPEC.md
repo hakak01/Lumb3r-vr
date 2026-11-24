@@ -1,0 +1,86 @@
+I want an accurate, as-realistic-as-possible 3D model of the NORMAL lumbosacral spine for Meta Quest 3 (browser WebXR). Full detail for L3, L4, L5, S1 and the L3–4, L4–5 and L5–S1 discs. Later it will be the base for disease simulators (disc prolapse, lumbar canal stenosis, degenerative disc disease) and surgery simulators (discectomy, decompression, TLIF), so build it as a reusable kit. I am an orthopaedic surgeon with no programming experience: explain anything you need from me in simple English. Keep token use minimal, but never reduce anatomical accuracy or realism to save tokens.
+
+STEP 0: Copy CLAUDE.md from Shoul3er-vr (see REUSE) and follow it. Save this whole message unchanged as docs/SPEC.md. Create docs/PROGRESS.md (max 30 lines). Then do ONLY Phase A1, stop, and report in 10 lines or fewer.
+
+REUSE (copy, do not rewrite)
+- My public repo github.com/hakak01/Shoul3er-vr has my newest working pipeline and viewer, built from the same Z-Anatomy body. Run `git clone -q --depth 1 https://github.com/hakak01/Shoul3er-vr /tmp/sh`, then copy: CLAUDE.md, .gitignore, .nojekyll, ATTRIBUTION.md, index.html, js/ (but NOT rig.js, wrap.js, ropes.js, movemenu.js), tools/ (but NOT rig_*.py, wrap_*.py, build_rig.py, build_wrap.py, check_wrap.*, glbskin.py, gaps_joint.py), assets/look.json, assets/tissues.json, assets/tex/, assets/env/. Do NOT copy kit/, any .glb, the manifest/gaps/landmarks/model/rig/rhythm/wrap .json files, or docs/. Remove the imports of the skipped files from main.js, menu.js and kit.js (no shoulder movement here).
+- Read only /tmp/sh/docs/PROGRESS.md, /tmp/sh/docs/KIT.md and `grep -n '^def\|^export\|^function' /tmp/sh/tools/*.py /tmp/sh/js/*.js`, not whole files, unless a step fails.
+- Keep the Present / Realistic / Cadaver views and their colours unchanged (the cadaver colours were measured from photos).
+- tools/region.py: add a LUMBAR region as a setting. It takes BOTH sides (the shoulder region took only the right side).
+- Known: cdn.jsdelivr.net is blocked in the cloud session; the headless test serves three@0.170.0 from a local npm copy.
+- Later phases only (do not use now): my injection trainer is on branch `ccr-88a11139-jlyhfg` of github.com/hakak01/spine-simulator (CT model from TotalSegmentator case s0461; needle behaviour in docs/needle-rules.md; root-course model in tools/spine_anatomy.py).
+
+SOURCES: same as Shoul3er-vr (Z-Anatomy Startup.blend read with bpy; BodyParts3D STL mirror for more detailed bones). Never run `git ls-tree -l` on the BodyParts3D mirror. Licence CC BY-SA 4.0; keep ATTRIBUTION.md.
+
+FACTS ALREADY CHECKED (Z-Anatomy object names; paired objects end in ".l"/".r")
+- Bones: Vertebra L1, Vertebra L2, Vertebra L3, Vertebra L4, Vertebra L5, Sacrum, Coccyx, Hip bone. Vertebral parts (pedicle, lamina, facets etc.) exist only as text labels, not as meshes.
+- Discs: Intervertebral disc L3-L4, L4-L5, L5-S1 (also L1-L2, L2-L3), each with its own "Nucleus pulposus L3-L4" etc.
+- Ligaments, each ONE object spanning all levels: Anterior longitudinal ligament, Posterior longitudinal ligament, Ligamenta flava, Interspinous ligaments, Supraspinous ligament. Per side: Intertransverse ligaments, Iliolumbar ligament, Anterior and Interosseous sacro-iliac ligaments.
+- Neural: Spinal dura (and "Spinal dura.001"), Arachnoid (group), Cauda equina, Anterior root of spinal nerve and Posterior root of spinal nerve (ONE object per side, all levels), Spinal ganglion (ONE object per side), groups "Anterior rami of lumbar nerves", "Posterior rami of lumbar nerves", Lumbosacral plexus, Sacral plexus, Femoral nerve, Sciatic nerve.
+- Muscles and fascia: Multifidus lumborum muscle, Erector spinae, Iliocostalis lumborum muscle, Longissimus thoracis muscle (many ".eN" parts), Interspinales lumborum muscles, lateral intertransversarii lumborum, Quadratus lumborum muscle, Psoas major; anterior, middle and posterior layers of thoracolumbar fascia.
+- Vessels: Abdominal aorta, Inferior vena cava (abdominal part), Common iliac artery and vein, Median sacral artery, Lumbar arteries, Lumbar veins, Iliolumbar artery and vein, Left ascending lumbar vein, Lateral sacral veins.
+- Not found: facet joint capsules and facet cartilage, epidural fat, internal vertebral venous plexus, basivertebral veins, medial branches of the dorsal rami, sinuvertebral nerves, conus/filum as separate lumbar objects.
+
+PHASE A: assets (Phase A1 = steps 1–3 and 5–7. Phase A2, next session = step 4, then re-export and update GAPS.md and CHECKS.md.)
+1. Region (both sides): top of L1 to the coccyx. Full detail L3–S1. Context (layer "context_bone", ghosted by default): L1, L2, hip bones, coccyx. Include the whole muscles, fascia, vessels and nerves listed above where they cross the region; femoral and sciatic nerves only until they leave the pelvis. Skin and subcutaneous fat of the lower back (hidden by default).
+2. As in Shoul3er-vr Phase A: swap the bones for BodyParts3D bones (ICP; map "Vertebra L3" etc. to the BodyParts3D lumbar vertebra names; keep the Z-Anatomy bone if the mean error is >1.5 mm; report the error for each bone), repair, convert curves to lighter meshes. Make every bone watertight (later surgery modules will cut bone).
+3. Keep the Z-Anatomy world coordinates in the file (no recentring). Recentre only in the viewer.
+4. Split into named parts, left and right separately, because I must be able to hide each one alone:
+   a. L3, L4 and L5 each into: body, pedicle, pars interarticularis, lamina, superior articular process, inferior articular process, transverse process (each left/right), spinous process. S1 into: body, ala, superior articular process, lamina (left/right), and the rest of the sacrum. Cut at the anatomical boundaries (pedicle = the narrowest bridge between body and posterior arch; pars = the part of the lamina between the superior and inferior articular processes). Close every cut face; parts of one bone must meet with no gap or overlap. Names like "L4 pedicle (left)".
+   b. Ligaments that are one object for all levels (ALL, PLL, ligamenta flava, interspinous, supraspinous, intertransverse): split per level at the disc spaces (L3–4, L4–5, L5–S1; the others become context). Ligamentum flavum also per side.
+   c. Roots and ganglia (one object per side): split per level by the foramen they pass through: L3, L4, L5, S1 (and S2 if present). Ventral and dorsal roots stay separate.
+   d. Disc: annulus = disc minus nucleus. Keep "Nucleus pulposus" as its own part.
+5. Budget: aim for ≤600k triangles and assets/ ≤25 MB (meshopt GLB). NEVER decimate L3–S1 bones and bone parts, discs, nuclei, ligaments, dura, cauda equina, roots or ganglia. If over budget, reduce only context bones and muscles far from L3–S1. If still above 600k, report it; I will check fps on the Quest first.
+5b. These are coarse in the source and I will zoom into them: smooth with one subdivision level (shape change ≤0.3 mm): ligamentum flavum, PLL, ALL, interspinous and supraspinous ligaments, roots, ganglia, dura, nucleus and annulus.
+6. Export assets/lumbar.glb + assets/manifest.json (same fields as Shoul3er-vr, plus "level" e.g. "L4", "L4-5", and "side" "left"/"right"/"mid"). Layers: as in Shoul3er-vr plus disc, neural, context_bone, landmark.
+7. Write docs/GAPS.md against REQUIRED STRUCTURES and docs/CHECKS.md against ANATOMY CHECKS (measure and report only; change nothing).
+
+PHASE B: viewer
+- Shoul3er-vr viewer with only these changes: assets/model.json {"glb":"lumbar.glb","gaps":"gaps.glb","title":"Lumbosacral spine"}; recentre on the centre of the L4–5 disc; start in Realistic view with skin, fat and muscles hidden.
+- Hide panel (wrist menu): choose level (L3, L4, L5, S1, L3–4, L4–5, L5–S1, All) and side (Left, Right, Both), then one toggle per part from Phase A step 4, plus facet joint, disc (annulus, nucleus, endplate), dura, roots, ganglia, vessels, muscles. Hidden parts follow a ghost slider (0 = invisible, up to 60% visible).
+- See-through: X-ray mode (all bone ghosted with outlines); isolate selected; clipping planes: axial (snap buttons at mid-disc of L3–4, L4–5, L5–S1 and mid-pedicle of L3, L4, L5, S1), sagittal (midline, and through each foramen), coronal. Thumbstick moves the plane (already present).
+- Pass-through: (1) keep "Enter MR" (room passthrough). (2) Fly-in: I must be able to put my head inside the model. Raise the maximum zoom to 40×; camera near plane 1 mm so close structures don't vanish; draw dura, disc and canal surfaces double-sided so they are visible from inside; buttons "Inside canal at L4–5" and "Inside left L5–S1 foramen" that set the size and place me there.
+- Zoom: two-hand grab zoom (present), thumbstick zoom, "Life size" button (1:1).
+- Views: Surgeon (patient prone, back up, as in theatre); MRI axial (seen from the feet, patient's right on screen left); MRI sagittal; Foramen (lateral, at the foramen); Posterolateral 45° (Kambin approach).
+- Ruler: tap two points, show the true distance in mm at any zoom.
+- Info panel: name, level, side, source (Z-Anatomy / BodyParts3D / approx). Labels toggle. Exit VR button (present).
+
+PHASE C: gaps (tools/build_gaps.py → assets/gaps.glb, approx:true; reuse gapgeom.py, gaps_fat.py, gaps_nv.py, build_landmarks.py helpers)
+- Facet joints L3–4, L4–5, L5–S1, both sides: thin cartilage on both facets with a narrow joint space, and a fibrous capsule round the joint margins with superior and inferior recesses. Anteromedially the ligamentum flavum forms the capsule, so no separate capsule there.
+- Cartilaginous endplate (thin layer) between each disc and its vertebral bodies.
+- Epidural fat: a posterior midline fat pad at each level between ligamentum flavum and dura; very little in front; fat around the root and ganglion in each foramen.
+- Anterior internal vertebral venous plexus: paired channels behind the vertebral bodies, lateral to the PLL, joined behind each body by the basivertebral vein from the basivertebral foramen, and draining through the foramina to the lumbar veins (bleeding source in discectomy).
+- Medial branch of the dorsal ramus at L3 and L4 at the junction of the superior articular and transverse processes; L5 dorsal ramus in the groove between the sacral ala and the S1 superior articular process.
+- Sinuvertebral nerve at each level: from the ventral ramus back through the foramen to the PLL and the back of the disc.
+- If Phase A roots are missing or broken: rebuild each as a root sleeve leaving the dural sac. The traversing root lies in the lateral recess at the level of the disc above its own pedicle; the exiting root runs under its own pedicle in the upper foramen, above the disc. Use the DRG sizes and positions in ANATOMY CHECKS.
+- Landmark patches (toggle, approx): Kambin's triangle (exiting root, superior endplate of the lower vertebra, traversing root / dural sac), lateral recess, foraminal entry/middle/exit zones, axilla and shoulder of each traversing root.
+
+PHASE D: base kit for future simulators
+- Write assets/levels.json: for each of L3–4, L4–5, L5–S1 the measured baseline: anterior/middle/posterior disc height, nucleus centre, dural sac cross-sectional area and canal AP diameter at mid-disc, foraminal height and width (left/right), ligamentum flavum thickness (left/right), facet angle (left/right), and a disc frame (centre, AP, left-right and cranio-caudal axes). Disease modules will change these values.
+- Freeze kit/v1/ as in Shoul3er-vr Phase E: glb files, manifests, levels.json, JS modules, full viewer. Never edit kit/v1 afterwards; changes go to kit/v2.
+- docs/KIT.md (≤40 lines): how another repo loads the kit from https://hakak01.github.io/Lumbar-vr/kit/v1/ (same site, no copying; for headless tests, clone this repo beside it), the importmap, the functions (load, show/hide/ghost by name, by level/side/part, set clip, get a structure, disc frame, measure canal and foramen, add a custom mesh fixed to a bone) and the coordinate system. Future sessions will read only KIT.md.
+
+PHASE E: I test in the headset and send numbered corrections. Fix only those.
+
+PARKED (do not build; but nothing in Phases A–D should block them)
+- Disease module (separate repo, loads the kit): disc prolapse at L3–4, L4–5, L5–S1 using Fardon 2014 nomenclature (bulge, protrusion, extrusion, sequestration; central, subarticular, foraminal, extraforaminal zones), showing which root is compressed (subarticular → traversing root; foraminal → exiting root); degenerative disc disease by Pfirrmann grade (height loss, nucleus change), Modic endplate changes, osteophytes; stenosis: central (Schizas grades), lateral recess, foraminal (Lee 2010 grades) from ligamentum flavum thickening, facet hypertrophy and disc bulge.
+- Surgery module: microdiscectomy, laminotomy/decompression, TLIF (facetectomy, discectomy, endplate preparation, cage, pedicle screws). Needs bone that can be removed (watertight bones now).
+- MRI correlation with the SPIDER dataset (van der Graaf 2024).
+
+REQUIRED STRUCTURES (for GAPS.md)
+- Bones: L3, L4, L5, sacrum (S1 in detail) with all parts; context L1, L2, hip bones, coccyx.
+- Joints: discs L3–4, L4–5, L5–S1 (annulus, nucleus, endplates); facet joints (cartilage, capsule); sacroiliac joints (context).
+- Ligaments: ALL, PLL, ligamentum flavum (per level and side), interspinous, supraspinous, intertransverse, iliolumbar; sacroiliac ligaments (context).
+- Neural: dural sac, arachnoid, cauda equina, ventral and dorsal roots, dorsal root ganglia and spinal nerves L3, L4, L5, S1 (S2 within the sacrum), ventral and dorsal rami, medial branches, lumbosacral trunk, sinuvertebral nerves.
+- Vessels: aorta and its bifurcation, IVC and its confluence, common iliac arteries and veins, median sacral artery, lumbar arteries and veins, iliolumbar vessels, ascending lumbar veins, internal vertebral venous plexus, basivertebral veins.
+- Muscles and fascia: multifidus, erector spinae (lumbar parts), interspinales, intertransversarii, quadratus lumborum, psoas major, thoracolumbar fascia (3 layers). Skin, subcutaneous fat, epidural and foraminal fat.
+
+ANATOMY CHECKS (for CHECKS.md; this is one adult male body, so report every value and flag only big differences; change nothing)
+- Disc height: Zhou 2000 (Eur Spine J, CT, 378 vertebrae): L3/4 11.6 ± 1.8, L4/5 11.3 ± 2.1, L5/S1 10.7 ± 2.1 mm. Asian volunteers (J Orthop Surg Res 2018): reference ranges L3/4 7.4–13.3, L4/5 7.8–14.6, L5/S1 7.1–13.1 mm. Anterior height should exceed posterior at L3–S1.
+- Pedicle (transverse isthmus width and medial angle): Indian CT, Mohanty 2018 (Musculoskelet Surg): narrowest lumbar width 7.2 ± 0.87 mm; transverse pedicle angle rising from 8.5° at L1 to 30° at L5. Acharya 2010 (Spine, 450 Indian vertebrae): all lumbar pedicles >7 mm, medially directed, most at L5. Silverstein 2015 (Int J Spine Surg, cadavers): width L3 ~7.8, L4 ~8.8, L5 ~9.7 mm.
+- Foramen: Hasegawa 1995 (JBJS Am): root compression in 4 of 5 foramina with foraminal height ≤15 mm and 8 of 10 with posterior disc height ≤4 mm, so a normal model must be clearly above both. Foraminal AP width (Silverstein 2015): L3 ~7.5, L4 ~8.5, L5 ~8.7 mm.
+- Dorsal root ganglia: width L3 ~4.9–5.3, L4 ~5.8–6.1, L5 ~6.2–6.5 mm; length L3 ~7, L4 ~8.5, L5 ~11.5 mm (MRI study in AJNR, PMC7977207; Silverstein 2015, elderly cadavers). DRG centre in the medial zone of the foramen at L3–L4 and the lateral zone at L5 (Silverstein 2015); only ~6% of L5 DRGs lie inside the canal. The S1 DRG is the largest and more often inside the canal; the S1 root leaves the sac more cephalad, more vertically and is the shortest (Hasegawa 1996, Spine).
+- Canal: dural sac cross-sectional area at mid-disc should be >100 mm² (stenosis thresholds: <100 mm² relative, <75 mm² absolute, as cited by Schizas 2010, Spine). Canal midsagittal AP diameter should be >12 mm (relative stenosis ≤12 mm, absolute ≤10 mm; Framingham).
+- Ligamentum flavum thickness at half its length on an axial cut: normal 3.1 ± 0.8 mm (AJNR 2010;31:1813); thickened ligaments in that study averaged 4.9–5.3 mm.
+- Facet orientation (angle from the sagittal plane on an axial cut, mid-joint): L3/4 38.7°, L4/5 47°, L5/S1 47.3° (CT study, 2013, doi 10.1155/2013/693971). Left–right difference normally a few degrees.
+- Root topography: each exiting root (L3, L4, L5) runs under its own pedicle above the disc; the next root (L4, L5, S1) crosses the back of the disc in the lateral recess as the traversing root.

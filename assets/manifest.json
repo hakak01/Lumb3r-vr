@@ -1,0 +1,1297 @@
+[
+ {
+  "name": "Abdominal aorta",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 336,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Anterior layer of thoracolumbar fascia (left)",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 176,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Anterior layer of thoracolumbar fascia (right)",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 176,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Anterior longitudinal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5600,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Anterior root of posterior femoral cutaneous nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Anterior root of posterior femoral cutaneous nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Anterior root of spinal nerve (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 472,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Anterior root of spinal nerve (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 472,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Anterior sacro-iliac ligament (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 504,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Anterior sacro-iliac ligament (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 504,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Cauda equina",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 9216,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Coccyx",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1166,
+  "level": "Co",
+  "side": "mid"
+ },
+ {
+  "name": "Common iliac artery (left)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Common iliac artery (right)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Common iliac vein (left)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Common iliac vein (right)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Dorsal parts of lateral intertransversarii lumborum muscles (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 720,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Dorsal parts of lateral intertransversarii lumborum muscles (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 720,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Erector spinae (origin, left)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1028,
+  "kind": "origin",
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Erector spinae (origin, right)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1028,
+  "kind": "origin",
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Femoral branch of genitofemoral nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 150,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Femoral branch of genitofemoral nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 150,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Femoral nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 582,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Femoral nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 582,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Genital branch of genitofemoral nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 150,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Genital branch of genitofemoral nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 150,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Genitofemoral nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Genitofemoral nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Hip bone (left)",
+  "layer": "context_bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 9470,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Hip bone (right)",
+  "layer": "context_bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 9716,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Iliacus branch of iliolumbar artery (left)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 528,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Iliacus branch of iliolumbar artery (right)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 528,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Ilio-inguinal nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 518,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Ilio-inguinal nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 518,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Iliocostalis lumborum muscle (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 10038,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Iliocostalis lumborum muscle (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 10038,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Iliohypogastric nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Iliohypogastric nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Iliolumbar artery (left)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Iliolumbar artery (right)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Iliolumbar ligament (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 112,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Iliolumbar ligament (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 112,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Iliolumbar vein (left)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 576,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Iliolumbar vein (right)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 576,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Inferior vena cava (abdominal part)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Intercornual ligament (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 56,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Intercornual ligament (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 56,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Interosseous sacro-iliac ligament (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 200,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Interosseous sacro-iliac ligament (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 200,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Interspinales lumborum muscles (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 562,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Interspinales lumborum muscles (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 562,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Interspinous ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 688,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Intertransverse ligaments (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3146,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Intertransverse ligaments (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3146,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Intervertebral disc L1-L2",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3132,
+  "level": "L1-2",
+  "side": "mid"
+ },
+ {
+  "name": "Intervertebral disc L2-L3",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3388,
+  "level": "L2-3",
+  "side": "mid"
+ },
+ {
+  "name": "Intervertebral disc L3-L4",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12464,
+  "level": "L3-4",
+  "side": "mid"
+ },
+ {
+  "name": "Intervertebral disc L4-L5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 13144,
+  "level": "L4-5",
+  "side": "mid"
+ },
+ {
+  "name": "Intervertebral disc L5-S1",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 14344,
+  "level": "L5-S1",
+  "side": "mid"
+ },
+ {
+  "name": "Lateral femoral cutaneous nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 198,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Lateral femoral cutaneous nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 198,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Lateral sacral veins (left)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Lateral sacral veins (right)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Left ascending lumbar vein",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 816,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Ligamenta flava",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4560,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Longissimus thoracis muscle (insertion 1, left)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 988,
+  "kind": "insertion",
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Longissimus thoracis muscle (insertion 1, right)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 988,
+  "kind": "insertion",
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Longissimus thoracis muscle (insertion 2, left)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 760,
+  "kind": "insertion",
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Longissimus thoracis muscle (insertion 2, right)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 760,
+  "kind": "insertion",
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Longissimus thoracis muscle (insertion, left)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 392,
+  "kind": "insertion",
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Longissimus thoracis muscle (insertion, right)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 392,
+  "kind": "insertion",
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Longissimus thoracis muscle (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 9652,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Longissimus thoracis muscle (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 9652,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Lumbar arteries (right)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1968,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Lumbar branch of iliolumbar artery (left)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Lumbar branch of iliolumbar artery (right)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Lumbar region (left)",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Lumbar region (right)",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Lumbar veins (left)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Lumbar veins (right)",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2448,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Median sacral artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 480,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Middle layer of thoracolumbar fascia (left)",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 160,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Middle layer of thoracolumbar fascia (right)",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 160,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Multifidus lumborum muscle (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2820,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Multifidus lumborum muscle (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2820,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Nerve to piriformis muscle (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Nerve to piriformis muscle (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Nerve to quadratus femoris muscle (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 422,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Nerve to quadratus femoris muscle (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 422,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Nucleus pulposus L1-L2",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960,
+  "level": "L1-2",
+  "side": "mid"
+ },
+ {
+  "name": "Nucleus pulposus L2-L3",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960,
+  "level": "L2-3",
+  "side": "mid"
+ },
+ {
+  "name": "Nucleus pulposus L3-L4",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3840,
+  "level": "L3-4",
+  "side": "mid"
+ },
+ {
+  "name": "Nucleus pulposus L4-L5",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3840,
+  "level": "L4-5",
+  "side": "mid"
+ },
+ {
+  "name": "Nucleus pulposus L5-S1",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3840,
+  "level": "L5-S1",
+  "side": "mid"
+ },
+ {
+  "name": "Obturator nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 534,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Obturator nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 534,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Posterior femoral cutaneous nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 294,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Posterior layer of thoracolumbar fascia (left)",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 313,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Posterior layer of thoracolumbar fascia (right)",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 313,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Posterior longitudinal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 7344,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Posterior root of posterior femoral cutaneous nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 672,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Posterior root of posterior femoral cutaneous nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 672,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Posterior root of spinal nerve (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 472,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Posterior root of spinal nerve (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 472,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Posterior sacro-iliac ligament (left)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5456,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Posterior sacro-iliac ligament (right)",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5456,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Psoas major (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5474,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Psoas major (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5474,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Quadratus lumborum muscle (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2832,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Quadratus lumborum muscle (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2832,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Posterior femoral cutaneous nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 294,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Rotatores (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2288,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Rotatores (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2288,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Sciatic nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 578,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Sciatic nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 578,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Lumbar arteries (left)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1776,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Pudendal nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 406,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Pudendal nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 406,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Right ascending lumbar vein",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1392,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Sacral region (left)",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 172,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Sacral region (right)",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 172,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Sacrococcygeal symphysis",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 188,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Sacrum",
+  "layer": "bone",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 11670,
+  "level": "S1",
+  "side": "mid"
+ },
+ {
+  "name": "Spinal branch of iliolumbar artery (left)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Spinal branch of iliolumbar artery (right)",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Spinal dura",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 8188,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Spinal ganglion (left)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1000,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Spinal ganglion (right)",
+  "layer": "neural",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1000,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Spinalis thoracis muscle (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5532,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Spinalis thoracis muscle (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5532,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Superior gluteal nerve (left)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 576,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Superior gluteal nerve (right)",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 576,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Supraspinous ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 704,
+  "level": "",
+  "side": "mid"
+ },
+ {
+  "name": "Ventral parts of lateral intertransversarii lumborum muscles (left)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 996,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Ventral parts of lateral intertransversarii lumborum muscles (right)",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 996,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "Vertebra L1",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 12946,
+  "level": "L1",
+  "side": "mid"
+ },
+ {
+  "name": "Vertebra L2",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 6946,
+  "level": "L2",
+  "side": "mid"
+ },
+ {
+  "name": "Vertebra L3",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 14750,
+  "level": "L3",
+  "side": "mid"
+ },
+ {
+  "name": "Vertebra L4",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 15426,
+  "level": "L4",
+  "side": "mid"
+ },
+ {
+  "name": "Vertebra L5",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 17282,
+  "level": "L5",
+  "side": "mid"
+ },
+ {
+  "name": "Vertebral region (left)",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 206,
+  "level": "",
+  "side": "left"
+ },
+ {
+  "name": "Vertebral region (right)",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 206,
+  "level": "",
+  "side": "right"
+ },
+ {
+  "name": "White matter of spinal cord",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2588,
+  "level": "",
+  "side": "mid"
+ }
+]
